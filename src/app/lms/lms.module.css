@@ -1,0 +1,560 @@
+/* lms.module.css */
+
+/* Base Layout */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+  
+  .mainWrapper {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    background-color: #f1f5f9;
+    border-radius: 8px; /* Rounded edges */
+    margin: 16px; /* Creates space around white container */
+    margin-top: 0px;
+  }
+  
+  /* Navbar Styles */
+  .navbar {
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    /* Removed box-shadow */
+  }
+  
+  .navContent {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand {
+    color: #1e293b;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+  
+  .navProgress {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: 400px;
+  }
+  
+  /* Sidebar Styles */
+  .sidebar {
+    width: 320px;
+    padding: 1.5rem;
+    border-right: 1px solid #e2e8f0;
+    overflow-y: auto;
+    flex-shrink: 0;
+    /* Removed background-color */
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  .sectionTitle {
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  .sectionList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sectionItem {
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    /* background-color: #ffffff; */
+  }
+  
+  .sectionItem:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .selectedItem {
+    background-color: #e2e8f0 !important;
+    font-weight: 500;
+  }
+  
+  .visitedItem {
+    background-color: #f0fdf4;
+  }
+  
+  .itemText {
+    flex-grow: 1;
+    color: #334155;
+    font-size: 0.95rem;
+  }
+  
+  .completionIndicator {
+    color: #16a34a;
+    font-weight: 700;
+    margin-left: 0.5rem;
+  }
+  
+  /* Progress Bar Styles */
+  .progressBar {
+    flex: 1;
+    height: 8px;
+    background-color: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background-color: #16a34a;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .progressText {
+    color: #475569;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-width: 90px;
+    text-align: right;
+  }
+  
+  /* Main Content Styles */
+  .mainContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    min-width: 0;
+  }
+  
+  /* Video Section */
+  .videoSection {
+    /* background-color: #ffffff; */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .courseTitle {
+    color: #1e293b;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .videoContainer {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .videoPlaceholder {
+    background-color: #cbd5e1;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 1.2rem;
+  }
+  
+  .playbackControls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  
+  .progressTrack {
+    flex: 1;
+    height: 4px;
+    background-color: #e2e8f0;
+    border-radius: 2px;
+    position: relative;
+  }
+  
+  .playbackProgress {
+    width: 35%;
+    height: 100%;
+    background-color: #16a34a;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  
+  .timestamp {
+    color: #64748b;
+    font-size: 0.9rem;
+    min-width: 50px;
+  }
+  
+  /* Transcript Section */
+  .transcriptSection {
+    /* background-color: #ffffff; */
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .transcriptTitle {
+    color: #1e293b;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f1f5f9;
+  }
+  
+  .transcriptContainer {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+  }
+  
+  .transcriptContainer::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .transcriptContainer::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+    margin: 4px;
+  }
+  
+  .transcriptContainer::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+    border: 2px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+  }
+  
+  .transcriptContainer::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+  }
+  
+  .transcriptLine {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    gap: 1rem;
+    min-height: 70px;
+    background-color: #ffffff;
+    margin: 2px;
+    border-radius: 4px;
+  }
+  
+  .transcriptLine:hover {
+    background-color: #f8fafc;
+    transform: translateX(2px);
+  }
+  
+  .activeTranscriptLine {
+    background-color: #f1f5f9;
+    border-left: 3px solid #16a34a;
+    margin-left: -3px;
+    box-shadow: 2px 0 8px rgba(22, 163, 74, 0.1);
+  }
+  
+  .transcriptLine:last-child {
+    border-bottom: none;
+  }
+  
+  .timestamp {
+    color: #64748b;
+    font-size: 0.9rem;
+    min-width: 60px;
+    font-weight: 500;
+    user-select: none;
+    padding-top: 2px;
+  }
+  
+  .transcriptText {
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+    font-size: 0.95rem;
+  }
+  
+  /* Quiz Prompt */
+  .quizPrompt {
+    background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-left: 4px solid #f59e0b;
+  }
+  
+  .quizContent {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .celebrationBadge {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: bounce 1.5s infinite;
+  }
+  
+  .quizTitle {
+    color: #1e293b;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .quizMessage {
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quizActions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .quizButton {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .quizButton:hover {
+    transform: translateY(-2px);
+  }
+  
+  .secondaryButton {
+    background: #ffffff;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .secondaryButton:hover {
+    background-color: #f8fafc;
+  }
+  
+  /* Certificate Styles */
+  .certificateContainer {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+  }
+  
+  .certificate {
+    position: relative;
+    border: 2px solid #16a34a;
+    border-radius: 12px;
+    padding: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+  }
+  
+  .certificateHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .certificateTitle {
+    color: #1e293b;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .decorativeSeal {
+    font-size: 3rem;
+    margin: 1rem 0;
+    animation: spin 8s linear infinite;
+  }
+  
+  .certificateBody {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .certificateText {
+    color: #475569;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 1rem 0;
+  }
+  
+  .recipientName {
+    color: #1e293b;
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    text-transform: uppercase;
+  }
+  
+  .courseName {
+    color: #16a34a;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0;
+  }
+  
+  .certificateDetails {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding: 0 2rem;
+  }
+  
+  .completionDate {
+    color: #64748b;
+    font-size: 0.95rem;
+  }
+  
+  .authorizationSection {
+    text-align: right;
+  }
+  
+  .signatureLine {
+    width: 200px;
+    border-bottom: 2px solid #1e293b;
+    margin: 0.5rem 0;
+  }
+  
+  .authorizedBy {
+    color: #64748b;
+    font-size: 0.9rem;
+  }
+  
+  .achievementBadge {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #16a34a;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    transform: rotate(15deg);
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Animations */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  
+  @keyframes lineHighlight {
+    from { background-color: #ffffff; }
+    to { background-color: #f1f5f9; }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 0 1rem;
+      height: 50px;
+    }
+    
+    .brand {
+      font-size: 1.2rem;
+    }
+    
+    .navProgress {
+      width: 200px;
+      gap: 0.5rem;
+    }
+    
+    .progressText {
+      display: none;
+    }
+  
+    .mainWrapper {
+      margin: 8px;
+      border-radius: 4px;
+    }
+  
+    .sidebar {
+      width: 100%;
+      height: 300px;
+      border-right: none;
+      border-bottom: 1px solid #e2e8f0;
+    }
+  
+    .mainContent {
+      padding: 1.5rem;
+    }
+  
+    .certificate {
+      padding: 1.5rem;
+    }
+  
+    .recipientName {
+      font-size: 1.8rem;
+    }
+  
+    .certificateDetails {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+  
+    .authorizationSection {
+      text-align: center;
+    }
+  
+    .videoPlaceholder {
+      height: 250px;
+    }
+  
+    .transcriptContainer {
+      max-height: 300px;
+    }
+  }

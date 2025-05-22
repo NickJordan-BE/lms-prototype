@@ -234,18 +234,11 @@ const LMS = () => {
         {/* Right Main Content */}
         <div className="flex-1 overflow-y-auto p-8 min-w-0">
           {/* Video Section */}
-          <div className="rounded-lg p-6 mb-8">
-            <h2 className="text-slate-800 text-2xl mb-6 font-semibold">Professional Development Program</h2>
-            <div className="relative rounded-lg overflow-hidden">
-              <div className="bg-slate-400 h-96 flex items-center justify-center text-slate-600 text-xl" />
-              <div className="flex items-center gap-4 py-4">
-                <span className="text-slate-500 text-sm min-w-12">00:00</span>
-                <div className="flex-1 h-1 bg-slate-200 rounded-full relative">
-                  <div className="w-1/3 h-full bg-green-600 rounded-full transition-all duration-300" />
-                </div>
-                <span className="text-slate-500 text-sm min-w-12">45:00</span>
-              </div>
-            </div>
+          <div className={styles.videoSection}>
+            <h2 className={styles.courseTitle}>Professional Development Program</h2>
+            <VideoPlayer 
+              videoId="Jt1_Q_tnbEk" // Example video ID - replace with your actual video ID
+            />
           </div>
 
           {/* Transcript Section */}

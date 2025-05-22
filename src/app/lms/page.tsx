@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import VideoPlayer from '../components/VideoPlayer';
 
 const LMS = () => {
   const router = useRouter();
@@ -234,10 +235,12 @@ const LMS = () => {
         {/* Right Main Content */}
         <div className="flex-1 overflow-y-auto p-8 min-w-0">
           {/* Video Section */}
-          <div className={styles.videoSection}>
-            <h2 className={styles.courseTitle}>Professional Development Program</h2>
+          <div className="py-8 px-4 max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+              Professional Development Program
+            </h2>
             <VideoPlayer 
-              videoId="Jt1_Q_tnbEk" // Example video ID - replace with your actual video ID
+              videoId="Jt1_Q_tnbEk"
             />
           </div>
 

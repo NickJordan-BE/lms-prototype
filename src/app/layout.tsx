@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { usePathname } from "next/navigation";
+import React, { useState } from "react";
 import { Navbar } from "./components/Navbar";
 import "./globals.css";
 
@@ -24,11 +25,21 @@ export default function RootLayout({
   const pathname = usePathname();
   const showNavbar = !pathname.startsWith('/lms');
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const showGetStarted = pathname === '/';
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="root-container">
-          {showNavbar && <Navbar />}
+          {showNavbar && (
+            <Navbar
+              showGetStarted={showGetStarted}
+              isLoggedIn={isLoggedIn}
+              onLogin={() => setIsLoggedIn(true)}
+              onLogout={() => setIsLoggedIn(false)}
+            />
+          )}
           <main className="content-wrapper">
             {children}
           </main>

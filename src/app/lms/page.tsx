@@ -13,7 +13,7 @@ const LMS = () => {
     {
       title: "Module 1: Foundation",
       items: [
-        "Introduction to Core Concepts",
+        "Introduction to Core Concepts.",
         "Essential Principles Overview",
         "Methodology Fundamentals",
         "Basic Techniques Primer"

@@ -14,6 +14,11 @@ interface YouTubePlayer {
   getCurrentTime: () => number;
   getDuration: () => number;
   setPlaybackRate: (rate: number) => void;
+  setVolume: (volume: number) => void;
+  getVolume: () => number;
+  isMuted: () => boolean;
+  mute: () => void;
+  unMute: () => void;
   destroy: () => void;
 }
 
@@ -44,6 +49,9 @@ declare global {
       ) => YouTubePlayer;
       PlayerState: {
         PLAYING: number;
+        PAUSED: number;
+        ENDED: number;
+        BUFFERING: number;
       };
     };
     onYouTubeIframeAPIReady: () => void;
@@ -57,6 +65,10 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showControls, setShowControls] = useState(true);
   const [showSubtitles, setShowSubtitles] = useState(false);
+  const [volume, setVolume] = useState(100);
+  const [isMuted, setIsMuted] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const playerRef = useRef<YouTubePlayer | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -81,9 +93,12 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
         events: {
           onReady: (event: YouTubeEvent) => {
             setDuration(event.target.getDuration());
+            setVolume(event.target.getVolume());
+            setIsLoading(false);
           },
           onStateChange: (event: YouTubeEvent) => {
             setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
+            setIsLoading(event.data === window.YT.PlayerState.BUFFERING);
           },
         },
       });
@@ -132,6 +147,41 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
     }
   };
 
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseInt(e.target.value);
+    if (playerRef.current) {
+      playerRef.current.setVolume(newVolume);
+      setVolume(newVolume);
+      if (newVolume === 0) {
+        setIsMuted(true);
+      } else if (isMuted) {
+        setIsMuted(false);
+      }
+    }
+  };
+
+  const handleMuteToggle = () => {
+    if (playerRef.current) {
+      if (isMuted) {
+        playerRef.current.unMute();
+        setIsMuted(false);
+      } else {
+        playerRef.current.mute();
+        setIsMuted(true);
+      }
+    }
+  };
+
+  const handleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
   const handleMouseMove = () => {
     setShowControls(true);
     if (controlsTimeoutRef.current) {
@@ -176,6 +226,8 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
     >
       <div id="youtube-player" className={styles.player} />
       
+      {isLoading && <div className={styles.loadingSpinner} />}
+      
       {showControls && (
         <div className={styles.controls}>
           <div className={styles.progressBar}>
@@ -197,6 +249,20 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
               {isPlaying ? '⏸️' : '▶️'}
             </button>
             
+            <div className={styles.volumeControl}>
+              <button onClick={handleMuteToggle} className={styles.controlButton}>
+                {isMuted ? '🔇' : volume > 50 ? '🔊' : volume > 0 ? '🔉' : '🔈'}
+              </button>
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={volume}
+                onChange={handleVolumeChange}
+                className={styles.volumeSlider}
+              />
+            </div>
+            
             <div className={styles.playbackRates}>
               {[0.5, 1, 1.5, 2].map((rate) => (
                 <button
@@ -214,6 +280,13 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
               className={`${styles.controlButton} ${showSubtitles ? styles.active : ''}`}
             >
               CC
+            </button>
+
+            <button
+              onClick={handleFullscreen}
+              className={`${styles.controlButton} ${styles.fullscreenButton}`}
+            >
+              {isFullscreen ? '⤓' : '⤢'}
             </button>
           </div>
         </div>

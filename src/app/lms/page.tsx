@@ -97,8 +97,13 @@ const LMS = () => {
     <div className="flex flex-col h-screen overflow-hidden bg-white">
       {/* Top Navigation Bar */}
       <nav className="bg-white sticky top-0 z-50 h-15 flex items-center px-8">
-        <div className="w-full mx-auto flex justify-between items-center">
-          <h2 className="text-slate-800 text-xl font-semibold m-0 tracking-tight">Skilled LMS</h2>
+        <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
+          <button 
+            onClick={() => router.push('/')}
+            className="text-slate-800 text-xl font-semibold m-0 tracking-tight bg-transparent border-none cursor-pointer hover:text-slate-600 transition-colors duration-200"
+          >
+            Skilled LMS
+          </button>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-4 w-80">
               <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
@@ -111,7 +116,10 @@ const LMS = () => {
                 {progress}% Complete
               </div>
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white border-none px-4 py-2 rounded-md text-sm font-medium cursor-pointer transition-all duration-200 whitespace-nowrap hover:-translate-y-px">
+            <button 
+              onClick={() => router.push('/mylearning')}
+              className="bg-blue-600 hover:bg-blue-700 text-white border-none px-4 py-2 rounded-md text-sm font-medium cursor-pointer transition-all duration-200 whitespace-nowrap hover:-translate-y-px"
+            >
               My Learning
             </button>
             <div className="relative flex items-center">

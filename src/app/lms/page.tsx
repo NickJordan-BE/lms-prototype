@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './lms.module.css';
+import VideoPlayer from '../components/VideoPlayer';
 
 const LMS = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -124,16 +125,9 @@ const LMS = () => {
           {/* Video Section */}
           <div className={styles.videoSection}>
             <h2 className={styles.courseTitle}>Professional Development Program</h2>
-            <div className={styles.videoContainer}>
-              <div className={styles.videoPlaceholder} />
-              <div className={styles.playbackControls}>
-                <span className={styles.timestamp}>00:00</span>
-                <div className={styles.progressTrack}>
-                  <div className={styles.playbackProgress} />
-                </div>
-                <span className={styles.timestamp}>45:00</span>
-              </div>
-            </div>
+            <VideoPlayer 
+              videoId="Jt1_Q_tnbEk" // Example video ID - replace with your actual video ID
+            />
           </div>
 
           {/* Transcript Section */}
@@ -162,7 +156,7 @@ const LMS = () => {
                 <div className={styles.celebrationBadge}>🎯</div>
                 <h3 className={styles.quizTitle}>Progress Checkpoint!</h3>
                 <p className={styles.quizMessage}>
-                  You've completed {completedCount} of {totalItems} modules.<br />
+                  You&apos;ve completed {completedCount} of {totalItems} modules.<br />
                   Ready to test your understanding with a quick assessment?
                 </p>
                 <div className={styles.quizActions}>

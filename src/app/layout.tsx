@@ -2,10 +2,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { usePathname } from "next/navigation";
-import { Navbar } from "./components/Navbar";
+import { SignedInNavbar } from "./components/SignedInNavbar";
+import Navbar from "./components/Navbar";
 import "./globals.css";
 
-// Move metadata export outside since we're using 'use client'
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -16,19 +16,55 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Define which routes use which navbar
+const PUBLIC_NAVBAR_ROUTES = [
+  '/',
+  '/about',
+  '/services',
+  '/contact',
+  '/pricing',
+  '/courses',
+  '/features'
+];
+
+const SIGNED_IN_NAVBAR_ROUTES = [
+  '/dashboard',
+  '/profile',
+  '/settings',
+  'mylearning',
+  '/certificates'
+];
+
+const NO_NAVBAR_ROUTES = [
+  '/lms'
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const showNavbar = !pathname.startsWith('/lms');
-
+  
+  // Helper function to check if pathname matches any route pattern
+  const matchesRoute = (routes: string[], path: string) => {
+    return routes.some(route => 
+      route.endsWith('*') 
+        ? path.startsWith(route.slice(0, -1))
+        : path === route
+    );
+  };
+  
+  const showPublicNavbar = matchesRoute(PUBLIC_NAVBAR_ROUTES, pathname);
+  const showSignedInNavbar = matchesRoute(SIGNED_IN_NAVBAR_ROUTES, pathname);
+  const showNoNavbar = matchesRoute(NO_NAVBAR_ROUTES, pathname);
+  
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="root-container">
-          {showNavbar && <Navbar />}
+          {showPublicNavbar && <Navbar />}
+          {showSignedInNavbar && <SignedInNavbar />}
           <main className="content-wrapper">
             {children}
           </main>

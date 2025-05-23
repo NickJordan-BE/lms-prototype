@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import VideoPlayer from '../components/VideoPlayer';
+import { isFeatureEnabled } from '../utils/featureFlags';
 
 const LMS = () => {
   const router = useRouter();
@@ -205,7 +206,9 @@ const LMS = () => {
 
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
-    setVisitedItems(prev => ({ ...prev, [item]: true }));
+    if (isFeatureEnabled('complete_section_on_view')) {
+      setVisitedItems(prev => ({ ...prev, [item]: true }));
+    }
     setActiveLine(0); // Reset transcript position when changing items
   };
 
@@ -229,6 +232,11 @@ const LMS = () => {
     // For now, just redirect to login or home page
     router.push('/login');
   };
+
+  function handleVideoComplete(): void {
+    if (!selectedItem) return;
+    setVisitedItems(prev => ({ ...prev, [selectedItem]: true }));
+  }
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-white">
@@ -379,6 +387,7 @@ const LMS = () => {
                 </h2>
                 <VideoPlayer 
                   videoId={itemContent[selectedItem]?.videoId || "Jt1_Q_tnbEk"}
+                  onVideoComplete={handleVideoComplete}
                 />
               </div>
 

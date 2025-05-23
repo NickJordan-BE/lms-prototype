@@ -6,6 +6,7 @@ import { MdPlayArrow, MdPause, MdVolumeUp, MdVolumeOff, MdVolumeDown, MdFullscre
 
 interface VideoPlayerProps {
   videoId: string;
+  onVideoComplete?: () => void;
 }
 
 interface YouTubePlayer {
@@ -59,7 +60,7 @@ declare global {
   }
 }
 
-const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
+const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -99,6 +100,11 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
           onStateChange: (event: YouTubeEvent) => {
             setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
             setIsLoading(event.data === window.YT.PlayerState.BUFFERING);
+            
+            // Handle video completion
+            if (event.data === window.YT.PlayerState.ENDED && onVideoComplete) {
+              onVideoComplete();
+            }
           },
         },
       });
@@ -124,7 +130,7 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
         playerRef.current.destroy();
       }
     };
-  }, [videoId, showSubtitles]);
+  }, [videoId, showSubtitles, onVideoComplete]);
 
   useEffect(() => {
     const updateTime = () => {

@@ -265,7 +265,7 @@ const LMS = () => {
     <div className="flex flex-col h-screen overflow-hidden bg-white">
       {/* Top Navigation Bar */}
       <nav className="bg-white sticky top-0 z-50 h-15 flex items-center px-8">
-        <div className="w-full max-w-7xl mx-auto flex justify-between items-center">
+        <div className="w-full mx-auto flex justify-between items-center">
           <button 
             onClick={() => router.push('/')}
             className="text-slate-800 text-xl font-semibold m-0 tracking-tight bg-transparent border-none cursor-pointer hover:text-slate-600 transition-colors duration-200"

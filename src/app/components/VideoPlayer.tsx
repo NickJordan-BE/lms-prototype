@@ -75,12 +75,28 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Function to save current time to localStorage
+  const savePlaybackPosition = () => {
+    if (playerRef.current) {
+      const currentTime = playerRef.current.getCurrentTime();
+      localStorage.setItem(`video-position-${videoId}`, currentTime.toString());
+    }
+  };
+
+  // Function to load saved position from localStorage
+  const loadPlaybackPosition = () => {
+    const savedTime = localStorage.getItem(`video-position-${videoId}`);
+    return savedTime ? parseFloat(savedTime) : 0;
+  };
+
   useEffect(() => {
     // Function to initialize the player
     const initializePlayer = () => {
       if (playerRef.current) {
         playerRef.current.destroy();
       }
+      
+      const savedPosition = loadPlaybackPosition();
       
       playerRef.current = new window.YT.Player('youtube-player', {
         videoId,
@@ -96,14 +112,25 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
             setDuration(event.target.getDuration());
             setVolume(event.target.getVolume());
             setIsLoading(false);
+            // Restore saved position
+            if (savedPosition > 0) {
+              event.target.seekTo(savedPosition);
+            }
           },
           onStateChange: (event: YouTubeEvent) => {
             setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
             setIsLoading(event.data === window.YT.PlayerState.BUFFERING);
             
+            // Save position when video is paused
+            if (event.data === window.YT.PlayerState.PAUSED) {
+              savePlaybackPosition();
+            }
+            
             // Handle video completion
             if (event.data === window.YT.PlayerState.ENDED && onVideoComplete) {
               onVideoComplete();
+              // Clear saved position when video is completed
+              localStorage.removeItem(`video-position-${videoId}`);
             }
           },
         },
@@ -126,6 +153,8 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
     }
 
     return () => {
+      // Save position when component unmounts
+      savePlaybackPosition();
       if (playerRef.current) {
         playerRef.current.destroy();
       }

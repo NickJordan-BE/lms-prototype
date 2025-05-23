@@ -278,22 +278,22 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
       
       {isLoading && <div className={styles.loadingSpinner} />}
       
+      <div className={styles.progressBar}>
+        <input
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleSeek}
+          className={styles.progressSlider}
+        />
+        <div className={styles.timeDisplay}>
+          {formatTime(currentTime)} / {formatTime(duration)}
+        </div>
+      </div>
+      
       {showControls && (
         <div className={styles.controls}>
-          <div className={styles.progressBar}>
-            <input
-              type="range"
-              min={0}
-              max={duration}
-              value={currentTime}
-              onChange={handleSeek}
-              className={styles.progressSlider}
-            />
-            <div className={styles.timeDisplay}>
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </div>
-          </div>
-          
           <div className={styles.controlButtons}>
             <button onClick={handlePlayPause} className={styles.controlButton}>
               {isPlaying ? <MdPause size={24} /> : <MdPlayArrow size={24} />}

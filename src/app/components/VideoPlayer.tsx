@@ -77,7 +77,7 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
 
   // Function to save current time to localStorage
   const savePlaybackPosition = () => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.getCurrentTime === 'function') {
       const currentTime = playerRef.current.getCurrentTime();
       localStorage.setItem(`video-position-${videoId}`, currentTime.toString());
     }
@@ -109,11 +109,15 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
         },
         events: {
           onReady: (event: YouTubeEvent) => {
-            setDuration(event.target.getDuration());
-            setVolume(event.target.getVolume());
+            if (typeof event.target.getDuration === 'function') {
+              setDuration(event.target.getDuration());
+            }
+            if (typeof event.target.getVolume === 'function') {
+              setVolume(event.target.getVolume());
+            }
             setIsLoading(false);
             // Restore saved position
-            if (savedPosition > 0) {
+            if (savedPosition > 0 && typeof event.target.seekTo === 'function') {
               event.target.seekTo(savedPosition);
             }
           },
@@ -163,7 +167,7 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
 
   useEffect(() => {
     const updateTime = () => {
-      if (playerRef.current && isPlaying) {
+      if (playerRef.current && typeof playerRef.current.getCurrentTime === 'function' && isPlaying) {
         setCurrentTime(playerRef.current.getCurrentTime());
       }
     };
@@ -173,7 +177,7 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   }, [isPlaying]);
 
   const handlePlayPause = () => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.playVideo === 'function' && typeof playerRef.current.pauseVideo === 'function') {
       if (isPlaying) {
         playerRef.current.pauseVideo();
       } else {
@@ -184,14 +188,14 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = parseFloat(e.target.value);
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.seekTo === 'function') {
       playerRef.current.seekTo(time);
       setCurrentTime(time);
     }
   };
 
   const handlePlaybackRateChange = (rate: number) => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.setPlaybackRate === 'function') {
       playerRef.current.setPlaybackRate(rate);
       setPlaybackRate(rate);
     }
@@ -199,7 +203,7 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseInt(e.target.value);
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.setVolume === 'function') {
       playerRef.current.setVolume(newVolume);
       setVolume(newVolume);
       if (newVolume === 0) {
@@ -211,7 +215,7 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   };
 
   const handleMuteToggle = () => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.mute === 'function' && typeof playerRef.current.unMute === 'function') {
       if (isMuted) {
         playerRef.current.unMute();
         setIsMuted(false);

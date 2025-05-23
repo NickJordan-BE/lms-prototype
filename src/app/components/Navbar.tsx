@@ -1,3 +1,6 @@
+import React from 'react';
+
+const Navbar: React.FC = () => {
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -46,10 +49,45 @@ export const Navbar = ({
   }
 
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.navContent}>
-        <h2 className={styles.brand}>Skilled LMS</h2>
-        <div className={styles.navProgress}>
+    <nav className="bg-white shadow-sm border-b border-gray-200">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo/Brand */}
+          <div className="flex-shrink-0">
+            <span className="text-xl font-bold text-gray-900">Brand</span>
+          </div>
+          
+          {/* Navigation Links */}
+          <div className="flex space-x-8">
+            <a href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Home
+            </a>
+            <a href="/about" className="text-gray-700 hover:text-gray-900 transition-colors">
+              About
+            </a>
+            <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Services
+            </a>
+            <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Contact
+            </a>
+          </div>
+        </div>
+        <div className={styles.buttonGroup}>
+          {showGetStarted && (
+            <button className={styles.getStartedBtn} onClick={handleSignUp}>
+              Get Started
+            </button>
+          )}
+          {isLoggedIn ? (
+            <button className={styles.logoutBtn} onClick={handleLogOut}>
+              Log out
+            </button>
+          ) : (
+            <button className={styles.loginBtn} onClick={handleLogin}>
+              Log in
+            </button>
+          )}
         </div>
         <div className={styles.buttonGroup}>
           {showGetStarted && (
@@ -71,3 +109,5 @@ export const Navbar = ({
     </nav>
   );
 };
+
+export default Navbar;

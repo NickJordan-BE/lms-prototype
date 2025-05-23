@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 import styles from './VideoPlayer.module.css';
+import { MdPlayArrow, MdPause, MdVolumeUp, MdVolumeOff, MdVolumeDown, MdFullscreen, MdFullscreenExit, MdClosedCaption } from 'react-icons/md';
 
 interface VideoPlayerProps {
   videoId: string;
+  onVideoComplete?: () => void;
 }
 
 interface YouTubePlayer {
@@ -20,6 +22,7 @@ interface YouTubePlayer {
   mute: () => void;
   unMute: () => void;
   destroy: () => void;
+  getVideoData: () => { video_id: string };
 }
 
 interface YouTubeEvent {
@@ -58,29 +61,52 @@ declare global {
   }
 }
 
-const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
+const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showControls, setShowControls] = useState(true);
   const [showSubtitles, setShowSubtitles] = useState(false);
-  const [volume, setVolume] = useState(100);
+  const [volume, setVolume] = useState(() => {
+    const savedVolume = localStorage.getItem('video-player-volume');
+    console.log('Initial savedVolume from localStorage:', savedVolume);
+    const initialVolume = savedVolume ? parseInt(savedVolume) : 100;
+    console.log('Setting initial volume to:', initialVolume);
+    return initialVolume;
+  });
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasEnded, setHasEnded] = useState(false);
   const playerRef = useRef<YouTubePlayer | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const initializedRef = useRef(false);
+
+  // Function to save current time to localStorage
+  const savePlaybackPosition = () => {
+    if (playerRef.current && typeof playerRef.current.getCurrentTime === 'function') {
+      const currentTime = playerRef.current.getCurrentTime();
+      localStorage.setItem(`video-position-${videoId}`, currentTime.toString());
+    }
+  };
+
+  // Function to load saved position from localStorage
+  const loadPlaybackPosition = () => {
+    const savedTime = localStorage.getItem(`video-position-${videoId}`);
+    return savedTime ? parseFloat(savedTime) : 0;
+  };
 
   useEffect(() => {
-    // Load YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
+    // Function to initialize the player
+    const initializePlayer = () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
+      
+      const savedPosition = loadPlaybackPosition();
+      
       playerRef.current = new window.YT.Player('youtube-player', {
         videoId,
         playerVars: {
@@ -92,28 +118,82 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
         },
         events: {
           onReady: (event: YouTubeEvent) => {
-            setDuration(event.target.getDuration());
-            setVolume(event.target.getVolume());
+            if (typeof event.target.getDuration === 'function') {
+              setDuration(event.target.getDuration());
+            }
+            // Set the initial volume on the player
+            if (typeof event.target.setVolume === 'function') {
+              event.target.setVolume(volume);
+              // Don't override our saved volume with the player's default
+              // setVolume(event.target.getVolume());
+            }
             setIsLoading(false);
+            // Restore saved position
+            if (savedPosition > 0 && typeof event.target.seekTo === 'function') {
+              event.target.seekTo(savedPosition);
+            }
+            initializedRef.current = true;
           },
           onStateChange: (event: YouTubeEvent) => {
             setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
             setIsLoading(event.data === window.YT.PlayerState.BUFFERING);
+            
+            // Save position when video is paused
+            if (event.data === window.YT.PlayerState.PAUSED) {
+              savePlaybackPosition();
+            }
+            
+            // Handle video completion
+            if (event.data === window.YT.PlayerState.ENDED) {
+              setHasEnded(true);
+              if (onVideoComplete) {
+                onVideoComplete();
+              }
+              // Clear saved position when video is completed
+              localStorage.removeItem(`video-position-${videoId}`);
+              // Pause the video at the end
+              if (playerRef.current && typeof playerRef.current.pauseVideo === 'function') {
+                playerRef.current.pauseVideo();
+              }
+            } else {
+              setHasEnded(false);
+            }
           },
         },
       });
     };
 
+    // Only initialize if not already initialized or if videoId changes
+    if (!initializedRef.current || videoId !== playerRef.current?.getVideoData()?.video_id) {
+      // If YouTube API is already loaded
+      if (window.YT && window.YT.Player) {
+        initializePlayer();
+      } else {
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+        window.onYouTubeIframeAPIReady = () => {
+          initializePlayer();
+        };
+      }
+    }
+
     return () => {
+      // Save position when component unmounts
+      savePlaybackPosition();
       if (playerRef.current) {
         playerRef.current.destroy();
       }
+      initializedRef.current = false;
     };
-  }, [videoId, showSubtitles]);
+  }, [videoId]); // Only depend on videoId changes
 
   useEffect(() => {
     const updateTime = () => {
-      if (playerRef.current && isPlaying) {
+      if (playerRef.current && typeof playerRef.current.getCurrentTime === 'function' && isPlaying) {
         setCurrentTime(playerRef.current.getCurrentTime());
       }
     };
@@ -123,7 +203,7 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
   }, [isPlaying]);
 
   const handlePlayPause = () => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.playVideo === 'function' && typeof playerRef.current.pauseVideo === 'function') {
       if (isPlaying) {
         playerRef.current.pauseVideo();
       } else {
@@ -134,14 +214,14 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = parseFloat(e.target.value);
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.seekTo === 'function') {
       playerRef.current.seekTo(time);
       setCurrentTime(time);
     }
   };
 
   const handlePlaybackRateChange = (rate: number) => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.setPlaybackRate === 'function') {
       playerRef.current.setPlaybackRate(rate);
       setPlaybackRate(rate);
     }
@@ -149,9 +229,12 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseInt(e.target.value);
-    if (playerRef.current) {
+    console.log('Volume changed to:', newVolume);
+    if (playerRef.current && typeof playerRef.current.setVolume === 'function') {
       playerRef.current.setVolume(newVolume);
       setVolume(newVolume);
+      localStorage.setItem('video-player-volume', newVolume.toString());
+      console.log('Saved volume to localStorage:', newVolume);
       if (newVolume === 0) {
         setIsMuted(true);
       } else if (isMuted) {
@@ -161,10 +244,14 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
   };
 
   const handleMuteToggle = () => {
-    if (playerRef.current) {
+    if (playerRef.current && typeof playerRef.current.mute === 'function' && typeof playerRef.current.unMute === 'function') {
       if (isMuted) {
         playerRef.current.unMute();
         setIsMuted(false);
+        // Restore the previous volume when unmuting
+        if (typeof playerRef.current.setVolume === 'function') {
+          playerRef.current.setVolume(volume);
+        }
       } else {
         playerRef.current.mute();
         setIsMuted(true);
@@ -228,30 +315,33 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
       
       {isLoading && <div className={styles.loadingSpinner} />}
       
+      <div className={styles.progressBar}>
+        <input
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleSeek}
+          className={styles.progressSlider}
+        />
+        <div className={styles.timeDisplay}>
+          {formatTime(currentTime)} / {formatTime(duration)}
+        </div>
+      </div>
+      
       {showControls && (
         <div className={styles.controls}>
-          <div className={styles.progressBar}>
-            <input
-              type="range"
-              min={0}
-              max={duration}
-              value={currentTime}
-              onChange={handleSeek}
-              className={styles.progressSlider}
-            />
-            <div className={styles.timeDisplay}>
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </div>
-          </div>
-          
           <div className={styles.controlButtons}>
             <button onClick={handlePlayPause} className={styles.controlButton}>
-              {isPlaying ? '⏸️' : '▶️'}
+              {isPlaying ? <MdPause size={24} /> : <MdPlayArrow size={24} />}
             </button>
             
             <div className={styles.volumeControl}>
               <button onClick={handleMuteToggle} className={styles.controlButton}>
-                {isMuted ? '🔇' : volume > 50 ? '🔊' : volume > 0 ? '🔉' : '🔈'}
+                {isMuted ? <MdVolumeOff size={24} /> : 
+                 volume > 50 ? <MdVolumeUp size={24} /> : 
+                 volume > 0 ? <MdVolumeDown size={24} /> : 
+                 <MdVolumeOff size={24} />}
               </button>
               <input
                 type="range"
@@ -279,14 +369,14 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
               onClick={() => setShowSubtitles(!showSubtitles)}
               className={`${styles.controlButton} ${showSubtitles ? styles.active : ''}`}
             >
-              CC
+              <MdClosedCaption size={24} />
             </button>
 
             <button
               onClick={handleFullscreen}
               className={`${styles.controlButton} ${styles.fullscreenButton}`}
             >
-              {isFullscreen ? '⤓' : '⤢'}
+              {isFullscreen ? <MdFullscreenExit size={24} /> : <MdFullscreen size={24} />}
             </button>
           </div>
         </div>

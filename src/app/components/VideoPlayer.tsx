@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import styles from './VideoPlayer.module.css';
+import { MdPlayArrow, MdPause, MdVolumeUp, MdVolumeOff, MdVolumeDown, MdFullscreen, MdFullscreenExit, MdClosedCaption } from 'react-icons/md';
+import { HiClosedCaptioning } from 'react-icons/hi';
 
 interface VideoPlayerProps {
   videoId: string;
@@ -246,12 +248,15 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
           
           <div className={styles.controlButtons}>
             <button onClick={handlePlayPause} className={styles.controlButton}>
-              {isPlaying ? '⏸️' : '▶️'}
+              {isPlaying ? <MdPause size={24} /> : <MdPlayArrow size={24} />}
             </button>
             
             <div className={styles.volumeControl}>
               <button onClick={handleMuteToggle} className={styles.controlButton}>
-                {isMuted ? '🔇' : volume > 50 ? '🔊' : volume > 0 ? '🔉' : '🔈'}
+                {isMuted ? <MdVolumeOff size={24} /> : 
+                 volume > 50 ? <MdVolumeUp size={24} /> : 
+                 volume > 0 ? <MdVolumeDown size={24} /> : 
+                 <MdVolumeOff size={24} />}
               </button>
               <input
                 type="range"
@@ -279,14 +284,14 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
               onClick={() => setShowSubtitles(!showSubtitles)}
               className={`${styles.controlButton} ${showSubtitles ? styles.active : ''}`}
             >
-              CC
+              <MdClosedCaption size={24} />
             </button>
 
             <button
               onClick={handleFullscreen}
               className={`${styles.controlButton} ${styles.fullscreenButton}`}
             >
-              {isFullscreen ? '⤓' : '⤢'}
+              {isFullscreen ? <MdFullscreenExit size={24} /> : <MdFullscreen size={24} />}
             </button>
           </div>
         </div>

@@ -31,7 +31,7 @@ const SIGNED_IN_NAVBAR_ROUTES = [
   '/dashboard',
   '/profile',
   '/settings',
-  'mylearning',
+  '/mylearning',
   '/certificates'
 ];
 

@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import VideoPlayer from '../components/VideoPlayer';
 import { isFeatureEnabled } from '../utils/featureFlags';
+import dynamic from 'next/dynamic';
+
+const ReactConfetti = dynamic(() => import('react-confetti'), {
+  ssr: false
+});
 
 const LMS = () => {
   const router = useRouter();
@@ -12,6 +17,11 @@ const LMS = () => {
   const [showQuizPrompt, setShowQuizPrompt] = useState(false);
   const [activeLine, setActiveLine] = useState<number>(0);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showCongratulations, setShowCongratulations] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 0,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
 
   const courseSections = [
     {
@@ -68,6 +78,18 @@ const LMS = () => {
       setShowQuizPrompt(true);
     }
   }, [progress, isCourseComplete]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   interface TranscriptLine {
     time: string;
@@ -236,6 +258,7 @@ const LMS = () => {
   function handleVideoComplete(): void {
     if (!selectedItem) return;
     setVisitedItems(prev => ({ ...prev, [selectedItem]: true }));
+    setShowCongratulations(true);
   }
 
   return (
@@ -390,6 +413,36 @@ const LMS = () => {
                   onVideoComplete={handleVideoComplete}
                 />
               </div>
+
+              {/* Congratulations Screen */}
+              {showCongratulations && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                  <ReactConfetti
+                    width={windowSize.width}
+                    height={windowSize.height}
+                    recycle={false}
+                    numberOfPieces={200}
+                    gravity={0.2}
+                  />
+                  <div className="bg-white rounded-xl p-8 max-w-lg w-full mx-4 transform transition-all animate-in zoom-in-95 duration-200">
+                    <div className="text-center">
+                      <div className="text-6xl mb-6 animate-bounce">🎉</div>
+                      <h3 className="text-2xl font-bold text-slate-800 mb-4">Congratulations!</h3>
+                      <p className="text-slate-600 mb-8">
+                        You've completed "{selectedItem}". Keep up the great work!
+                      </p>
+                      <div className="flex justify-center gap-4">
+                        <button
+                          onClick={() => setShowCongratulations(false)}
+                          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:-translate-y-0.5"
+                        >
+                          Continue Learning
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Transcript Section */}
               <div className="rounded-lg p-6 mb-8">

@@ -68,7 +68,13 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   const [playbackRate, setPlaybackRate] = useState(1);
   const [showControls, setShowControls] = useState(true);
   const [showSubtitles, setShowSubtitles] = useState(false);
-  const [volume, setVolume] = useState(100);
+  const [volume, setVolume] = useState(() => {
+    const savedVolume = localStorage.getItem('video-player-volume');
+    console.log('Initial savedVolume from localStorage:', savedVolume);
+    const initialVolume = savedVolume ? parseInt(savedVolume) : 100;
+    console.log('Setting initial volume to:', initialVolume);
+    return initialVolume;
+  });
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -115,8 +121,11 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
             if (typeof event.target.getDuration === 'function') {
               setDuration(event.target.getDuration());
             }
-            if (typeof event.target.getVolume === 'function') {
-              setVolume(event.target.getVolume());
+            // Set the initial volume on the player
+            if (typeof event.target.setVolume === 'function') {
+              event.target.setVolume(volume);
+              // Don't override our saved volume with the player's default
+              // setVolume(event.target.getVolume());
             }
             setIsLoading(false);
             // Restore saved position
@@ -220,9 +229,12 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseInt(e.target.value);
+    console.log('Volume changed to:', newVolume);
     if (playerRef.current && typeof playerRef.current.setVolume === 'function') {
       playerRef.current.setVolume(newVolume);
       setVolume(newVolume);
+      localStorage.setItem('video-player-volume', newVolume.toString());
+      console.log('Saved volume to localStorage:', newVolume);
       if (newVolume === 0) {
         setIsMuted(true);
       } else if (isMuted) {
@@ -236,6 +248,10 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
       if (isMuted) {
         playerRef.current.unMute();
         setIsMuted(false);
+        // Restore the previous volume when unmuting
+        if (typeof playerRef.current.setVolume === 'function') {
+          playerRef.current.setVolume(volume);
+        }
       } else {
         playerRef.current.mute();
         setIsMuted(true);

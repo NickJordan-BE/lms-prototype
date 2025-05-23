@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './VideoPlayer.module.css';
 import { MdPlayArrow, MdPause, MdVolumeUp, MdVolumeOff, MdVolumeDown, MdFullscreen, MdFullscreenExit, MdClosedCaption } from 'react-icons/md';
-import { HiClosedCaptioning } from 'react-icons/hi';
 
 interface VideoPlayerProps {
   videoId: string;
@@ -76,13 +75,12 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Load YouTube IFrame API
-    const tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
+    // Function to initialize the player
+    const initializePlayer = () => {
+      if (playerRef.current) {
+        playerRef.current.destroy();
+      }
+      
       playerRef.current = new window.YT.Player('youtube-player', {
         videoId,
         playerVars: {
@@ -105,6 +103,21 @@ const VideoPlayer = ({ videoId }: VideoPlayerProps) => {
         },
       });
     };
+
+    // If YouTube API is already loaded
+    if (window.YT && window.YT.Player) {
+      initializePlayer();
+    } else {
+      // Load YouTube IFrame API
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        initializePlayer();
+      };
+    }
 
     return () => {
       if (playerRef.current) {

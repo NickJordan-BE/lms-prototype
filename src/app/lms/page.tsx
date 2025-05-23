@@ -68,9 +68,145 @@ const LMS = () => {
     }
   }, [progress, isCourseComplete]);
 
+  interface TranscriptLine {
+    time: string;
+    content: string;
+  }
+
+  interface ItemContent {
+    videoId: string;
+    title: string;
+    transcript: TranscriptLine[];
+  }
+
+  interface ItemContentMap {
+    [key: string]: ItemContent;
+  }
+
+  // Content mapping for each item
+  const itemContent: ItemContentMap = {
+    // Module 1: Foundation
+    "Introduction to Core Concepts.": {
+      videoId: "Div0iP65aZo",
+      title: "Introduction to Core Concepts",
+      transcript: [
+        { time: "00:00", content: "Welcome to the Introduction to Core Concepts. In this module, we'll explore the fundamental principles that form the foundation of our subject." },
+        { time: "05:30", content: "Let's begin by understanding the key terminology and basic concepts that you'll encounter throughout this course." },
+        { time: "12:45", content: "These core concepts will serve as building blocks for more advanced topics we'll cover in later modules." }
+      ]
+    },
+    "Essential Principles Overview": {
+      videoId: "dxWvtMOGAhw",
+      title: "Essential Principles Overview",
+      transcript: [
+        { time: "00:00", content: "In this section, we'll dive into the essential principles that guide our practice." },
+        { time: "05:30", content: "Understanding these principles is crucial for applying the concepts effectively in real-world scenarios." }
+      ]
+    },
+    "Methodology Fundamentals": {
+      videoId: "6ZfuNTqbHE8",
+      title: "Methodology Fundamentals",
+      transcript: [
+        { time: "00:00", content: "The methodology fundamentals section covers the systematic approach to problem-solving." },
+        { time: "05:30", content: "We'll explore different methodologies and their applications in various contexts." }
+      ]
+    },
+    "Basic Techniques Primer": {
+      videoId: "6reo6h7h1wk",
+      title: "Basic Techniques Primer",
+      transcript: [
+        { time: "00:00", content: "This primer introduces you to the basic techniques you'll need to master." },
+        { time: "05:30", content: "We'll practice these techniques through hands-on exercises and real-world examples." }
+      ]
+    },
+    // Module 2: Technical Setup
+    "Equipment Preparation": {
+      videoId: "ZRRRuUu2soE",
+      title: "Equipment Preparation",
+      transcript: [
+        { time: "00:00", content: "In this module, we'll cover the essential equipment needed for our technical setup." },
+        { time: "05:30", content: "Proper equipment preparation is crucial for ensuring smooth operations and safety." }
+      ]
+    },
+    "Tool Configuration Basics": {
+      videoId: "jAy6NJ_D5vU",
+      title: "Tool Configuration Basics",
+      transcript: [
+        { time: "00:00", content: "Let's explore the fundamental configuration settings for our tools." },
+        { time: "05:30", content: "Understanding these basics will help you optimize your workflow." }
+      ]
+    },
+    "Advanced Component Setup": {
+      videoId: "XrfVfRV0zSg",
+      title: "Advanced Component Setup",
+      transcript: [
+        { time: "00:00", content: "Now we'll dive into more complex component configurations." },
+        { time: "05:30", content: "These advanced setups will enhance your system's capabilities." }
+      ]
+    },
+    "Safety Protocols Review": {
+      videoId: "zSWdZVtXT7E",
+      title: "Safety Protocols Review",
+      transcript: [
+        { time: "00:00", content: "Safety is our top priority. Let's review essential safety protocols." },
+        { time: "05:30", content: "Following these protocols ensures a secure working environment." }
+      ]
+    },
+    "Operational Best Practices": {
+      videoId: "wb49-oV0F78",
+      title: "Operational Best Practices",
+      transcript: [
+        { time: "00:00", content: "Learn the industry's best practices for optimal operations." },
+        { time: "05:30", content: "These practices will help you achieve maximum efficiency." }
+      ]
+    },
+    "Practical Demonstration": {
+      videoId: "dNW0B0HsvVs",
+      title: "Practical Demonstration",
+      transcript: [
+        { time: "00:00", content: "Watch as we demonstrate the practical application of our tools." },
+        { time: "05:30", content: "This hands-on demonstration will reinforce your understanding." }
+      ]
+    },
+    "Final System Checks": {
+      videoId: "UEhsFEgsI5U",
+      title: "Final System Checks",
+      transcript: [
+        { time: "00:00", content: "Before going live, we need to perform thorough system checks." },
+        { time: "05:30", content: "These final checks ensure everything is working as expected." }
+      ]
+    },
+    // Module 3: Component Analysis
+    "Primary Element Breakdown": {
+      videoId: "D86RtevtfrA",
+      title: "Primary Element Breakdown",
+      transcript: [
+        { time: "00:00", content: "Let's analyze the primary elements of our system." },
+        { time: "05:30", content: "Understanding these elements is key to system optimization." }
+      ]
+    },
+    "Common Operational Factors": {
+      videoId: "xo4rkcC7kFc",
+      title: "Common Operational Factors",
+      transcript: [
+        { time: "00:00", content: "We'll examine the factors that affect system operations." },
+        { time: "05:30", content: "Understanding these factors helps in troubleshooting and optimization." }
+      ]
+    },
+    "Knowledge Assessment": {
+      videoId: "0kQ8i2FpRDk",
+      title: "Knowledge Assessment",
+      transcript: [
+        { time: "00:00", content: "It's time to test your understanding of the course material." },
+        { time: "05:30", content: "This assessment will help reinforce your learning and identify areas for improvement." }
+      ]
+    }
+  };
+
   const handleItemClick = (item: string) => {
     setSelectedItem(item);
     setVisitedItems(prev => ({ ...prev, [item]: true }));
+    setActiveLine(0); // Reset transcript position when changing items
   };
 
   const handleProfileClick = () => {
@@ -234,36 +370,47 @@ const LMS = () => {
 
         {/* Right Main Content */}
         <div className="flex-1 overflow-y-auto p-8 min-w-0">
-          {/* Video Section */}
-          <div className="py-8 px-4 max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-              Professional Development Program
-            </h2>
-            <VideoPlayer 
-              videoId="Jt1_Q_tnbEk"
-            />
-          </div>
+          {selectedItem ? (
+            <>
+              {/* Video Section */}
+              <div className="py-8 px-4 mx-auto">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
+                  {itemContent[selectedItem]?.title || selectedItem}
+                </h2>
+                <VideoPlayer 
+                  videoId={itemContent[selectedItem]?.videoId || "Jt1_Q_tnbEk"}
+                />
+              </div>
 
-          {/* Transcript Section */}
-          <div className="rounded-lg p-6 mb-8">
-            <h3 className="text-slate-800 text-xl mb-5 font-semibold pb-2 border-b-2 border-slate-100">Lecture Transcript</h3>
-            <div className="max-h-96 overflow-y-auto border border-slate-200 rounded-md p-2">
-              {transcript.map((line, index) => (
-                <div
-                  key={index}
-                  className={`p-4 cursor-pointer transition-all duration-200 flex gap-4 min-h-16 m-0.5 rounded ${
-                    index === activeLine 
-                      ? 'bg-slate-100 border-l-4 border-green-600 border-b-0 -ml-1 shadow-lg shadow-green-600/20' 
-                      : 'bg-white border-b border-slate-100 hover:bg-slate-50 hover:translate-x-0.5'
-                  }`}
-                  onClick={() => setActiveLine(index)}
-                >
-                  <span className="text-slate-500 text-sm min-w-14 font-medium select-none pt-0.5">{line.time}</span>
-                  <p className="text-slate-600 leading-relaxed m-0 flex-grow text-sm">{line.content}</p>
+              {/* Transcript Section */}
+              <div className="rounded-lg p-6 mb-8">
+                <h3 className="text-slate-800 text-xl mb-5 font-semibold pb-2 border-b-2 border-slate-100">Lecture Transcript</h3>
+                <div className="max-h-96 overflow-y-auto border border-slate-200 rounded-md p-2">
+                  {(itemContent[selectedItem]?.transcript || []).map((line, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 cursor-pointer transition-all duration-200 flex gap-4 min-h-16 m-0.5 rounded ${
+                        index === activeLine 
+                          ? 'bg-slate-100 border-l-4 border-green-600 border-b-0 -ml-1 shadow-lg shadow-green-600/20' 
+                          : 'bg-white border-b border-slate-100 hover:bg-slate-50 hover:translate-x-0.5'
+                      }`}
+                      onClick={() => setActiveLine(index)}
+                    >
+                      <span className="text-slate-500 text-sm min-w-14 font-medium select-none pt-0.5">{line.time}</span>
+                      <p className="text-slate-600 leading-relaxed m-0 flex-grow text-sm">{line.content}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+            </>
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <div className="text-center">
+                <h2 className="text-2xl font-semibold text-slate-800 mb-4">Welcome to the Course</h2>
+                <p className="text-slate-600">Select a module from the sidebar to begin learning</p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Quiz Prompt */}
           {showQuizPrompt && !isCourseComplete && (

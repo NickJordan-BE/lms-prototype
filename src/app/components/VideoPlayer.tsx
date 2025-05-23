@@ -22,6 +22,7 @@ interface YouTubePlayer {
   mute: () => void;
   unMute: () => void;
   destroy: () => void;
+  getVideoData: () => { video_id: string };
 }
 
 interface YouTubeEvent {
@@ -71,9 +72,11 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
   const [isMuted, setIsMuted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasEnded, setHasEnded] = useState(false);
   const playerRef = useRef<YouTubePlayer | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const initializedRef = useRef(false);
 
   // Function to save current time to localStorage
   const savePlaybackPosition = () => {
@@ -120,6 +123,7 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
             if (savedPosition > 0 && typeof event.target.seekTo === 'function') {
               event.target.seekTo(savedPosition);
             }
+            initializedRef.current = true;
           },
           onStateChange: (event: YouTubeEvent) => {
             setIsPlaying(event.data === window.YT.PlayerState.PLAYING);
@@ -131,29 +135,41 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
             }
             
             // Handle video completion
-            if (event.data === window.YT.PlayerState.ENDED && onVideoComplete) {
-              onVideoComplete();
+            if (event.data === window.YT.PlayerState.ENDED) {
+              setHasEnded(true);
+              if (onVideoComplete) {
+                onVideoComplete();
+              }
               // Clear saved position when video is completed
               localStorage.removeItem(`video-position-${videoId}`);
+              // Pause the video at the end
+              if (playerRef.current && typeof playerRef.current.pauseVideo === 'function') {
+                playerRef.current.pauseVideo();
+              }
+            } else {
+              setHasEnded(false);
             }
           },
         },
       });
     };
 
-    // If YouTube API is already loaded
-    if (window.YT && window.YT.Player) {
-      initializePlayer();
-    } else {
-      // Load YouTube IFrame API
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-
-      window.onYouTubeIframeAPIReady = () => {
+    // Only initialize if not already initialized or if videoId changes
+    if (!initializedRef.current || videoId !== playerRef.current?.getVideoData()?.video_id) {
+      // If YouTube API is already loaded
+      if (window.YT && window.YT.Player) {
         initializePlayer();
-      };
+      } else {
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+
+        window.onYouTubeIframeAPIReady = () => {
+          initializePlayer();
+        };
+      }
     }
 
     return () => {
@@ -162,8 +178,9 @@ const VideoPlayer = ({ videoId, onVideoComplete }: VideoPlayerProps) => {
       if (playerRef.current) {
         playerRef.current.destroy();
       }
+      initializedRef.current = false;
     };
-  }, [videoId, showSubtitles, onVideoComplete]);
+  }, [videoId]); // Only depend on videoId changes
 
   useEffect(() => {
     const updateTime = () => {

@@ -1,53 +1,6 @@
 import React from 'react';
 
 const Navbar: React.FC = () => {
-'use client';
-
-import { useEffect, useState } from 'react';
-import styles from './Navbar.module.css';
-import { useRouter } from 'next/navigation';
-
-interface NavbarProps {
-  showGetStarted?: boolean;
-  isLoggedIn?: boolean;
-  onGetStarted?: () => void;
-  onLogin?: () => void;
-  onLogout?: () => void;
-}
-
-export const Navbar = ({
-  showGetStarted = false,
-  isLoggedIn = false,
-  onGetStarted,
-  onLogin,
-  onLogout,
-}: NavbarProps) => {
-  const [progress, setProgress] = useState(0);
-  const router = useRouter();
-
-  // Simulate progress update for demo purposes
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress(prev => Math.min(prev + 10, 100));
-    }, 2000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleLogin = () => {
-    router.push('/login');
-    if (onLogin) onLogin();
-  }
-
-  const handleSignUp = () => {
-    router.push('/signup');
-    if (onGetStarted) onGetStarted();
-  }
-
-  const handleLogOut = () => {
-    router.push('/');
-    if (onLogout) onLogout();
-  }
-
   return (
     <nav className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-6xl mx-auto px-4">
@@ -71,39 +24,13 @@ export const Navbar = ({
             <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors">
               Contact
             </a>
+            <a href="/get-started" className="ml-1 px-4 py-1 rounded bg-yellow-400 text-white font-semibold hover:bg-yellow-500 transition-colors">
+              Get Started
+            </a>
+                        <a href="/login" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Log in
+            </a>
           </div>
-        </div>
-        <div className={styles.buttonGroup}>
-          {showGetStarted && (
-            <button className={styles.getStartedBtn} onClick={handleSignUp}>
-              Get Started
-            </button>
-          )}
-          {isLoggedIn ? (
-            <button className={styles.logoutBtn} onClick={handleLogOut}>
-              Log out
-            </button>
-          ) : (
-            <button className={styles.loginBtn} onClick={handleLogin}>
-              Log in
-            </button>
-          )}
-        </div>
-        <div className={styles.buttonGroup}>
-          {showGetStarted && (
-            <button className={styles.getStartedBtn} onClick={handleSignUp}>
-              Get Started
-            </button>
-          )}
-          {isLoggedIn ? (
-            <button className={styles.logoutBtn} onClick={handleLogOut}>
-              Log out
-            </button>
-          ) : (
-            <button className={styles.loginBtn} onClick={handleLogin}>
-              Log in
-            </button>
-          )}
         </div>
       </div>
     </nav>

@@ -23,6 +23,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
 }
 
 .getStartedBtn {
@@ -40,13 +41,9 @@ body {
   background-color: #222;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.main div {
-  height: 100vh;
-  background-color: orange;
+h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 4rem;
+  line-height: 1.1;
+  padding-left: 3.7rem;
 }

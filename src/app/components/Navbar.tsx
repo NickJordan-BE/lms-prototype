@@ -24,10 +24,10 @@ const Navbar: React.FC = () => {
             <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors">
               Contact
             </a>
-            <a href="/get-started" className="ml-1 px-4 py-1 rounded bg-yellow-400 text-white font-semibold hover:bg-yellow-500 transition-colors">
+            <a href="/signup" className="ml-1 px-4 py-1 rounded bg-green-700 text-white font-semibold hover:bg-yellow-500 transition-colors">
               Get Started
             </a>
-                        <a href="/login" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <a href="/login" className="text-gray-700 hover:text-gray-900 transition-colors">
               Log in
             </a>
           </div>

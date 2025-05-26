@@ -45,14 +45,9 @@ const page = () => {
   return (
       <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '80vh' }}>
         <Grid item xs={12} sm={8} md={5}>
-          <Paper elevation={3} sx={{ p: 4 }}>
+          <Paper elevation={3} sx={{ p: 4, width: '400px' }}>
             <Stack direction="row" justifyContent="space-between" alignItems="baseline" sx={{ mb: { xs: -0.5, sm: 0.5 } }}>
-              <Typography variant="h3">Sign Up</Typography>
-              <NextLink href="/login">
-                <Link variant="body1" color="primary">
-                  Already have an account?
-                </Link>
-              </NextLink>
+              <Typography variant="h4" textAlign="center">Sign Up</Typography>
             </Stack>
             <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
               <Stack spacing={3}>
@@ -63,6 +58,11 @@ const page = () => {
                 <Button type="submit" variant="contained" color="primary">
                   Sign Up
                 </Button>
+                <NextLink href="/login">
+                  <Link variant="body1" color="primary">
+                    Already have an account?
+                  </Link>
+                </NextLink>
               </Stack>
             </form>
           </Paper>

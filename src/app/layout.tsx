@@ -25,7 +25,8 @@ const PUBLIC_NAVBAR_ROUTES = [
   '/pricing',
   '/courses',
   '/features',
-  '/signup'
+  '/signup',
+  '/login'
 ];
 
 const SIGNED_IN_NAVBAR_ROUTES = [

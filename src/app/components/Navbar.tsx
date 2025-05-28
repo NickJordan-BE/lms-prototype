@@ -15,13 +15,13 @@ const Navbar: React.FC = () => {
             <a href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
               Home
             </a>
-            <a href="info/about" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <a href="about" className="text-gray-700 hover:text-gray-900 transition-colors">
               About
             </a>
-            <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <a href="/features" className="text-gray-700 hover:text-gray-900 transition-colors">
               Features
             </a>
-            <a href="/services" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <a href="/courses" className="text-gray-700 hover:text-gray-900 transition-colors">
               Courses
             </a>
             <a href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors">

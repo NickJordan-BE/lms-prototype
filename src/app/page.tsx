@@ -21,6 +21,33 @@ const page = () => {
   const [showCards, setShowCards] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const slides = [
+    {
+      title: 'Person',
+      description: '"Amazing!"',
+      image: '/images/lady1.png'
+    },
+    {
+      title: 'Person',
+      description: '"Absolutely stunning!"',
+      image: '/images/guy.png'
+    },
+    {
+      title: 'Person',
+      description: '"Cool!"',
+      image: '/images/lady2.png'
+    },
+    {
+      title: 'Person',
+      description: '"Wonderful!"',
+      image: '/images/lady3.png'
+    }
+  ];
+
+  const [slideIndex, setSlideIndex] = useState(0);
+
+  const handlePrev = () => setSlideIndex(idx => (idx === 0 ? slides.length - 1 : idx - 1));
+  const handleNext = () => setSlideIndex(idx => (idx === slides.length - 1 ? 0 : idx + 1));
 
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -30,10 +57,22 @@ const page = () => {
       lerp: 0.08,
     });
 
+    setTimeout(() => {
+      scroll.update();
+    }, 1000);
+
     return () => {
       scroll.destroy();
-    };
+    }
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlideIndex(idx => (idx === slides.length - 1 ? 0 : idx + 1));
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
 
 
@@ -123,22 +162,56 @@ const page = () => {
       </div>
       <h1 style={{paddingTop: '4rem'}}>Our Values & Culture</h1>
       <div style={{ backgroundColor: '#D2BDAC', padding: '2rem', color: '#fff'}}>
-        <Paper data-scroll data-scroll-speed="3" elevation={6} style={{maxWidth: '500', width: '50%', background: 'rgba(0,0,0,0.7', padding: '2rem', borderRadius: '1rem', color: '#fff', marginLeft: '4rem', boxShadow: '0 4px 24px rgba(0,0,0,0.15)'}}>
+        <Paper data-scroll data-scroll-speed="3" elevation={6} style={{maxWidth: '500', width: '100%', background: 'rgba(0,0,0,0.7', padding: '2rem', borderRadius: '1rem', color: '#fff', marginLeft: '4rem', boxShadow: '0 4px 24px rgba(0,0,0,0.15)'}}>
           <Typography variant="h5" gutterBottom>Growth</Typography>
           <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Typography>
         </Paper>
       </div>
       <div style={{ backgroundColor: '#E1DCD5', padding: '2rem 0', display: 'flex', justifyContent: 'flex-end' }}>
-        <Paper data-scroll data-scroll-speed="3" elevation={6} style={{maxWidth: '500', width: '50%', background: 'rgba(0,0,0,0.7', padding: '2rem', borderRadius: '1rem', color: '#fff', marginRight: '4rem', boxShadow: '0 4px 24px rgba(0,0,0,0.15)'}}>
+        <Paper data-scroll data-scroll-speed="3" elevation={6} style={{maxWidth: '500', width: '100%', background: 'rgba(0,0,0,0.7', padding: '2rem', borderRadius: '1rem', color: '#fff', marginRight: '4rem', boxShadow: '0 4px 24px rgba(0,0,0,0.15)'}}>
           <Typography variant="h5" gutterBottom>Quality</Typography>
           <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Typography>
         </Paper>
       </div>
       <div style={{ backgroundColor: '#775D47', padding: '2rem', paddingLeft: '4rem', paddingRight: '4rem', color: '#fff'}}>
-        <Paper data-scroll data-scroll-speed="3" elevation={6} style={{maxWidth: '500', width: '50%', background: 'rgba(0,0,0,0.7', padding: '2rem', borderRadius: '1rem', color: '#fff', marginLeft: '4rem', boxShadow: '0 4px 24px rgba(0,0,0,0.15)'}}>
+        <Paper data-scroll data-scroll-speed="3" elevation={6} style={{maxWidth: '500', width: '100%', background: 'rgba(0,0,0,0.7', padding: '2rem', borderRadius: '1rem', color: '#fff', marginLeft: '4rem', boxShadow: '0 4px 24px rgba(0,0,0,0.15)'}}>
           <Typography variant="h5" gutterBottom>Education</Typography>
           <Typography>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Typography>
         </Paper>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '3rem 0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          <Button variant="contained" onClick={handlePrev} style={{ minWidth: 0, width: 48, height: 48, borderRadius: '50%', fontSize: 28, padding: 0, backgroundColor: '#222' }} aria-label="Previous">&#8592;</Button>
+          <Card sx={{ maxWidth: 350, backgroundColor: '#222', color: '#fff' }}>
+            <CardActionArea>
+              <CardMedia component="img" height="140" image={slides[slideIndex].image} alt={slides[slideIndex].title} />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div" sx={{ color: '#fff' }}>
+                  {slides[slideIndex].title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#fff' }}>
+                  {slides[slideIndex].description}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+          <Button variant="contained" onClick={handleNext} style={{ minWidth: 0, width: 48, height: 48, borderRadius: '50%', fontSize: 28, padding: 0, backgroundColor: '#222' }}>&#8594;</Button>
+        </div>
+        <div style={{ marginTop: '1rem' }}>
+          {slides.map((_, idx) => (
+            <span
+            key={idx}
+            style={{
+              display: 'inline-block',
+              width: 10,
+              height: 10,
+              borderRadius: '50%',
+              background: idx === slideIndex ? '#775D47' : '#ccc',
+              margin: '0 4px'
+            }}
+            />
+          ))}
+        </div>
       </div>
     </div>
 

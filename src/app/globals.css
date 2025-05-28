@@ -50,12 +50,7 @@ h1 {
 .title {
     font-size: 4rem;
 }
-h2 {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 3rem;
-  line-height: 1.1;
-  color: #fff;
-}
+
 
 @keyframes slideInLeft {
   from {

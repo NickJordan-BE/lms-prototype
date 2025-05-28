@@ -23,4 +23,52 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
+}
+
+.getStartedBtn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.getStartedBtn:hover {
+  background-color: #222;
+}
+
+h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 5rem;
+  line-height: 1.1;
+  padding-left: 3.7rem;
+}
+.title {
+    font-size: 4rem;
+}
+
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.title {
+  animation: slideInLeft 1s ease-out;
+}
+.subtitle {
+  animation: slideInLeft 1s ease-out;
+}
+.logo {
+  animation: slideInLeft 1s ease-out;
 }

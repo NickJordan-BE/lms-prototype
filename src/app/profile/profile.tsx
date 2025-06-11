@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Julius_Sans_One, Inter } from 'next/font/google';
 import { 
   User,
   Settings,
@@ -23,6 +24,9 @@ import {
   BarChart3,
   Trophy
 } from 'lucide-react';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 interface StudentData {
   id: string;
@@ -186,7 +190,8 @@ export default function StudentProfile() {
           fontSize: '2.5rem',
           fontWeight: '600',
           color: '#775D47',
-          flexShrink: 0
+          flexShrink: 0,
+          fontFamily: inter.style.fontFamily
         }}>
           {studentData.name.split(' ').map(n => n[0]).join('')}
           <button style={{
@@ -219,15 +224,17 @@ export default function StudentProfile() {
             <div>
               <h1 style={{
                 fontSize: '2rem',
-                fontWeight: '600',
+                fontWeight: '400',
                 color: '#775D47',
-                marginBottom: '4px'
+                marginBottom: '4px',
+                fontFamily: julius.style.fontFamily
               }}>
                 {studentData.name}
               </h1>
               <p style={{
                 color: '#8B7355',
-                fontSize: '1.1rem'
+                fontSize: '1.1rem',
+                fontFamily: inter.style.fontFamily
               }}>
                 Student since {studentData.joinDate}
               </p>
@@ -245,7 +252,8 @@ export default function StudentProfile() {
                 alignItems: 'center',
                 gap: '8px',
                 fontSize: '14px',
-                fontWeight: '500'
+                fontWeight: '500',
+                fontFamily: inter.style.fontFamily
               }}
             >
               {isEditing ? <Save style={{ width: '16px', height: '16px' }} /> : <Edit3 style={{ width: '16px', height: '16px' }} />}
@@ -271,11 +279,16 @@ export default function StudentProfile() {
                     borderRadius: '4px',
                     padding: '4px 8px',
                     fontSize: '14px',
-                    flex: 1
+                    flex: 1,
+                    fontFamily: inter.style.fontFamily
                   }}
                 />
               ) : (
-                <span style={{ fontSize: '14px', color: '#775D47' }}>{studentData.email}</span>
+                <span style={{ 
+                  fontSize: '14px', 
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily 
+                }}>{studentData.email}</span>
               )}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -290,11 +303,16 @@ export default function StudentProfile() {
                     borderRadius: '4px',
                     padding: '4px 8px',
                     fontSize: '14px',
-                    flex: 1
+                    flex: 1,
+                    fontFamily: inter.style.fontFamily
                   }}
                 />
               ) : (
-                <span style={{ fontSize: '14px', color: '#775D47' }}>{studentData.phone}</span>
+                <span style={{ 
+                  fontSize: '14px', 
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily 
+                }}>{studentData.phone}</span>
               )}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -309,11 +327,16 @@ export default function StudentProfile() {
                     borderRadius: '4px',
                     padding: '4px 8px',
                     fontSize: '14px',
-                    flex: 1
+                    flex: 1,
+                    fontFamily: inter.style.fontFamily
                   }}
                 />
               ) : (
-                <span style={{ fontSize: '14px', color: '#775D47' }}>{studentData.location}</span>
+                <span style={{ 
+                  fontSize: '14px', 
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily 
+                }}>{studentData.location}</span>
               )}
             </div>
           </div>
@@ -324,7 +347,8 @@ export default function StudentProfile() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Bio
             </label>
@@ -339,7 +363,7 @@ export default function StudentProfile() {
                   borderRadius: '6px',
                   padding: '8px 12px',
                   fontSize: '14px',
-                  fontFamily: 'inherit',
+                  fontFamily: inter.style.fontFamily,
                   resize: 'vertical'
                 }}
               />
@@ -348,7 +372,8 @@ export default function StudentProfile() {
                 fontSize: '14px',
                 color: '#8B7355',
                 lineHeight: '1.5',
-                margin: 0
+                margin: 0,
+                fontFamily: inter.style.fontFamily
               }}>
                 {studentData.bio}
               </p>
@@ -383,14 +408,16 @@ export default function StudentProfile() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Total Courses
             </p>
             <p style={{
               fontSize: '1.75rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {learningStats.totalCourses}
             </p>
@@ -416,14 +443,16 @@ export default function StudentProfile() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Learning Hours
             </p>
             <p style={{
               fontSize: '1.75rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {learningStats.totalHours}
             </p>
@@ -449,14 +478,16 @@ export default function StudentProfile() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Current Streak
             </p>
             <p style={{
               fontSize: '1.75rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {learningStats.currentStreak}
             </p>
@@ -482,14 +513,16 @@ export default function StudentProfile() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Avg Score
             </p>
             <p style={{
               fontSize: '1.75rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {learningStats.averageScore}%
             </p>
@@ -511,9 +544,10 @@ export default function StudentProfile() {
     }}>
       <h3 style={{
         fontSize: '1.25rem',
-        fontWeight: '600',
+        fontWeight: '400',
         color: '#775D47',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        fontFamily: julius.style.fontFamily
       }}>
         Current Courses
       </h3>
@@ -548,14 +582,16 @@ export default function StudentProfile() {
                   fontWeight: '600',
                   color: '#775D47',
                   margin: 0,
-                  marginBottom: '4px'
+                  marginBottom: '4px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {course.title}
                 </h4>
                 <p style={{
                   fontSize: '14px',
                   color: '#8B7355',
-                  margin: 0
+                  margin: 0,
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Instructor: {course.instructor}
                 </p>
@@ -572,7 +608,8 @@ export default function StudentProfile() {
                     padding: '4px 12px',
                     borderRadius: '20px',
                     fontSize: '12px',
-                    fontWeight: '500'
+                    fontWeight: '500',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Completed
                   </span>
@@ -587,7 +624,8 @@ export default function StudentProfile() {
                     fontSize: '12px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '6px'
+                    gap: '6px',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     <PlayCircle style={{ width: '12px', height: '12px' }} />
                     Continue
@@ -608,10 +646,19 @@ export default function StudentProfile() {
                   justifyContent: 'space-between',
                   marginBottom: '6px'
                 }}>
-                  <span style={{ fontSize: '14px', color: '#8B7355' }}>
+                  <span style={{ 
+                    fontSize: '14px', 
+                    color: '#8B7355',
+                    fontFamily: inter.style.fontFamily 
+                  }}>
                     Progress: {course.completedLessons}/{course.totalLessons} lessons
                   </span>
-                  <span style={{ fontSize: '14px', fontWeight: '600', color: '#775D47' }}>
+                  <span style={{ 
+                    fontSize: '14px', 
+                    fontWeight: '600', 
+                    color: '#775D47',
+                    fontFamily: inter.style.fontFamily 
+                  }}>
                     {course.progress}%
                   </span>
                 </div>
@@ -635,7 +682,8 @@ export default function StudentProfile() {
                   <p style={{
                     fontSize: '12px',
                     color: '#8B7355',
-                    margin: '6px 0 0 0'
+                    margin: '6px 0 0 0',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Next: {course.nextLesson}
                   </p>
@@ -644,7 +692,8 @@ export default function StudentProfile() {
               <div style={{
                 textAlign: 'right',
                 fontSize: '12px',
-                color: '#8B7355'
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily
               }}>
                 Last accessed:<br/>{course.lastAccessed}
               </div>
@@ -666,9 +715,10 @@ export default function StudentProfile() {
     }}>
       <h3 style={{
         fontSize: '1.25rem',
-        fontWeight: '600',
+        fontWeight: '400',
         color: '#775D47',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        fontFamily: julius.style.fontFamily
       }}>
         Achievements
       </h3>
@@ -708,7 +758,8 @@ export default function StudentProfile() {
                 fontWeight: '600',
                 color: '#775D47',
                 margin: 0,
-                marginBottom: '4px'
+                marginBottom: '4px',
+                fontFamily: inter.style.fontFamily
               }}>
                 {achievement.title}
               </h4>
@@ -716,14 +767,16 @@ export default function StudentProfile() {
                 fontSize: '14px',
                 color: '#8B7355',
                 margin: 0,
-                marginBottom: '4px'
+                marginBottom: '4px',
+                fontFamily: inter.style.fontFamily
               }}>
                 {achievement.description}
               </p>
               <p style={{
                 fontSize: '12px',
                 color: '#8B7355',
-                margin: 0
+                margin: 0,
+                fontFamily: inter.style.fontFamily
               }}>
                 Earned {achievement.earnedDate}
               </p>
@@ -751,8 +804,9 @@ export default function StudentProfile() {
       }}>
         <h3 style={{
           fontSize: '1.25rem',
-          fontWeight: '600',
-          color: '#775D47'
+          fontWeight: '400',
+          color: '#775D47',
+          fontFamily: julius.style.fontFamily
         }}>
           Learning Goals
         </h3>
@@ -764,7 +818,8 @@ export default function StudentProfile() {
             borderRadius: '6px',
             border: 'none',
             cursor: 'pointer',
-            fontSize: '12px'
+            fontSize: '12px',
+            fontFamily: inter.style.fontFamily
           }}>
             Add Goal
           </button>
@@ -800,11 +855,17 @@ export default function StudentProfile() {
                   borderRadius: '4px',
                   padding: '4px 8px',
                   fontSize: '14px',
-                  flex: 1
+                  flex: 1,
+                  fontFamily: inter.style.fontFamily
                 }}
               />
             ) : (
-              <span style={{ fontSize: '14px', color: '#775D47', flex: 1 }}>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#775D47', 
+                flex: 1,
+                fontFamily: inter.style.fontFamily 
+              }}>
                 {goal}
               </span>
             )}
@@ -825,9 +886,10 @@ export default function StudentProfile() {
     }}>
       <h3 style={{
         fontSize: '1.25rem',
-        fontWeight: '600',
+        fontWeight: '400',
         color: '#775D47',
-        marginBottom: '20px'
+        marginBottom: '20px',
+        fontFamily: julius.style.fontFamily
       }}>
         Preferences
       </h3>
@@ -850,14 +912,16 @@ export default function StudentProfile() {
               fontWeight: '500',
               color: '#775D47',
               margin: 0,
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Push Notifications
             </h4>
             <p style={{
               fontSize: '14px',
               color: '#8B7355',
-              margin: 0
+              margin: 0,
+              fontFamily: inter.style.fontFamily
             }}>
               Receive notifications about course updates
             </p>
@@ -916,14 +980,16 @@ export default function StudentProfile() {
               fontWeight: '500',
               color: '#775D47',
               margin: 0,
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Email Updates
             </h4>
             <p style={{
               fontSize: '14px',
               color: '#8B7355',
-              margin: 0
+              margin: 0,
+              fontFamily: inter.style.fontFamily
             }}>
               Receive weekly progress emails
             </p>
@@ -981,14 +1047,16 @@ export default function StudentProfile() {
               fontWeight: '500',
               color: '#775D47',
               margin: 0,
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Course Reminders
             </h4>
             <p style={{
               fontSize: '14px',
               color: '#8B7355',
-              margin: 0
+              margin: 0,
+              fontFamily: inter.style.fontFamily
             }}>
               Get reminders to continue learning
             </p>
@@ -1041,7 +1109,7 @@ export default function StudentProfile() {
     <div style={{
       minHeight: '100vh',
       background: '#FEFEFE',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       {/* Navbar */}
       <nav style={{
@@ -1066,9 +1134,10 @@ export default function StudentProfile() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             <h1 style={{
               fontSize: '1.5rem',
-              fontWeight: '600',
+              fontWeight: '400',
               color: '#775D47',
-              margin: 0
+              margin: 0,
+              fontFamily: julius.style.fontFamily
             }}>
               My Profile
             </h1>
@@ -1107,7 +1176,8 @@ export default function StudentProfile() {
               <span style={{
                 fontSize: '16px',
                 fontWeight: '500',
-                color: '#775D47'
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily
               }}>
                 AJ
               </span>

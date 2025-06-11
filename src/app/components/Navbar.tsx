@@ -1,4 +1,8 @@
 import React from 'react';
+import { Julius_Sans_One, Inter } from 'next/font/google';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500'] });
 
 const Navbar: React.FC = () => {
   return (
@@ -10,7 +14,7 @@ const Navbar: React.FC = () => {
       position: 'sticky',
       top: 0,
       zIndex: 1000,
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -33,19 +37,12 @@ const Navbar: React.FC = () => {
             }}>
               <span style={{
                 fontSize: '1.75rem',
-                fontWeight: '300',
-                color: '#775D47',
-                letterSpacing: '1px'
-              }}>
-                Illuminance
-              </span>
-              <span style={{
-                fontSize: '1.25rem',
                 fontWeight: '400',
-                color: '#8B7355',
-                letterSpacing: '0.5px'
+                color: '#775D47',
+                letterSpacing: '1px',
+                fontFamily: julius.style.fontFamily
               }}>
-                Esthetics
+                Illuminance Esthetics
               </span>
             </a>
           </div>
@@ -63,6 +60,7 @@ const Navbar: React.FC = () => {
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: '400',
+                fontFamily: inter.style.fontFamily,
                 transition: 'all 0.3s ease',
                 padding: '8px 0',
                 borderBottom: '2px solid transparent'
@@ -85,6 +83,7 @@ const Navbar: React.FC = () => {
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: '400',
+                fontFamily: inter.style.fontFamily,
                 transition: 'all 0.3s ease',
                 padding: '8px 0',
                 borderBottom: '2px solid transparent'
@@ -107,6 +106,7 @@ const Navbar: React.FC = () => {
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: '400',
+                fontFamily: inter.style.fontFamily,
                 transition: 'all 0.3s ease',
                 padding: '8px 0',
                 borderBottom: '2px solid transparent'
@@ -129,6 +129,7 @@ const Navbar: React.FC = () => {
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: '400',
+                fontFamily: inter.style.fontFamily,
                 transition: 'all 0.3s ease',
                 padding: '8px 0',
                 borderBottom: '2px solid transparent'
@@ -151,6 +152,7 @@ const Navbar: React.FC = () => {
                 textDecoration: 'none',
                 fontSize: '1rem',
                 fontWeight: '400',
+                fontFamily: inter.style.fontFamily,
                 transition: 'all 0.3s ease',
                 padding: '8px 0',
                 borderBottom: '2px solid transparent'
@@ -181,6 +183,7 @@ const Navbar: React.FC = () => {
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: '400',
+                  fontFamily: inter.style.fontFamily,
                   transition: 'all 0.3s ease',
                   padding: '8px 16px',
                   borderRadius: '8px'
@@ -204,6 +207,7 @@ const Navbar: React.FC = () => {
                   textDecoration: 'none',
                   fontSize: '1rem',
                   fontWeight: '500',
+                  fontFamily: inter.style.fontFamily,
                   padding: '12px 24px',
                   borderRadius: '25px',
                   transition: 'all 0.3s ease',

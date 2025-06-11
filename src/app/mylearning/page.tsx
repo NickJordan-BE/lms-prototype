@@ -1,7 +1,11 @@
 'use client'
 
 import React from 'react';
+import { Julius_Sans_One, Inter } from 'next/font/google';
 import { Clock, Users, BookOpen, Star, Calendar, Play, CheckCircle, BarChart3 } from 'lucide-react';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 interface EnrolledCourse {
   id: string;
@@ -150,7 +154,8 @@ export default function MyLearning() {
               fontSize: '12px',
               fontWeight: '500',
               color: '#775D47',
-              boxShadow: '0 2px 8px rgba(119, 93, 71, 0.1)'
+              boxShadow: '0 2px 8px rgba(119, 93, 71, 0.1)',
+              fontFamily: inter.style.fontFamily
             }}>
               {course.category}
             </span>
@@ -167,7 +172,8 @@ export default function MyLearning() {
                 padding: '4px 12px',
                 borderRadius: '20px',
                 fontSize: '12px',
-                fontWeight: '500'
+                fontWeight: '500',
+                fontFamily: inter.style.fontFamily
               }}>
                 Completed
               </span>
@@ -178,14 +184,15 @@ export default function MyLearning() {
         <div style={{ padding: '24px' }}>
           <h3 style={{
             fontSize: '1.25rem',
-            fontWeight: '600',
+            fontWeight: '400',
             color: '#775D47',
             marginBottom: '8px',
             lineHeight: '1.4',
             display: '-webkit-box',
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            fontFamily: julius.style.fontFamily
           }}>
             {course.title}
           </h3>
@@ -198,7 +205,8 @@ export default function MyLearning() {
             display: '-webkit-box',
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            fontFamily: inter.style.fontFamily
           }}>
             {course.description}
           </p>
@@ -221,7 +229,8 @@ export default function MyLearning() {
               <span style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: '#775D47'
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily
               }}>
                 {course.instructor.split(' ').map(n => n[0]).join('')}
               </span>
@@ -229,7 +238,8 @@ export default function MyLearning() {
             <span style={{
               fontSize: '14px',
               color: '#775D47',
-              fontWeight: '500'
+              fontWeight: '500',
+              fontFamily: inter.style.fontFamily
             }}>
               {course.instructor}
             </span>
@@ -246,14 +256,16 @@ export default function MyLearning() {
               <span style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: '#775D47'
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily
               }}>
                 Progress
               </span>
               <span style={{
                 fontSize: '14px',
                 fontWeight: '600',
-                color: '#775D47'
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily
               }}>
                 {progress}%
               </span>
@@ -279,7 +291,8 @@ export default function MyLearning() {
               justifyContent: 'space-between',
               fontSize: '12px',
               color: '#8B7355',
-              marginTop: '4px'
+              marginTop: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               <span>{course.completedLessons} of {course.lessons} lessons</span>
               <span>{course.estimatedTimeLeft}</span>
@@ -292,7 +305,8 @@ export default function MyLearning() {
             gap: '16px',
             marginBottom: '16px',
             fontSize: '14px',
-            color: '#8B7355'
+            color: '#8B7355',
+            fontFamily: inter.style.fontFamily
           }}>
             <div style={{
               display: 'flex',
@@ -339,7 +353,8 @@ export default function MyLearning() {
             <span style={{
               fontSize: '14px',
               fontWeight: '500',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {course.rating}
             </span>
@@ -348,7 +363,8 @@ export default function MyLearning() {
           <div style={{
             fontSize: '12px',
             color: '#8B7355',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            fontFamily: inter.style.fontFamily
           }}>
             Last accessed: {course.lastAccessed}
           </div>
@@ -371,7 +387,8 @@ export default function MyLearning() {
                     justifyContent: 'center',
                     gap: '8px',
                     border: 'none',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontFamily: inter.style.fontFamily
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#E8E8E8';
@@ -399,7 +416,8 @@ export default function MyLearning() {
                       justifyContent: 'center',
                       gap: '8px',
                       border: 'none',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      fontFamily: inter.style.fontFamily
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = '#059669';
@@ -429,7 +447,8 @@ export default function MyLearning() {
                   justifyContent: 'center',
                   gap: '8px',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontFamily: inter.style.fontFamily
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = '#8B7355';
@@ -454,7 +473,7 @@ export default function MyLearning() {
     <div style={{
       minHeight: '100vh',
       background: '#FEFEFE',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       <div style={{
         maxWidth: '1400px',
@@ -467,13 +486,15 @@ export default function MyLearning() {
             fontSize: '2rem',
             fontWeight: '400',
             color: '#775D47',
-            marginBottom: '8px'
+            marginBottom: '8px',
+            fontFamily: julius.style.fontFamily
           }}>
             My Learning
           </h1>
           <p style={{
             color: '#8B7355',
-            fontSize: '1.1rem'
+            fontSize: '1.1rem',
+            fontFamily: inter.style.fontFamily
           }}>
             Track your progress and continue your learning journey
           </p>
@@ -503,14 +524,16 @@ export default function MyLearning() {
                   fontSize: '14px',
                   fontWeight: '500',
                   color: '#8B7355',
-                  marginBottom: '4px'
+                  marginBottom: '4px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Total Courses
                 </p>
                 <p style={{
                   fontSize: '2rem',
                   fontWeight: '600',
-                  color: '#775D47'
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {totalCourses}
                 </p>
@@ -536,14 +559,16 @@ export default function MyLearning() {
                   fontSize: '14px',
                   fontWeight: '500',
                   color: '#8B7355',
-                  marginBottom: '4px'
+                  marginBottom: '4px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   In Progress
                 </p>
                 <p style={{
                   fontSize: '2rem',
                   fontWeight: '600',
-                  color: '#775D47'
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {inProgressCourses}
                 </p>
@@ -569,14 +594,16 @@ export default function MyLearning() {
                   fontSize: '14px',
                   fontWeight: '500',
                   color: '#8B7355',
-                  marginBottom: '4px'
+                  marginBottom: '4px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Completed
                 </p>
                 <p style={{
                   fontSize: '2rem',
                   fontWeight: '600',
-                  color: '#775D47'
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {completedCourses}
                 </p>
@@ -602,14 +629,16 @@ export default function MyLearning() {
                   fontSize: '14px',
                   fontWeight: '500',
                   color: '#8B7355',
-                  marginBottom: '4px'
+                  marginBottom: '4px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Overall Progress
                 </p>
                 <p style={{
                   fontSize: '2rem',
                   fontWeight: '600',
-                  color: '#775D47'
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {overallProgress}%
                 </p>
@@ -629,14 +658,16 @@ export default function MyLearning() {
           }}>
             <h2 style={{
               fontSize: '1.5rem',
-              fontWeight: '500',
-              color: '#775D47'
+              fontWeight: '400',
+              color: '#775D47',
+              fontFamily: julius.style.fontFamily
             }}>
               Your Courses
             </h2>
             <span style={{
               fontSize: '14px',
-              color: '#8B7355'
+              color: '#8B7355',
+              fontFamily: inter.style.fontFamily
             }}>
               {enrolledCourses.length} enrolled courses
             </span>
@@ -666,7 +697,8 @@ export default function MyLearning() {
             fontSize: '1.25rem',
             fontWeight: '500',
             color: '#775D47',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            fontFamily: inter.style.fontFamily
           }}>
             Quick Actions
           </h3>
@@ -697,8 +729,16 @@ export default function MyLearning() {
               }}
             >
               <BookOpen style={{ width: '24px', height: '24px', marginBottom: '8px' }} />
-              <div style={{ fontWeight: '500', marginBottom: '4px' }}>Browse More Courses</div>
-              <div style={{ fontSize: '14px', color: '#8B7355' }}>Discover new skills</div>
+              <div style={{ 
+                fontWeight: '500', 
+                marginBottom: '4px',
+                fontFamily: inter.style.fontFamily 
+              }}>Browse More Courses</div>
+              <div style={{ 
+                fontSize: '14px', 
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily 
+              }}>Discover new skills</div>
             </button>
             
             <button 
@@ -723,8 +763,16 @@ export default function MyLearning() {
               }}
             >
               <CheckCircle style={{ width: '24px', height: '24px', marginBottom: '8px' }} />
-              <div style={{ fontWeight: '500', marginBottom: '4px' }}>View Certificates</div>
-              <div style={{ fontSize: '14px', color: '#047857' }}>See your achievements</div>
+              <div style={{ 
+                fontWeight: '500', 
+                marginBottom: '4px',
+                fontFamily: inter.style.fontFamily 
+              }}>View Certificates</div>
+              <div style={{ 
+                fontSize: '14px', 
+                color: '#047857',
+                fontFamily: inter.style.fontFamily 
+              }}>See your achievements</div>
             </button>
             
             <button 
@@ -749,8 +797,16 @@ export default function MyLearning() {
               }}
             >
               <BarChart3 style={{ width: '24px', height: '24px', marginBottom: '8px' }} />
-              <div style={{ fontWeight: '500', marginBottom: '4px' }}>Learning Analytics</div>
-              <div style={{ fontSize: '14px', color: '#6D28D9' }}>Track your progress</div>
+              <div style={{ 
+                fontWeight: '500', 
+                marginBottom: '4px',
+                fontFamily: inter.style.fontFamily 
+              }}>Learning Analytics</div>
+              <div style={{ 
+                fontSize: '14px', 
+                color: '#6D28D9',
+                fontFamily: inter.style.fontFamily 
+              }}>Track your progress</div>
             </button>
           </div>
         </section>

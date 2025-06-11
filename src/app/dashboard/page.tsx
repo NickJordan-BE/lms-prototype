@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import { Julius_Sans_One, Inter } from 'next/font/google';
 import { 
   BookOpen, 
   Users, 
@@ -23,6 +24,9 @@ import {
   AlertCircle,
   User
 } from 'lucide-react';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 export default function ProfessorDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -103,14 +107,16 @@ export default function ProfessorDashboard() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Total Students
             </p>
             <p style={{
               fontSize: '2rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               73
             </p>
@@ -136,14 +142,16 @@ export default function ProfessorDashboard() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Active Courses
             </p>
             <p style={{
               fontSize: '2rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {courses.filter(c => c.status === 'active').length}
             </p>
@@ -169,14 +177,16 @@ export default function ProfessorDashboard() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Avg Completion
             </p>
             <p style={{
               fontSize: '2rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               67%
             </p>
@@ -202,14 +212,16 @@ export default function ProfessorDashboard() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#8B7355',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Avg Score
             </p>
             <p style={{
               fontSize: '2rem',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               88%
             </p>
@@ -244,7 +256,8 @@ export default function ProfessorDashboard() {
           <h3 style={{
             fontSize: '1.25rem',
             fontWeight: '600',
-            color: '#775D47'
+            color: '#775D47',
+            fontFamily: inter.style.fontFamily
           }}>
             My Courses
           </h3>
@@ -266,7 +279,8 @@ export default function ProfessorDashboard() {
               gap: '8px',
               fontSize: '14px',
               fontWeight: '500',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.3s ease',
+              fontFamily: inter.style.fontFamily
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#8B7355';
@@ -307,7 +321,8 @@ export default function ProfessorDashboard() {
                     fontSize: '1rem',
                     fontWeight: '600',
                     color: '#775D47',
-                    margin: 0
+                    margin: 0,
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {course.title}
                   </h4>
@@ -317,7 +332,8 @@ export default function ProfessorDashboard() {
                     padding: '2px 8px',
                     borderRadius: '12px',
                     fontSize: '12px',
-                    fontWeight: '500'
+                    fontWeight: '500',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {course.status}
                   </span>
@@ -346,7 +362,8 @@ export default function ProfessorDashboard() {
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, 1fr)',
                 gap: '16px',
-                fontSize: '14px'
+                fontSize: '14px',
+                fontFamily: inter.style.fontFamily
               }}>
                 <div>
                   <span style={{ color: '#8B7355' }}>Students: </span>
@@ -398,7 +415,8 @@ export default function ProfessorDashboard() {
           fontSize: '1.25rem',
           fontWeight: '600',
           color: '#775D47',
-          marginBottom: '24px'
+          marginBottom: '24px',
+          fontFamily: inter.style.fontFamily
         }}>
           Recent Activity
         </h3>
@@ -433,14 +451,16 @@ export default function ProfessorDashboard() {
                   fontSize: '14px',
                   color: '#775D47',
                   margin: 0,
-                  lineHeight: '1.4'
+                  lineHeight: '1.4',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   <strong>{activity.student}</strong> {activity.action}
                 </p>
                 <p style={{
                   fontSize: '12px',
                   color: '#8B7355',
-                  margin: '4px 0 0 0'
+                  margin: '4px 0 0 0',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {activity.time}
                 </p>
@@ -470,7 +490,8 @@ export default function ProfessorDashboard() {
         <h3 style={{
           fontSize: '1.25rem',
           fontWeight: '600',
-          color: '#775D47'
+          color: '#775D47',
+          fontFamily: inter.style.fontFamily
         }}>
           Student Progress
         </h3>
@@ -495,7 +516,8 @@ export default function ProfessorDashboard() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '14px',
-                width: '200px'
+                width: '200px',
+                fontFamily: inter.style.fontFamily
               }}
             />
           </div>
@@ -509,7 +531,8 @@ export default function ProfessorDashboard() {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontFamily: inter.style.fontFamily
           }}>
             <Download style={{ width: '16px', height: '16px' }} />
             Export
@@ -558,14 +581,16 @@ export default function ProfessorDashboard() {
                     fontSize: '1rem',
                     fontWeight: '600',
                     color: '#775D47',
-                    margin: 0
+                    margin: 0,
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {student.name}
                   </h4>
                   <p style={{
                     fontSize: '14px',
                     color: '#8B7355',
-                    margin: 0
+                    margin: 0,
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {student.course}
                   </p>
@@ -579,7 +604,8 @@ export default function ProfessorDashboard() {
                 padding: '4px 8px',
                 borderRadius: '12px',
                 fontSize: '12px',
-                fontWeight: '500'
+                fontWeight: '500',
+                fontFamily: inter.style.fontFamily
               }}>
                 {student.status === 'ahead' ? 'Ahead' : 
                  student.status === 'behind' ? 'Behind' : 'On Track'}
@@ -592,8 +618,17 @@ export default function ProfessorDashboard() {
               justifyContent: 'space-between',
               marginBottom: '8px'
             }}>
-              <span style={{ fontSize: '14px', color: '#8B7355' }}>Progress</span>
-              <span style={{ fontSize: '14px', fontWeight: '600', color: '#775D47' }}>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily 
+              }}>Progress</span>
+              <span style={{ 
+                fontSize: '14px', 
+                fontWeight: '600', 
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily 
+              }}>
                 {student.progress}%
               </span>
             </div>
@@ -618,7 +653,8 @@ export default function ProfessorDashboard() {
             <p style={{
               fontSize: '12px',
               color: '#8B7355',
-              margin: 0
+              margin: 0,
+              fontFamily: inter.style.fontFamily
             }}>
               Last active: {student.lastActive}
             </p>
@@ -632,7 +668,7 @@ export default function ProfessorDashboard() {
     <div style={{
       minHeight: '100vh',
       background: '#FEFEFE',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       {/* Navigation */}
       <div style={{ display: 'flex' }}>
@@ -674,19 +710,13 @@ export default function ProfessorDashboard() {
             >
               <h1 style={{
                 fontSize: '1.5rem',
-                fontWeight: '600',
+                fontWeight: '400',
                 color: '#775D47',
-                margin: 0
+                margin: 0,
+                fontFamily: julius.style.fontFamily
               }}>
-                Illuminance
+                Illuminance Esthetics
               </h1>
-              <p style={{
-                fontSize: '14px',
-                color: '#8B7355',
-                margin: '4px 0 0 0'
-              }}>
-                Professor Portal
-              </p>
             </a>
           </div>
 
@@ -725,7 +755,8 @@ export default function ProfessorDashboard() {
                     fontSize: '14px',
                     fontWeight: isActive ? '600' : '500',
                     transition: 'all 0.2s ease',
-                    borderRight: isActive ? '3px solid #775D47' : '3px solid transparent'
+                    borderRight: isActive ? '3px solid #775D47' : '3px solid transparent',
+                    fontFamily: inter.style.fontFamily
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
@@ -770,7 +801,8 @@ export default function ProfessorDashboard() {
                   <span style={{
                     fontSize: '16px',
                     fontWeight: '500',
-                    color: '#775D47'
+                    color: '#775D47',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     DK
                   </span>
@@ -780,14 +812,16 @@ export default function ProfessorDashboard() {
                     fontSize: '14px',
                     fontWeight: '600',
                     color: '#775D47',
-                    margin: 0
+                    margin: 0,
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Dr. Kumar
                   </p>
                   <p style={{
                     fontSize: '12px',
                     color: '#8B7355',
-                    margin: 0
+                    margin: 0,
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Professor
                   </p>
@@ -826,7 +860,8 @@ export default function ProfessorDashboard() {
                 fontSize: '1.5rem',
                 fontWeight: '400',
                 color: '#775D47',
-                margin: 0
+                margin: 0,
+                fontFamily: julius.style.fontFamily
               }}>
                 {activeTab === 'dashboard' && 'Dashboard'}
                 {activeTab === 'courses' && 'My Courses'}
@@ -870,7 +905,8 @@ export default function ProfessorDashboard() {
                   border: 'none',
                   cursor: 'pointer',
                   fontSize: '12px',
-                  fontWeight: '500'
+                  fontWeight: '500',
+                  fontFamily: inter.style.fontFamily
                 }}
               >
                 Student View
@@ -889,7 +925,8 @@ export default function ProfessorDashboard() {
                 <div style={{ marginBottom: '32px' }}>
                   <p style={{
                     color: '#8B7355',
-                    fontSize: '1.1rem'
+                    fontSize: '1.1rem',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Here's what's happening with your courses today
                   </p>
@@ -924,10 +961,21 @@ export default function ProfessorDashboard() {
                     }}
                   >
                     <Upload style={{ width: '24px', height: '24px', color: '#775D47', marginBottom: '12px' }} />
-                    <h4 style={{ color: '#775D47', fontSize: '1rem', fontWeight: '600', margin: '0 0 4px 0' }}>
+                    <h4 style={{ 
+                      color: '#775D47', 
+                      fontSize: '1rem', 
+                      fontWeight: '600', 
+                      margin: '0 0 4px 0',
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Upload Content
                     </h4>
-                    <p style={{ color: '#8B7355', fontSize: '14px', margin: 0 }}>
+                    <p style={{ 
+                      color: '#8B7355', 
+                      fontSize: '14px', 
+                      margin: 0,
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Add new lessons and materials
                     </p>
                   </button>
@@ -953,10 +1001,21 @@ export default function ProfessorDashboard() {
                     }}
                   >
                     <BarChart3 style={{ width: '24px', height: '24px', color: '#775D47', marginBottom: '12px' }} />
-                    <h4 style={{ color: '#775D47', fontSize: '1rem', fontWeight: '600', margin: '0 0 4px 0' }}>
+                    <h4 style={{ 
+                      color: '#775D47', 
+                      fontSize: '1rem', 
+                      fontWeight: '600', 
+                      margin: '0 0 4px 0',
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Analytics
                     </h4>
-                    <p style={{ color: '#8B7355', fontSize: '14px', margin: 0 }}>
+                    <p style={{ 
+                      color: '#8B7355', 
+                      fontSize: '14px', 
+                      margin: 0,
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       View detailed reports
                     </p>
                   </button>
@@ -982,10 +1041,21 @@ export default function ProfessorDashboard() {
                     }}
                   >
                     <MessageSquare style={{ width: '24px', height: '24px', color: '#775D47', marginBottom: '12px' }} />
-                    <h4 style={{ color: '#775D47', fontSize: '1rem', fontWeight: '600', margin: '0 0 4px 0' }}>
+                    <h4 style={{ 
+                      color: '#775D47', 
+                      fontSize: '1rem', 
+                      fontWeight: '600', 
+                      margin: '0 0 4px 0',
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Messages
                     </h4>
-                    <p style={{ color: '#8B7355', fontSize: '14px', margin: 0 }}>
+                    <p style={{ 
+                      color: '#8B7355', 
+                      fontSize: '14px', 
+                      margin: 0,
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Communicate with students
                     </p>
                   </button>
@@ -1011,10 +1081,21 @@ export default function ProfessorDashboard() {
                     }}
                   >
                     <Settings style={{ width: '24px', height: '24px', color: '#775D47', marginBottom: '12px' }} />
-                    <h4 style={{ color: '#775D47', fontSize: '1rem', fontWeight: '600', margin: '0 0 4px 0' }}>
+                    <h4 style={{ 
+                      color: '#775D47', 
+                      fontSize: '1rem', 
+                      fontWeight: '600', 
+                      margin: '0 0 4px 0',
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Settings
                     </h4>
-                    <p style={{ color: '#8B7355', fontSize: '14px', margin: 0 }}>
+                    <p style={{ 
+                      color: '#8B7355', 
+                      fontSize: '14px', 
+                      margin: 0,
+                      fontFamily: inter.style.fontFamily 
+                    }}>
                       Manage preferences
                     </p>
                   </button>
@@ -1039,7 +1120,8 @@ export default function ProfessorDashboard() {
                   <h3 style={{
                     fontSize: '1.5rem',
                     fontWeight: '600',
-                    color: '#775D47'
+                    color: '#775D47',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Course Management
                   </h3>
@@ -1061,7 +1143,8 @@ export default function ProfessorDashboard() {
                       gap: '8px',
                       fontSize: '14px',
                       fontWeight: '500',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      fontFamily: inter.style.fontFamily
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = '#8B7355';
@@ -1076,7 +1159,11 @@ export default function ProfessorDashboard() {
                     Create New Course
                   </button>
                 </div>
-                <p style={{ color: '#8B7355', fontSize: '1rem' }}>
+                <p style={{ 
+                  color: '#8B7355', 
+                  fontSize: '1rem',
+                  fontFamily: inter.style.fontFamily 
+                }}>
                   Manage your courses, create new content, and track student progress.
                 </p>
               </div>
@@ -1094,11 +1181,16 @@ export default function ProfessorDashboard() {
                   fontSize: '1.5rem',
                   fontWeight: '600',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Student Management
                 </h3>
-                <p style={{ color: '#8B7355', fontSize: '1rem' }}>
+                <p style={{ 
+                  color: '#8B7355', 
+                  fontSize: '1rem',
+                  fontFamily: inter.style.fontFamily 
+                }}>
                   View student progress, manage enrollments, and communicate with your learners.
                 </p>
               </div>
@@ -1116,11 +1208,16 @@ export default function ProfessorDashboard() {
                   fontSize: '1.5rem',
                   fontWeight: '600',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Analytics & Reports
                 </h3>
-                <p style={{ color: '#8B7355', fontSize: '1rem' }}>
+                <p style={{ 
+                  color: '#8B7355', 
+                  fontSize: '1rem',
+                  fontFamily: inter.style.fontFamily 
+                }}>
                   Track course performance, student engagement, and learning outcomes.
                 </p>
               </div>
@@ -1138,11 +1235,16 @@ export default function ProfessorDashboard() {
                   fontSize: '1.5rem',
                   fontWeight: '600',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Messages & Communication
                 </h3>
-                <p style={{ color: '#8B7355', fontSize: '1rem' }}>
+                <p style={{ 
+                  color: '#8B7355', 
+                  fontSize: '1rem',
+                  fontFamily: inter.style.fontFamily 
+                }}>
                   Send announcements, answer questions, and communicate with students.
                 </p>
               </div>
@@ -1160,11 +1262,16 @@ export default function ProfessorDashboard() {
                   fontSize: '1.5rem',
                   fontWeight: '600',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Settings & Preferences
                 </h3>
-                <p style={{ color: '#8B7355', fontSize: '1rem' }}>
+                <p style={{ 
+                  color: '#8B7355', 
+                  fontSize: '1rem',
+                  fontFamily: inter.style.fontFamily 
+                }}>
                   Manage your account settings, notification preferences, and platform configuration.
                 </p>
               </div>

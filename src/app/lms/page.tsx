@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { Julius_Sans_One, Inter } from 'next/font/google';
 import VideoPlayer from '../components/VideoPlayer';
 import { isFeatureEnabled } from '../utils/featureFlags';
 import dynamic from 'next/dynamic';
 import { Play, FileText, Download, BookOpen, CheckCircle, X, ChevronLeft, ChevronRight, Presentation } from 'lucide-react';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 interface QuizQuestion {
   question: string;
@@ -597,13 +601,15 @@ export default function LMS() {
               fontSize: '2rem',
               fontWeight: '400',
               color: '#775D47',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              fontFamily: julius.style.fontFamily
             }}>
               Welcome to Your Course
             </h2>
             <p style={{
               color: '#8B7355',
-              fontSize: '1.1rem'
+              fontSize: '1.1rem',
+              fontFamily: inter.style.fontFamily
             }}>
               Select a module from the sidebar to begin your learning journey
             </p>
@@ -624,7 +630,8 @@ export default function LMS() {
                 fontWeight: '400',
                 color: '#775D47',
                 marginBottom: '24px',
-                textAlign: 'center'
+                textAlign: 'center',
+                fontFamily: julius.style.fontFamily
               }}>
                 {content.title}
               </h2>
@@ -646,7 +653,8 @@ export default function LMS() {
                 marginBottom: '20px',
                 fontWeight: '600',
                 paddingBottom: '8px',
-                borderBottom: '2px solid rgba(119, 93, 71, 0.1)'
+                borderBottom: '2px solid rgba(119, 93, 71, 0.1)',
+                fontFamily: inter.style.fontFamily
               }}>
                 Lecture Transcript
               </h3>
@@ -695,7 +703,8 @@ export default function LMS() {
                       minWidth: '56px',
                       fontWeight: '500',
                       userSelect: 'none',
-                      paddingTop: '2px'
+                      paddingTop: '2px',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       {line.time}
                     </span>
@@ -704,7 +713,8 @@ export default function LMS() {
                       lineHeight: '1.6',
                       margin: '0',
                       flexGrow: 1,
-                      fontSize: '14px'
+                      fontSize: '14px',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       {line.content}
                     </p>
@@ -726,7 +736,8 @@ export default function LMS() {
               fontSize: '2rem',
               fontWeight: '400',
               color: '#775D47',
-              marginBottom: '24px'
+              marginBottom: '24px',
+              fontFamily: julius.style.fontFamily
             }}>
               {content.title}
             </h2>
@@ -737,7 +748,8 @@ export default function LMS() {
                     fontSize: '1.5rem',
                     fontWeight: '500',
                     color: '#775D47',
-                    marginBottom: '16px'
+                    marginBottom: '16px',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {section.heading}
                   </h3>
@@ -745,7 +757,8 @@ export default function LMS() {
                     color: '#666',
                     lineHeight: '1.7',
                     marginBottom: '24px',
-                    fontSize: '1rem'
+                    fontSize: '1rem',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {section.content}
                   </p>
@@ -771,7 +784,8 @@ export default function LMS() {
                   transition: 'all 0.3s ease',
                   border: 'none',
                   cursor: 'pointer',
-                  fontSize: '1rem'
+                  fontSize: '1rem',
+                  fontFamily: inter.style.fontFamily
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = '#8B7355';
@@ -801,7 +815,8 @@ export default function LMS() {
               fontWeight: '400',
               color: '#775D47',
               marginBottom: '24px',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: julius.style.fontFamily
             }}>
               {content.title}
             </h2>
@@ -821,16 +836,18 @@ export default function LMS() {
               }}>
                 <h3 style={{
                   fontSize: '1.75rem',
-                  fontWeight: '500',
+                  fontWeight: '400',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: julius.style.fontFamily
                 }}>
                   {slides[currentSlide].title}
                 </h3>
                 <p style={{
                   fontSize: '1.1rem',
                   color: '#8B7355',
-                  marginBottom: '24px'
+                  marginBottom: '24px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {slides[currentSlide].content}
                 </p>
@@ -854,7 +871,8 @@ export default function LMS() {
                     <p style={{
                       color: '#666',
                       margin: '0',
-                      lineHeight: '1.6'
+                      lineHeight: '1.6',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       {point}
                     </p>
@@ -883,7 +901,8 @@ export default function LMS() {
                   fontWeight: '500',
                   transition: 'all 0.3s ease',
                   border: 'none',
-                  cursor: currentSlide === 0 ? 'not-allowed' : 'pointer'
+                  cursor: currentSlide === 0 ? 'not-allowed' : 'pointer',
+                  fontFamily: inter.style.fontFamily
                 }}
                 onMouseEnter={(e) => {
                   if (currentSlide !== 0) {
@@ -933,7 +952,8 @@ export default function LMS() {
                     fontWeight: '500',
                     transition: 'all 0.3s ease',
                     border: 'none',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontFamily: inter.style.fontFamily
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#8B7355';
@@ -958,7 +978,8 @@ export default function LMS() {
                     fontWeight: '500',
                     transition: 'all 0.3s ease',
                     border: 'none',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontFamily: inter.style.fontFamily
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#8B7355';
@@ -987,7 +1008,8 @@ export default function LMS() {
               fontWeight: '400',
               color: '#775D47',
               marginBottom: '24px',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: julius.style.fontFamily
             }}>
               {content.title}
             </h2>
@@ -1012,20 +1034,23 @@ export default function LMS() {
                   fontSize: '1.25rem',
                   fontWeight: '500',
                   color: '#775D47',
-                  marginBottom: '8px'
+                  marginBottom: '8px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {content.content.fileName}
                 </h3>
                 <p style={{
                   color: '#8B7355',
-                  marginBottom: '4px'
+                  marginBottom: '4px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   File size: {content.content.fileSize}
                 </p>
                 <p style={{
                   color: '#666',
                   marginBottom: '24px',
-                  lineHeight: '1.6'
+                  lineHeight: '1.6',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {content.content.description}
                 </p>
@@ -1036,7 +1061,8 @@ export default function LMS() {
                   fontSize: '1.1rem',
                   fontWeight: '500',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Contents Include:
                 </h4>
@@ -1059,7 +1085,10 @@ export default function LMS() {
                         height: '16px',
                         color: '#775D47'
                       }} />
-                      <span style={{ color: '#666' }}>{item}</span>
+                      <span style={{ 
+                        color: '#666',
+                        fontFamily: inter.style.fontFamily 
+                      }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -1085,7 +1114,8 @@ export default function LMS() {
                     gap: '8px',
                     margin: '0 auto',
                     border: 'none',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontFamily: inter.style.fontFamily
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = '#8B7355';
@@ -1123,7 +1153,8 @@ export default function LMS() {
               fontWeight: '400',
               color: '#775D47',
               marginBottom: '24px',
-              textAlign: 'center'
+              textAlign: 'center',
+              fontFamily: julius.style.fontFamily
             }}>
               {content.title}
             </h2>
@@ -1140,14 +1171,16 @@ export default function LMS() {
                     <span style={{
                       fontSize: '14px',
                       fontWeight: '500',
-                      color: '#775D47'
+                      color: '#775D47',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       Progress
                     </span>
                     <span style={{
                       fontSize: '14px',
                       fontWeight: '500',
-                      color: '#775D47'
+                      color: '#775D47',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       {answeredQuestions}/{totalQuestions}
                     </span>
@@ -1181,7 +1214,8 @@ export default function LMS() {
                         fontSize: '1.1rem',
                         fontWeight: '500',
                         color: '#775D47',
-                        marginBottom: '16px'
+                        marginBottom: '16px',
+                        fontFamily: inter.style.fontFamily
                       }}>
                         Question {index + 1}: {question.question}
                       </h3>
@@ -1223,7 +1257,10 @@ export default function LMS() {
                               onChange={() => handleQuizAnswer(index, optionIndex)}
                               style={{ marginRight: '12px' }}
                             />
-                            <span style={{ color: '#666' }}>{option}</span>
+                            <span style={{ 
+                              color: '#666',
+                              fontFamily: inter.style.fontFamily 
+                            }}>{option}</span>
                           </label>
                         ))}
                       </div>
@@ -1246,7 +1283,8 @@ export default function LMS() {
                       fontWeight: '500',
                       transition: 'all 0.3s ease',
                       border: 'none',
-                      cursor: answeredQuestions < totalQuestions ? 'not-allowed' : 'pointer'
+                      cursor: answeredQuestions < totalQuestions ? 'not-allowed' : 'pointer',
+                      fontFamily: inter.style.fontFamily
                     }}
                     onMouseEnter={(e) => {
                       if (answeredQuestions >= totalQuestions) {
@@ -1281,21 +1319,24 @@ export default function LMS() {
                     fontSize: '1.5rem',
                     fontWeight: '500',
                     color: '#775D47',
-                    marginBottom: '16px'
+                    marginBottom: '16px',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Quiz Results
                   </h3>
                   <p style={{
                     fontSize: '1.1rem',
                     color: '#8B7355',
-                    marginBottom: '8px'
+                    marginBottom: '8px',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     You scored {correctAnswers} out of {totalQuestions} questions correctly
                   </p>
                   <p style={{
                     fontSize: '1.25rem',
                     fontWeight: '600',
-                    color: '#775D47'
+                    color: '#775D47',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     {Math.round((correctAnswers / totalQuestions) * 100)}%
                   </p>
@@ -1337,14 +1378,16 @@ export default function LMS() {
                             <h4 style={{
                               fontWeight: '500',
                               color: '#775D47',
-                              marginBottom: '8px'
+                              marginBottom: '8px',
+                              fontFamily: inter.style.fontFamily
                             }}>
                               Question {index + 1}: {question.question}
                             </h4>
                             <p style={{
                               fontSize: '14px',
                               color: '#666',
-                              marginBottom: '8px'
+                              marginBottom: '8px',
+                              fontFamily: inter.style.fontFamily
                             }}>
                               Your answer: <span style={{
                                 color: isCorrect ? '#10B981' : '#EF4444'
@@ -1356,7 +1399,8 @@ export default function LMS() {
                               <p style={{
                                 fontSize: '14px',
                                 color: '#666',
-                                marginBottom: '8px'
+                                marginBottom: '8px',
+                                fontFamily: inter.style.fontFamily
                               }}>
                                 Correct answer: <span style={{ color: '#10B981' }}>
                                   {question.options[question.correctAnswer]}
@@ -1369,7 +1413,8 @@ export default function LMS() {
                               background: 'rgba(119, 93, 71, 0.05)',
                               padding: '12px',
                               borderRadius: '6px',
-                              margin: '0'
+                              margin: '0',
+                              fontFamily: inter.style.fontFamily
                             }}>
                               <strong>Explanation:</strong> {question.explanation}
                             </p>
@@ -1396,7 +1441,7 @@ export default function LMS() {
       height: '100vh',
       overflow: 'hidden',
       background: '#FEFEFE',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       {/* Top Navigation Bar */}
       <nav style={{
@@ -1425,13 +1470,14 @@ export default function LMS() {
             style={{
               color: '#775D47',
               fontSize: '1.5rem',
-              fontWeight: '300',
+              fontWeight: '400',
               letterSpacing: '0.5px',
               background: 'transparent',
               border: 'none',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-              padding: '8px 0'
+              padding: '8px 0',
+              fontFamily: julius.style.fontFamily
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.color = '#8B7355';
@@ -1440,7 +1486,7 @@ export default function LMS() {
               e.currentTarget.style.color = '#775D47';
             }}
           >
-            Illuminance Learning
+            Illuminance Esthetics
           </button>
           <div style={{
             display: 'flex',
@@ -1472,7 +1518,8 @@ export default function LMS() {
                 fontSize: '14px',
                 fontWeight: '500',
                 minWidth: '80px',
-                textAlign: 'right'
+                textAlign: 'right',
+                fontFamily: inter.style.fontFamily
               }}>
                 {progress}% Complete
               </div>
@@ -1489,7 +1536,8 @@ export default function LMS() {
                 fontWeight: '500',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                fontFamily: inter.style.fontFamily
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#8B7355';
@@ -1515,7 +1563,8 @@ export default function LMS() {
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   color: '#775D47',
-                  fontSize: '14px'
+                  fontSize: '14px',
+                  fontFamily: inter.style.fontFamily
                 }}
                 onClick={handleProfileClick}
                 onMouseEnter={(e) => {
@@ -1537,11 +1586,16 @@ export default function LMS() {
                   justifyContent: 'center',
                   color: 'white',
                   fontWeight: '600',
-                  fontSize: '14px'
+                  fontSize: '14px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   U
                 </div>
-                <span style={{ fontWeight: '500', color: '#775D47' }}>User</span>
+                <span style={{ 
+                  fontWeight: '500', 
+                  color: '#775D47',
+                  fontFamily: inter.style.fontFamily 
+                }}>User</span>
                 <span style={{
                   fontSize: '10px',
                   color: '#8B7355',
@@ -1581,7 +1635,8 @@ export default function LMS() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: 'white',
-                      fontWeight: '600'
+                      fontWeight: '600',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       U
                     </div>
@@ -1590,13 +1645,15 @@ export default function LMS() {
                         fontWeight: '600',
                         color: '#775D47',
                         fontSize: '14px',
-                        marginBottom: '2px'
+                        marginBottom: '2px',
+                        fontFamily: inter.style.fontFamily
                       }}>
                         User Name
                       </div>
                       <div style={{
                         color: '#8B7355',
-                        fontSize: '12px'
+                        fontSize: '12px',
+                        fontFamily: inter.style.fontFamily
                       }}>
                         user@example.com
                       </div>
@@ -1625,7 +1682,8 @@ export default function LMS() {
                           margin: '2px 8px',
                           border: 'none',
                           background: 'transparent',
-                          cursor: 'pointer'
+                          cursor: 'pointer',
+                          fontFamily: inter.style.fontFamily
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.background = 'rgba(119, 93, 71, 0.05)';
@@ -1659,7 +1717,8 @@ export default function LMS() {
                         margin: '2px 8px',
                         border: 'none',
                         background: 'transparent',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        fontFamily: inter.style.fontFamily
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = 'rgba(220, 38, 38, 0.05)';
@@ -1717,7 +1776,8 @@ export default function LMS() {
                 fontWeight: '600',
                 marginBottom: '16px',
                 paddingBottom: '8px',
-                borderBottom: '2px solid rgba(119, 93, 71, 0.15)'
+                borderBottom: '2px solid rgba(119, 93, 71, 0.15)',
+                fontFamily: inter.style.fontFamily
               }}>
                 {section.title}
               </h3>
@@ -1776,13 +1836,15 @@ export default function LMS() {
                           <span style={{
                             color: '#775D47',
                             fontSize: '14px',
-                            display: 'block'
+                            display: 'block',
+                            fontFamily: inter.style.fontFamily
                           }}>
                             {item.title}
                           </span>
                           <span style={{
                             color: '#8B7355',
-                            fontSize: '12px'
+                            fontSize: '12px',
+                            fontFamily: inter.style.fontFamily
                           }}>
                             {item.duration}
                           </span>
@@ -1839,14 +1901,16 @@ export default function LMS() {
                   fontSize: '1.5rem',
                   fontWeight: '500',
                   color: '#775D47',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Congratulations!
                 </h3>
                 <p style={{
                   color: '#8B7355',
                   marginBottom: '32px',
-                  lineHeight: '1.6'
+                  lineHeight: '1.6',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   You've completed "{contentItems[selectedItem!]?.title}". Keep up the great work!
                 </p>
@@ -1865,7 +1929,8 @@ export default function LMS() {
                       fontWeight: '500',
                       transition: 'all 0.3s ease',
                       border: 'none',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      fontFamily: inter.style.fontFamily
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = '#8B7355';
@@ -1906,14 +1971,16 @@ export default function LMS() {
                 <h3 style={{
                   color: '#775D47',
                   fontSize: '1.5rem',
-                  marginBottom: '16px'
+                  marginBottom: '16px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Progress Checkpoint!
                 </h3>
                 <p style={{
                   color: '#8B7355',
                   lineHeight: '1.6',
-                  marginBottom: '24px'
+                  marginBottom: '24px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   You've completed {completedCount} of {totalItems} modules.<br />
                   Ready to test your understanding with a quick assessment?
@@ -1933,7 +2000,8 @@ export default function LMS() {
                       borderRadius: '8px',
                       fontWeight: '500',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      fontFamily: inter.style.fontFamily
                     }}
                     onClick={() => setShowQuizPrompt(false)}
                     onMouseEnter={(e) => {
@@ -1954,7 +2022,8 @@ export default function LMS() {
                       borderRadius: '8px',
                       fontWeight: '500',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      fontFamily: inter.style.fontFamily
                     }}
                     onClick={() => setShowQuizPrompt(false)}
                     onMouseEnter={(e) => {
@@ -1995,7 +2064,8 @@ export default function LMS() {
                   <h2 style={{
                     color: '#775D47',
                     fontSize: '2.5rem',
-                    marginBottom: '16px'
+                    marginBottom: '16px',
+                    fontFamily: julius.style.fontFamily
                   }}>
                     Certificate of Completion
                   </h2>
@@ -2014,7 +2084,8 @@ export default function LMS() {
                     color: '#8B7355',
                     fontSize: '1.1rem',
                     lineHeight: '1.6',
-                    margin: '16px 0'
+                    margin: '16px 0',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     This document certifies that
                   </p>
@@ -2023,7 +2094,8 @@ export default function LMS() {
                     fontSize: '2.5rem',
                     fontWeight: '600',
                     margin: '24px 0',
-                    textTransform: 'uppercase'
+                    textTransform: 'uppercase',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     [Participant Name]
                   </div>
@@ -2031,7 +2103,8 @@ export default function LMS() {
                     color: '#8B7355',
                     fontSize: '1.1rem',
                     lineHeight: '1.6',
-                    margin: '16px 0'
+                    margin: '16px 0',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     has successfully completed all requirements of the
                   </p>
@@ -2039,7 +2112,8 @@ export default function LMS() {
                     color: '#775D47',
                     fontSize: '1.5rem',
                     fontWeight: '600',
-                    margin: '32px 0'
+                    margin: '32px 0',
+                    fontFamily: inter.style.fontFamily
                   }}>
                     Advanced Technical Certification Program
                   </div>
@@ -2051,7 +2125,8 @@ export default function LMS() {
                   }}>
                     <div style={{
                       color: '#8B7355',
-                      fontSize: '14px'
+                      fontSize: '14px',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       Date Achieved: [MM/DD/YYYY]
                     </div>
@@ -2063,7 +2138,8 @@ export default function LMS() {
                       }} />
                       <div style={{
                         color: '#8B7355',
-                        fontSize: '14px'
+                        fontSize: '14px',
+                        fontFamily: inter.style.fontFamily
                       }}>
                         Authorized Signature
                       </div>
@@ -2080,7 +2156,8 @@ export default function LMS() {
                   borderRadius: '6px',
                   transform: 'rotate(12deg)',
                   fontWeight: '500',
-                  boxShadow: '0 4px 12px rgba(119, 93, 71, 0.3)'
+                  boxShadow: '0 4px 12px rgba(119, 93, 71, 0.3)',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   Certified Professional
                 </div>

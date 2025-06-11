@@ -181,16 +181,20 @@ export default function Certificates() {
                 <div>
                   <h1 style={{
                     fontSize: '2.5rem',
-                    fontWeight: '600',
+                    fontWeight: '400',
                     color: '#775D47',
-                    marginBottom: '8px'
+                    marginBottom: '8px',
+                    fontFamily: '"Julius Sans One", sans-serif',
+                    letterSpacing: '2px'
                   }}>
                     CERTIFICATE
                   </h1>
                   <p style={{
                     fontSize: '1.25rem',
                     color: '#8B7355',
-                    fontWeight: '600'
+                    fontWeight: '500',
+                    fontFamily: 'Inter, sans-serif',
+                    letterSpacing: '1px'
                   }}>
                     OF COMPLETION
                   </p>
@@ -206,7 +210,9 @@ export default function Certificates() {
               <p style={{
                 fontSize: '1.1rem',
                 color: '#666',
-                marginBottom: '24px'
+                marginBottom: '24px',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: '400'
               }}>
                 This is to certify that
               </p>
@@ -220,7 +226,8 @@ export default function Certificates() {
                 paddingBottom: '8px',
                 display: 'inline-block',
                 paddingLeft: '32px',
-                paddingRight: '32px'
+                paddingRight: '32px',
+                fontFamily: 'Inter, sans-serif'
               }}>
                 {certificate.studentName}
               </div>
@@ -228,7 +235,9 @@ export default function Certificates() {
               <p style={{
                 fontSize: '1.1rem',
                 color: '#666',
-                marginBottom: '16px'
+                marginBottom: '16px',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: '400'
               }}>
                 has successfully completed the course
               </p>
@@ -237,7 +246,8 @@ export default function Certificates() {
                 fontSize: '1.5rem',
                 fontWeight: '600',
                 color: '#775D47',
-                marginBottom: '32px'
+                marginBottom: '32px',
+                fontFamily: 'Inter, sans-serif'
               }}>
                 {certificate.courseTitle}
               </div>
@@ -255,13 +265,16 @@ export default function Certificates() {
                   <p style={{
                     fontSize: '14px',
                     color: '#8B7355',
-                    marginBottom: '4px'
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: '500'
                   }}>
                     Completion Date:
                   </p>
                   <p style={{
                     fontWeight: '600',
-                    color: '#775D47'
+                    color: '#775D47',
+                    fontFamily: 'Inter, sans-serif'
                   }}>
                     {certificate.completionDate}
                   </p>
@@ -270,13 +283,16 @@ export default function Certificates() {
                   <p style={{
                     fontSize: '14px',
                     color: '#8B7355',
-                    marginBottom: '4px'
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: '500'
                   }}>
                     Duration:
                   </p>
                   <p style={{
                     fontWeight: '600',
-                    color: '#775D47'
+                    color: '#775D47',
+                    fontFamily: 'Inter, sans-serif'
                   }}>
                     {certificate.duration}
                   </p>
@@ -285,12 +301,14 @@ export default function Certificates() {
                   <p style={{
                     fontSize: '14px',
                     color: '#8B7355',
-                    marginBottom: '4px'
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: '500'
                   }}>
                     Certificate Number:
                   </p>
                   <p style={{
-                    fontFamily: 'monospace',
+                    fontFamily: '"Courier New", monospace',
                     fontSize: '14px',
                     color: '#775D47'
                   }}>
@@ -304,7 +322,9 @@ export default function Certificates() {
                 <p style={{
                   fontSize: '14px',
                   color: '#8B7355',
-                  marginBottom: '12px'
+                  marginBottom: '12px',
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: '500'
                 }}>
                   Skills Demonstrated:
                 </p>
@@ -323,7 +343,8 @@ export default function Certificates() {
                         padding: '6px 12px',
                         borderRadius: '20px',
                         fontSize: '14px',
-                        fontWeight: '500'
+                        fontWeight: '500',
+                        fontFamily: 'Inter, sans-serif'
                       }}
                     >
                       {skill}
@@ -344,13 +365,16 @@ export default function Certificates() {
                 <p style={{
                   fontSize: '14px',
                   color: '#8B7355',
-                  marginBottom: '8px'
+                  marginBottom: '8px',
+                  fontFamily: 'Inter, sans-serif',
+                  fontWeight: '500'
                 }}>
                   Issue Date:
                 </p>
                 <p style={{
                   fontWeight: '600',
-                  color: '#775D47'
+                  color: '#775D47',
+                  fontFamily: 'Inter, sans-serif'
                 }}>
                   {certificate.issueDate}
                 </p>
@@ -360,7 +384,7 @@ export default function Certificates() {
                 <div style={{ marginBottom: '16px' }}>
                   <div style={{
                     fontSize: '1.5rem',
-                    fontFamily: 'cursive',
+                    fontFamily: '"Dancing Script", cursive',
                     color: '#775D47',
                     marginBottom: '8px'
                   }}>
@@ -375,13 +399,16 @@ export default function Certificates() {
                 <div>
                   <p style={{
                     fontWeight: '600',
-                    color: '#775D47'
+                    color: '#775D47',
+                    fontFamily: 'Inter, sans-serif'
                   }}>
                     {certificate.instructorName}
                   </p>
                   <p style={{
                     fontSize: '14px',
-                    color: '#8B7355'
+                    color: '#8B7355',
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: '400'
                   }}>
                     Course Instructor
                   </p>
@@ -398,7 +425,9 @@ export default function Certificates() {
             }}>
               <p style={{
                 fontSize: '12px',
-                color: '#8B7355'
+                color: '#8B7355',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: '400'
               }}>
                 This certificate can be verified at: illuminance-learning.com/verify/{certificate.certificateNumber}
               </p>
@@ -422,7 +451,8 @@ export default function Certificates() {
                 fontWeight: '500',
                 transition: 'all 0.3s ease',
                 border: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                fontFamily: 'Inter, sans-serif'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#E8E8E8';
@@ -447,7 +477,8 @@ export default function Certificates() {
                   alignItems: 'center',
                   gap: '8px',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = '#059669';
@@ -472,7 +503,8 @@ export default function Certificates() {
                   alignItems: 'center',
                   gap: '8px',
                   border: 'none',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = '#8B7355';
@@ -492,469 +524,521 @@ export default function Certificates() {
   );
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: '#FEFEFE',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
-    }}>
+    <>
+      {/* Google Fonts Import */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap');
+      `}</style>
+      
       <div style={{
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '32px 24px'
+        minHeight: '100vh',
+        background: '#FEFEFE',
+        fontFamily: 'Inter, sans-serif'
       }}>
-        {/* Header */}
-        <div style={{ marginBottom: '32px' }}>
-          <h1 style={{
-            fontSize: '2rem',
-            fontWeight: '400',
-            color: '#775D47',
-            marginBottom: '8px'
-          }}>
-            My Certificates
-          </h1>
-          <p style={{
-            color: '#8B7355',
-            fontSize: '1.1rem'
-          }}>
-            View and manage your earned certificates of completion
-          </p>
-        </div>
-
-        {/* Stats */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '24px',
-          marginBottom: '32px'
+          maxWidth: '1400px',
+          margin: '0 auto',
+          padding: '32px 24px'
         }}>
-          <div style={{
-            background: '#FFFFFF',
-            borderRadius: '12px',
-            padding: '24px',
-            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
-            border: '1px solid rgba(119, 93, 71, 0.08)'
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              <div>
-                <p style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#8B7355',
-                  marginBottom: '4px'
-                }}>
-                  Total Certificates
-                </p>
-                <p style={{
-                  fontSize: '2rem',
-                  fontWeight: '600',
-                  color: '#775D47'
-                }}>
-                  {certificates.length}
-                </p>
-              </div>
-              <Award style={{ width: '32px', height: '32px', color: '#775D47' }} />
-            </div>
-          </div>
-          
-          <div style={{
-            background: '#FFFFFF',
-            borderRadius: '12px',
-            padding: '24px',
-            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
-            border: '1px solid rgba(119, 93, 71, 0.08)'
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              <div>
-                <p style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#8B7355',
-                  marginBottom: '4px'
-                }}>
-                  This Year
-                </p>
-                <p style={{
-                  fontSize: '2rem',
-                  fontWeight: '600',
-                  color: '#775D47'
-                }}>
-                  {certificates.length}
-                </p>
-              </div>
-              <Calendar style={{ width: '32px', height: '32px', color: '#10B981' }} />
-            </div>
-          </div>
-          
-          <div style={{
-            background: '#FFFFFF',
-            borderRadius: '12px',
-            padding: '24px',
-            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
-            border: '1px solid rgba(119, 93, 71, 0.08)'
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              <div>
-                <p style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: '#8B7355',
-                  marginBottom: '4px'
-                }}>
-                  Skills Earned
-                </p>
-                <p style={{
-                  fontSize: '2rem',
-                  fontWeight: '600',
-                  color: '#775D47'
-                }}>
-                  {certificates.reduce((total, cert) => total + cert.skills.length, 0)}
-                </p>
-              </div>
-              <CheckCircle style={{ width: '32px', height: '32px', color: '#8B5CF6' }} />
-            </div>
-          </div>
-        </div>
-
-        {/* Certificates Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '24px'
-        }}>
-          {certificates.map((certificate) => (
-            <div
-              key={certificate.id}
-              style={{
-                background: '#FFFFFF',
-                borderRadius: '12px',
-                boxShadow: '0 4px 12px rgba(119, 93, 71, 0.08)',
-                border: '1px solid rgba(119, 93, 71, 0.1)',
-                overflow: 'hidden',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(119, 93, 71, 0.12)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(119, 93, 71, 0.08)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              {/* Certificate Preview */}
-              <div style={{
-                position: 'relative',
-                height: '192px',
-                background: 'linear-gradient(135deg, rgba(119, 93, 71, 0.02) 0%, #FFFFFF 100%)',
-                borderBottom: '4px solid #775D47',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <Award style={{
-                    width: '48px',
-                    height: '48px',
-                    color: '#775D47',
-                    margin: '0 auto 8px'
-                  }} />
-                  <p style={{
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#775D47'
-                  }}>
-                    CERTIFICATE
-                  </p>
-                  <p style={{
-                    fontSize: '12px',
-                    color: '#8B7355'
-                  }}>
-                    OF COMPLETION
-                  </p>
-                </div>
-                <div style={{
-                  position: 'absolute',
-                  top: '12px',
-                  right: '12px'
-                }}>
-                  <span style={{
-                    background: '#D1FAE5',
-                    color: '#065F46',
-                    padding: '4px 12px',
-                    borderRadius: '20px',
-                    fontSize: '12px',
-                    fontWeight: '500'
-                  }}>
-                    Verified
-                  </span>
-                </div>
-              </div>
-
-              {/* Certificate Info */}
-              <div style={{ padding: '24px' }}>
-                <h3 style={{
-                  fontSize: '1.125rem',
-                  fontWeight: '600',
-                  color: '#775D47',
-                  marginBottom: '8px',
-                  lineHeight: '1.4',
-                  display: '-webkit-box',
-                  WebkitLineClamp: 2,
-                  WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
-                }}>
-                  {certificate.courseTitle}
-                </h3>
-                
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  marginBottom: '12px'
-                }}>
-                  <User style={{ width: '16px', height: '16px', color: '#8B7355' }} />
-                  <span style={{
-                    fontSize: '14px',
-                    color: '#8B7355'
-                  }}>
-                    {certificate.instructorName}
-                  </span>
-                </div>
-                
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px',
-                  marginBottom: '16px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontSize: '14px'
-                  }}>
-                    <span style={{ color: '#8B7355' }}>Completed:</span>
-                    <span style={{
-                      fontWeight: '500',
-                      color: '#775D47'
-                    }}>
-                      {certificate.completionDate}
-                    </span>
-                  </div>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontSize: '14px'
-                  }}>
-                    <span style={{ color: '#8B7355' }}>Duration:</span>
-                    <span style={{
-                      fontWeight: '500',
-                      color: '#775D47'
-                    }}>
-                      {certificate.duration}
-                    </span>
-                  </div>
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    fontSize: '14px'
-                  }}>
-                    <span style={{ color: '#8B7355' }}>Category:</span>
-                    <span style={{
-                      fontWeight: '500',
-                      color: '#775D47'
-                    }}>
-                      {certificate.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Skills Preview */}
-                <div style={{ marginBottom: '16px' }}>
-                  <p style={{
-                    fontSize: '12px',
-                    color: '#8B7355',
-                    marginBottom: '8px'
-                  }}>
-                    Skills Demonstrated:
-                  </p>
-                  <div style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '4px'
-                  }}>
-                    {certificate.skills.slice(0, 3).map((skill, index) => (
-                      <span
-                        key={index}
-                        style={{
-                          background: 'rgba(119, 93, 71, 0.1)',
-                          color: '#775D47',
-                          padding: '4px 8px',
-                          borderRadius: '12px',
-                          fontSize: '12px'
-                        }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                    {certificate.skills.length > 3 && (
-                      <span style={{
-                        fontSize: '12px',
-                        color: '#8B7355',
-                        padding: '4px 8px'
-                      }}>
-                        +{certificate.skills.length - 3} more
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div style={{ display: 'flex', gap: '8px' }}>
-                  <button
-                    onClick={() => handleViewCertificate(certificate)}
-                    style={{
-                      flex: 1,
-                      background: '#775D47',
-                      color: 'white',
-                      padding: '10px 16px',
-                      borderRadius: '8px',
-                      fontWeight: '500',
-                      transition: 'all 0.3s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      border: 'none',
-                      cursor: 'pointer'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = '#8B7355';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = '#775D47';
-                    }}
-                  >
-                    <Eye style={{ width: '16px', height: '16px' }} />
-                    View
-                  </button>
-                  <button
-                    onClick={() => handleDownloadCertificate(certificate)}
-                    style={{
-                      background: '#F5F5F5',
-                      color: '#775D47',
-                      padding: '10px 16px',
-                      borderRadius: '8px',
-                      fontWeight: '500',
-                      transition: 'all 0.3s ease',
-                      border: 'none',
-                      cursor: 'pointer'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = '#E8E8E8';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = '#F5F5F5';
-                    }}
-                  >
-                    <Download style={{ width: '16px', height: '16px' }} />
-                  </button>
-                  <button
-                    onClick={() => handleShareCertificate(certificate)}
-                    style={{
-                      background: 'rgba(16, 185, 129, 0.1)',
-                      color: '#059669',
-                      padding: '10px 16px',
-                      borderRadius: '8px',
-                      fontWeight: '500',
-                      transition: 'all 0.3s ease',
-                      border: 'none',
-                      cursor: 'pointer'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(16, 185, 129, 0.15)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
-                    }}
-                  >
-                    <Share2 style={{ width: '16px', height: '16px' }} />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {certificates.length === 0 && (
-          <div style={{
-            textAlign: 'center',
-            padding: '64px 0'
-          }}>
-            <Award style={{
-              width: '64px',
-              height: '64px',
-              color: '#8B7355',
-              margin: '0 auto 16px'
-            }} />
-            <h3 style={{
-              fontSize: '1.25rem',
+          {/* Header */}
+          <div style={{ marginBottom: '32px' }}>
+            <h1 style={{
+              fontSize: '2rem',
               fontWeight: '600',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: 'Inter, sans-serif'
             }}>
-              No certificates yet
-            </h3>
+              My Certificates
+            </h1>
             <p style={{
               color: '#8B7355',
-              marginBottom: '24px'
+              fontSize: '1.1rem',
+              fontFamily: 'Inter, sans-serif',
+              fontWeight: '400'
             }}>
-              Complete courses to earn your first certificate!
+              View and manage your earned certificates of completion
             </p>
-            <button 
-              onClick={() => window.location.href = '/courses'}
-              style={{
-                background: '#775D47',
-                color: 'white',
-                padding: '12px 24px',
-                borderRadius: '8px',
-                fontWeight: '500',
-                transition: 'all 0.3s ease',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#8B7355';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#775D47';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              Browse Courses
-            </button>
           </div>
+
+          {/* Stats */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '24px',
+            marginBottom: '32px'
+          }}>
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: '12px',
+              padding: '24px',
+              boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+              border: '1px solid rgba(119, 93, 71, 0.08)'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <div>
+                  <p style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#8B7355',
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    Total Certificates
+                  </p>
+                  <p style={{
+                    fontSize: '2rem',
+                    fontWeight: '600',
+                    color: '#775D47',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    {certificates.length}
+                  </p>
+                </div>
+                <Award style={{ width: '32px', height: '32px', color: '#775D47' }} />
+              </div>
+            </div>
+            
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: '12px',
+              padding: '24px',
+              boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+              border: '1px solid rgba(119, 93, 71, 0.08)'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <div>
+                  <p style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#8B7355',
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    This Year
+                  </p>
+                  <p style={{
+                    fontSize: '2rem',
+                    fontWeight: '600',
+                    color: '#775D47',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    {certificates.length}
+                  </p>
+                </div>
+                <Calendar style={{ width: '32px', height: '32px', color: '#10B981' }} />
+              </div>
+            </div>
+            
+            <div style={{
+              background: '#FFFFFF',
+              borderRadius: '12px',
+              padding: '24px',
+              boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+              border: '1px solid rgba(119, 93, 71, 0.08)'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <div>
+                  <p style={{
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    color: '#8B7355',
+                    marginBottom: '4px',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    Skills Earned
+                  </p>
+                  <p style={{
+                    fontSize: '2rem',
+                    fontWeight: '600',
+                    color: '#775D47',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    {certificates.reduce((total, cert) => total + cert.skills.length, 0)}
+                  </p>
+                </div>
+                <CheckCircle style={{ width: '32px', height: '32px', color: '#8B5CF6' }} />
+              </div>
+            </div>
+          </div>
+
+          {/* Certificates Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '24px'
+          }}>
+            {certificates.map((certificate) => (
+              <div
+                key={certificate.id}
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 12px rgba(119, 93, 71, 0.08)',
+                  border: '1px solid rgba(119, 93, 71, 0.1)',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(119, 93, 71, 0.12)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(119, 93, 71, 0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                {/* Certificate Preview */}
+                <div style={{
+                  position: 'relative',
+                  height: '192px',
+                  background: 'linear-gradient(135deg, rgba(119, 93, 71, 0.02) 0%, #FFFFFF 100%)',
+                  borderBottom: '4px solid #775D47',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <div style={{ textAlign: 'center' }}>
+                    <Award style={{
+                      width: '48px',
+                      height: '48px',
+                      color: '#775D47',
+                      margin: '0 auto 8px'
+                    }} />
+                    <p style={{
+                      fontSize: '14px',
+                      fontWeight: '400',
+                      color: '#775D47',
+                      fontFamily: '"Julius Sans One", sans-serif',
+                      letterSpacing: '1px'
+                    }}>
+                      CERTIFICATE
+                    </p>
+                    <p style={{
+                      fontSize: '12px',
+                      color: '#8B7355',
+                      fontFamily: 'Inter, sans-serif',
+                      fontWeight: '500'
+                    }}>
+                      OF COMPLETION
+                    </p>
+                  </div>
+                  <div style={{
+                    position: 'absolute',
+                    top: '12px',
+                    right: '12px'
+                  }}>
+                    <span style={{
+                      background: '#D1FAE5',
+                      color: '#065F46',
+                      padding: '4px 12px',
+                      borderRadius: '20px',
+                      fontSize: '12px',
+                      fontWeight: '500',
+                      fontFamily: 'Inter, sans-serif'
+                    }}>
+                      Verified
+                    </span>
+                  </div>
+                </div>
+
+                {/* Certificate Info */}
+                <div style={{ padding: '24px' }}>
+                  <h3 style={{
+                    fontSize: '1.125rem',
+                    fontWeight: '600',
+                    color: '#775D47',
+                    marginBottom: '8px',
+                    lineHeight: '1.4',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    fontFamily: 'Inter, sans-serif'
+                  }}>
+                    {certificate.courseTitle}
+                  </h3>
+                  
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    marginBottom: '12px'
+                  }}>
+                    <User style={{ width: '16px', height: '16px', color: '#8B7355' }} />
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#8B7355',
+                      fontFamily: 'Inter, sans-serif',
+                      fontWeight: '400'
+                    }}>
+                      {certificate.instructorName}
+                    </span>
+                  </div>
+                  
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    marginBottom: '16px'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      fontSize: '14px'
+                    }}>
+                      <span style={{ 
+                        color: '#8B7355', 
+                        fontFamily: 'Inter, sans-serif',
+                        fontWeight: '400'
+                      }}>Completed:</span>
+                      <span style={{
+                        fontWeight: '500',
+                        color: '#775D47',
+                        fontFamily: 'Inter, sans-serif'
+                      }}>
+                        {certificate.completionDate}
+                      </span>
+                    </div>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      fontSize: '14px'
+                    }}>
+                      <span style={{ 
+                        color: '#8B7355', 
+                        fontFamily: 'Inter, sans-serif',
+                        fontWeight: '400'
+                      }}>Duration:</span>
+                      <span style={{
+                        fontWeight: '500',
+                        color: '#775D47',
+                        fontFamily: 'Inter, sans-serif'
+                      }}>
+                        {certificate.duration}
+                      </span>
+                    </div>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      fontSize: '14px'
+                    }}>
+                      <span style={{ 
+                        color: '#8B7355', 
+                        fontFamily: 'Inter, sans-serif',
+                        fontWeight: '400'
+                      }}>Category:</span>
+                      <span style={{
+                        fontWeight: '500',
+                        color: '#775D47',
+                        fontFamily: 'Inter, sans-serif'
+                      }}>
+                        {certificate.category}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Skills Preview */}
+                  <div style={{ marginBottom: '16px' }}>
+                    <p style={{
+                      fontSize: '12px',
+                      color: '#8B7355',
+                      marginBottom: '8px',
+                      fontFamily: 'Inter, sans-serif',
+                      fontWeight: '500'
+                    }}>
+                      Skills Demonstrated:
+                    </p>
+                    <div style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '4px'
+                    }}>
+                      {certificate.skills.slice(0, 3).map((skill, index) => (
+                        <span
+                          key={index}
+                          style={{
+                            background: 'rgba(119, 93, 71, 0.1)',
+                            color: '#775D47',
+                            padding: '4px 8px',
+                            borderRadius: '12px',
+                            fontSize: '12px',
+                            fontFamily: 'Inter, sans-serif',
+                            fontWeight: '400'
+                          }}
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {certificate.skills.length > 3 && (
+                        <span style={{
+                          fontSize: '12px',
+                          color: '#8B7355',
+                          padding: '4px 8px',
+                          fontFamily: 'Inter, sans-serif',
+                          fontWeight: '400'
+                        }}>
+                          +{certificate.skills.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button
+                      onClick={() => handleViewCertificate(certificate)}
+                      style={{
+                        flex: 1,
+                        background: '#775D47',
+                        color: 'white',
+                        padding: '10px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '500',
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '8px',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontFamily: 'Inter, sans-serif'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#8B7355';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = '#775D47';
+                      }}
+                    >
+                      <Eye style={{ width: '16px', height: '16px' }} />
+                      View
+                    </button>
+                    <button
+                      onClick={() => handleDownloadCertificate(certificate)}
+                      style={{
+                        background: '#F5F5F5',
+                        color: '#775D47',
+                        padding: '10px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '500',
+                        transition: 'all 0.3s ease',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontFamily: 'Inter, sans-serif'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = '#E8E8E8';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = '#F5F5F5';
+                      }}
+                    >
+                      <Download style={{ width: '16px', height: '16px' }} />
+                    </button>
+                    <button
+                      onClick={() => handleShareCertificate(certificate)}
+                      style={{
+                        background: 'rgba(16, 185, 129, 0.1)',
+                        color: '#059669',
+                        padding: '10px 16px',
+                        borderRadius: '8px',
+                        fontWeight: '500',
+                        transition: 'all 0.3s ease',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontFamily: 'Inter, sans-serif'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(16, 185, 129, 0.15)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(16, 185, 129, 0.1)';
+                      }}
+                    >
+                      <Share2 style={{ width: '16px', height: '16px' }} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Empty State */}
+          {certificates.length === 0 && (
+            <div style={{
+              textAlign: 'center',
+              padding: '64px 0'
+            }}>
+              <Award style={{
+                width: '64px',
+                height: '64px',
+                color: '#8B7355',
+                margin: '0 auto 16px'
+              }} />
+              <h3 style={{
+                fontSize: '1.25rem',
+                fontWeight: '600',
+                color: '#775D47',
+                marginBottom: '8px',
+                fontFamily: 'Inter, sans-serif'
+              }}>
+                No certificates yet
+              </h3>
+              <p style={{
+                color: '#8B7355',
+                marginBottom: '24px',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: '400'
+              }}>
+                Complete courses to earn your first certificate!
+              </p>
+              <button 
+                onClick={() => window.location.href = '/courses'}
+                style={{
+                  background: '#775D47',
+                  color: 'white',
+                  padding: '12px 24px',
+                  borderRadius: '8px',
+                  fontWeight: '500',
+                  transition: 'all 0.3s ease',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'Inter, sans-serif'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#8B7355';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#775D47';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                Browse Courses
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Certificate Modal */}
+        {selectedCertificate && (
+          <CertificateModal certificate={selectedCertificate} />
         )}
       </div>
-
-      {/* Certificate Modal */}
-      {selectedCertificate && (
-        <CertificateModal certificate={selectedCertificate} />
-      )}
-    </div>
+    </>
   );
 }

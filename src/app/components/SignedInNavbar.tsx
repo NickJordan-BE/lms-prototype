@@ -2,6 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Julius_Sans_One, Inter } from 'next/font/google';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 export const SignedInNavbar = () => {
   const router = useRouter();
@@ -42,7 +46,7 @@ export const SignedInNavbar = () => {
         display: 'flex',
         alignItems: 'center',
         padding: '0 32px',
-        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+        fontFamily: inter.style.fontFamily
       }}>
         <div style={{
           width: '100%',
@@ -57,7 +61,8 @@ export const SignedInNavbar = () => {
             style={{
               color: '#775D47',
               fontSize: '1.5rem',
-              fontWeight: '300',
+              fontWeight: '400',
+              fontFamily: julius.style.fontFamily,
               letterSpacing: '0.5px',
               background: 'transparent',
               border: 'none',
@@ -90,6 +95,7 @@ export const SignedInNavbar = () => {
                 borderRadius: '8px',
                 fontSize: '14px',
                 fontWeight: '500',
+                fontFamily: inter.style.fontFamily,
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
                 whiteSpace: 'nowrap'
@@ -121,7 +127,8 @@ export const SignedInNavbar = () => {
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   color: '#775D47',
-                  fontSize: '14px'
+                  fontSize: '14px',
+                  fontFamily: inter.style.fontFamily
                 }}
                 onClick={handleProfileClick}
                 onMouseEnter={(e) => {
@@ -143,11 +150,12 @@ export const SignedInNavbar = () => {
                   justifyContent: 'center',
                   color: 'white',
                   fontWeight: '600',
-                  fontSize: '14px'
+                  fontSize: '14px',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   U
                 </div>
-                <span style={{ fontWeight: '500', color: '#775D47' }}>User</span>
+                <span style={{ fontWeight: '500', color: '#775D47', fontFamily: inter.style.fontFamily }}>User</span>
                 <span style={{
                   fontSize: '10px',
                   color: '#8B7355',
@@ -171,7 +179,8 @@ export const SignedInNavbar = () => {
                   boxShadow: '0 12px 32px rgba(119, 93, 71, 0.15)',
                   minWidth: '220px',
                   zIndex: 50,
-                  animation: 'fadeIn 0.2s ease-out'
+                  animation: 'fadeIn 0.2s ease-out',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   <div style={{
                     padding: '16px',
@@ -189,7 +198,8 @@ export const SignedInNavbar = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: 'white',
-                      fontWeight: '600'
+                      fontWeight: '600',
+                      fontFamily: inter.style.fontFamily
                     }}>
                       U
                     </div>
@@ -198,13 +208,15 @@ export const SignedInNavbar = () => {
                         fontWeight: '600',
                         color: '#775D47',
                         fontSize: '14px',
-                        marginBottom: '2px'
+                        marginBottom: '2px',
+                        fontFamily: inter.style.fontFamily
                       }}>
                         User Name
                       </div>
                       <div style={{
                         color: '#8B7355',
-                        fontSize: '12px'
+                        fontSize: '12px',
+                        fontFamily: inter.style.fontFamily
                       }}>
                         user@example.com
                       </div>
@@ -229,6 +241,7 @@ export const SignedInNavbar = () => {
                           color: '#775D47',
                           fontSize: '14px',
                           fontWeight: '400',
+                          fontFamily: inter.style.fontFamily,
                           transition: 'all 0.3s ease',
                           borderRadius: '6px',
                           margin: '2px 8px',
@@ -265,6 +278,7 @@ export const SignedInNavbar = () => {
                         color: '#DC2626',
                         fontSize: '14px',
                         fontWeight: '400',
+                        fontFamily: inter.style.fontFamily,
                         transition: 'all 0.3s ease',
                         borderRadius: '6px',
                         margin: '2px 8px',

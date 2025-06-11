@@ -1,7 +1,11 @@
 'use client'
 
 import React from 'react';
+import { Julius_Sans_One, Inter } from 'next/font/google';
 import { Clock, Users, BookOpen, Star, Calendar } from 'lucide-react';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
 
 interface Course {
   id: string;
@@ -156,7 +160,8 @@ const Courses: React.FC = () => {
             fontSize: '12px',
             fontWeight: '500',
             color: '#775D47',
-            backdropFilter: 'blur(5px)'
+            backdropFilter: 'blur(5px)',
+            fontFamily: inter.style.fontFamily
           }}>
             {course.category}
           </span>
@@ -174,7 +179,8 @@ const Courses: React.FC = () => {
               borderRadius: '20px',
               fontSize: '12px',
               fontWeight: '500',
-              border: '1px solid rgba(217, 119, 6, 0.2)'
+              border: '1px solid rgba(217, 119, 6, 0.2)',
+              fontFamily: inter.style.fontFamily
             }}>
               Coming Soon
             </span>
@@ -185,11 +191,11 @@ const Courses: React.FC = () => {
       <div style={{ padding: '24px' }}>
         <h3 style={{
           fontSize: '1.25rem',
-          fontWeight: '600',
+          fontWeight: '400',
           color: '#775D47',
           marginBottom: '12px',
           lineHeight: '1.4',
-          fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+          fontFamily: julius.style.fontFamily
         }}>
           {course.title}
         </h3>
@@ -202,7 +208,8 @@ const Courses: React.FC = () => {
           display: '-webkit-box',
           WebkitLineClamp: 3,
           WebkitBoxOrient: 'vertical',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          fontFamily: inter.style.fontFamily
         }}>
           {course.description}
         </p>
@@ -220,7 +227,8 @@ const Courses: React.FC = () => {
             <span style={{
               fontSize: '14px',
               fontWeight: '600',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {course.instructor.split(' ').map(n => n[0]).join('')}
             </span>
@@ -228,7 +236,8 @@ const Courses: React.FC = () => {
           <span style={{
             fontSize: '14px',
             color: '#775D47',
-            fontWeight: '500'
+            fontWeight: '500',
+            fontFamily: inter.style.fontFamily
           }}>
             {course.instructor}
           </span>
@@ -240,7 +249,8 @@ const Courses: React.FC = () => {
           gap: '16px',
           marginBottom: '16px',
           fontSize: '14px',
-          color: '#8B7355'
+          color: '#8B7355',
+          fontFamily: inter.style.fontFamily
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <Clock style={{ width: '16px', height: '16px' }} />
@@ -283,7 +293,8 @@ const Courses: React.FC = () => {
             <span style={{
               fontSize: '14px',
               fontWeight: '500',
-              color: '#775D47'
+              color: '#775D47',
+              fontFamily: inter.style.fontFamily
             }}>
               {course.rating}
             </span>
@@ -301,7 +312,8 @@ const Courses: React.FC = () => {
             background: 'rgba(217, 119, 6, 0.1)',
             padding: '12px',
             borderRadius: '12px',
-            border: '1px solid rgba(217, 119, 6, 0.2)'
+            border: '1px solid rgba(217, 119, 6, 0.2)',
+            fontFamily: inter.style.fontFamily
           }}>
             <Calendar style={{ width: '16px', height: '16px' }} />
             <span>Launches {course.launchDate}</span>
@@ -316,7 +328,8 @@ const Courses: React.FC = () => {
           <span style={{
             fontSize: '1.5rem',
             fontWeight: '700',
-            color: '#775D47'
+            color: '#775D47',
+            fontFamily: inter.style.fontFamily
           }}>
             {course.price}
           </span>
@@ -330,7 +343,8 @@ const Courses: React.FC = () => {
               fontWeight: '500',
               cursor: 'not-allowed',
               border: 'none',
-              fontSize: '14px'
+              fontSize: '14px',
+              fontFamily: inter.style.fontFamily
             }}>
               Notify Me
             </button>
@@ -346,7 +360,8 @@ const Courses: React.FC = () => {
                 transition: 'all 0.3s ease',
                 border: 'none',
                 cursor: 'pointer',
-                fontSize: '14px'
+                fontSize: '14px',
+                fontFamily: inter.style.fontFamily
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#8B7355';
@@ -371,7 +386,7 @@ const Courses: React.FC = () => {
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #f8f6f3 0%, #E1DCD5 50%, #D2BDAC 100%)',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       <div style={{
         maxWidth: '1200px',
@@ -382,10 +397,11 @@ const Courses: React.FC = () => {
         <div style={{ marginBottom: '48px', textAlign: 'center' }}>
           <h1 style={{
             fontSize: '3rem',
-            fontWeight: '300',
+            fontWeight: '400',
             color: '#775D47',
             marginBottom: '16px',
-            letterSpacing: '1px'
+            letterSpacing: '1px',
+            fontFamily: julius.style.fontFamily
           }}>
             Professional Courses
           </h1>
@@ -395,7 +411,8 @@ const Courses: React.FC = () => {
             fontWeight: '300',
             maxWidth: '600px',
             margin: '0 auto',
-            lineHeight: '1.6'
+            lineHeight: '1.6',
+            fontFamily: inter.style.fontFamily
           }}>
             Enhance your expertise with our comprehensive course library designed by industry professionals
           </p>
@@ -413,7 +430,8 @@ const Courses: React.FC = () => {
               fontSize: '2rem',
               fontWeight: '400',
               color: '#775D47',
-              margin: '0'
+              margin: '0',
+              fontFamily: julius.style.fontFamily
             }}>
               Available Courses
             </h2>
@@ -423,7 +441,8 @@ const Courses: React.FC = () => {
               background: 'rgba(255, 255, 255, 0.7)',
               padding: '8px 16px',
               borderRadius: '20px',
-              backdropFilter: 'blur(5px)'
+              backdropFilter: 'blur(5px)',
+              fontFamily: inter.style.fontFamily
             }}>
               {availableCourses.length} courses available
             </span>
@@ -453,7 +472,8 @@ const Courses: React.FC = () => {
                 fontSize: '2rem',
                 fontWeight: '400',
                 color: '#775D47',
-                margin: '0'
+                margin: '0',
+                fontFamily: julius.style.fontFamily
               }}>
                 Coming Soon
               </h2>
@@ -463,7 +483,8 @@ const Courses: React.FC = () => {
                 background: 'rgba(255, 255, 255, 0.7)',
                 padding: '8px 16px',
                 borderRadius: '20px',
-                backdropFilter: 'blur(5px)'
+                backdropFilter: 'blur(5px)',
+                fontFamily: inter.style.fontFamily
               }}>
                 {comingSoonCourses.length} courses launching soon
               </span>

@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react';
+import { Julius_Sans_One, Inter } from 'next/font/google';
 import { 
   ArrowLeft,
   Save,
@@ -20,6 +21,9 @@ import {
   ChevronUp,
   Bell
 } from 'lucide-react';
+
+const julius = Julius_Sans_One({ subsets: ['latin'], weight: '400' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
 
 interface Lesson {
   id: number;
@@ -134,7 +138,8 @@ export default function CourseCreation() {
         fontSize: '1.25rem',
         fontWeight: '600',
         color: '#775D47',
-        marginBottom: '24px'
+        marginBottom: '24px',
+        fontFamily: inter.style.fontFamily
       }}>
         Course Information
       </h3>
@@ -151,7 +156,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Course Title *
             </label>
@@ -166,7 +172,7 @@ export default function CourseCreation() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '16px',
-                fontFamily: 'inherit'
+                fontFamily: inter.style.fontFamily
               }}
             />
           </div>
@@ -177,7 +183,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Description *
             </label>
@@ -192,7 +199,7 @@ export default function CourseCreation() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '16px',
-                fontFamily: 'inherit',
+                fontFamily: inter.style.fontFamily,
                 resize: 'vertical'
               }}
             />
@@ -209,7 +216,8 @@ export default function CourseCreation() {
                 fontSize: '14px',
                 fontWeight: '500',
                 color: '#775D47',
-                marginBottom: '8px'
+                marginBottom: '8px',
+                fontFamily: inter.style.fontFamily
               }}>
                 Category
               </label>
@@ -222,7 +230,7 @@ export default function CourseCreation() {
                   border: '1px solid rgba(119, 93, 71, 0.2)',
                   borderRadius: '8px',
                   fontSize: '16px',
-                  fontFamily: 'inherit'
+                  fontFamily: inter.style.fontFamily
                 }}
               >
                 <option value="">Select category...</option>
@@ -241,7 +249,8 @@ export default function CourseCreation() {
                 fontSize: '14px',
                 fontWeight: '500',
                 color: '#775D47',
-                marginBottom: '8px'
+                marginBottom: '8px',
+                fontFamily: inter.style.fontFamily
               }}>
                 Difficulty Level
               </label>
@@ -254,7 +263,7 @@ export default function CourseCreation() {
                   border: '1px solid rgba(119, 93, 71, 0.2)',
                   borderRadius: '8px',
                   fontSize: '16px',
-                  fontFamily: 'inherit'
+                  fontFamily: inter.style.fontFamily
                 }}
               >
                 <option value="beginner">Beginner</option>
@@ -275,7 +284,8 @@ export default function CourseCreation() {
                 fontSize: '14px',
                 fontWeight: '500',
                 color: '#775D47',
-                marginBottom: '8px'
+                marginBottom: '8px',
+                fontFamily: inter.style.fontFamily
               }}>
                 Duration
               </label>
@@ -290,7 +300,7 @@ export default function CourseCreation() {
                   border: '1px solid rgba(119, 93, 71, 0.2)',
                   borderRadius: '8px',
                   fontSize: '16px',
-                  fontFamily: 'inherit'
+                  fontFamily: inter.style.fontFamily
                 }}
               />
             </div>
@@ -301,7 +311,8 @@ export default function CourseCreation() {
                 fontSize: '14px',
                 fontWeight: '500',
                 color: '#775D47',
-                marginBottom: '8px'
+                marginBottom: '8px',
+                fontFamily: inter.style.fontFamily
               }}>
                 Price
               </label>
@@ -316,7 +327,7 @@ export default function CourseCreation() {
                   border: '1px solid rgba(119, 93, 71, 0.2)',
                   borderRadius: '8px',
                   fontSize: '16px',
-                  fontFamily: 'inherit'
+                  fontFamily: inter.style.fontFamily
                 }}
               />
             </div>
@@ -330,7 +341,8 @@ export default function CourseCreation() {
             fontSize: '14px',
             fontWeight: '500',
             color: '#775D47',
-            marginBottom: '8px'
+            marginBottom: '8px',
+            fontFamily: inter.style.fontFamily
           }}>
             Course Thumbnail
           </label>
@@ -359,13 +371,15 @@ export default function CourseCreation() {
             <p style={{
               color: '#775D47',
               fontWeight: '500',
-              marginBottom: '4px'
+              marginBottom: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Upload thumbnail
             </p>
             <p style={{
               fontSize: '14px',
-              color: '#8B7355'
+              color: '#8B7355',
+              fontFamily: inter.style.fontFamily
             }}>
               Recommended: 1280x720px
             </p>
@@ -393,7 +407,8 @@ export default function CourseCreation() {
         <h3 style={{
           fontSize: '1.25rem',
           fontWeight: '600',
-          color: '#775D47'
+          color: '#775D47',
+          fontFamily: inter.style.fontFamily
         }}>
           Course Content
         </h3>
@@ -410,7 +425,8 @@ export default function CourseCreation() {
             alignItems: 'center',
             gap: '8px',
             fontSize: '14px',
-            fontWeight: '500'
+            fontWeight: '500',
+            fontFamily: inter.style.fontFamily
           }}
         >
           <Plus style={{ width: '16px', height: '16px' }} />
@@ -449,14 +465,16 @@ export default function CourseCreation() {
                     fontSize: '16px',
                     fontWeight: '600',
                     color: '#775D47',
-                    flex: 1
+                    flex: 1,
+                    fontFamily: inter.style.fontFamily
                   }}
                 />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{
                   fontSize: '14px',
-                  color: '#8B7355'
+                  color: '#8B7355',
+                  fontFamily: inter.style.fontFamily
                 }}>
                   {module.lessons.length} lessons
                 </span>
@@ -507,7 +525,7 @@ export default function CourseCreation() {
                       border: '1px solid rgba(119, 93, 71, 0.2)',
                       borderRadius: '6px',
                       fontSize: '14px',
-                      fontFamily: 'inherit',
+                      fontFamily: inter.style.fontFamily,
                       resize: 'vertical'
                     }}
                   />
@@ -561,7 +579,8 @@ export default function CourseCreation() {
                           border: 'none',
                           fontSize: '14px',
                           color: '#775D47',
-                          flex: 1
+                          flex: 1,
+                          fontFamily: inter.style.fontFamily
                         }}
                       />
 
@@ -583,7 +602,8 @@ export default function CourseCreation() {
                           padding: '4px 8px',
                           border: '1px solid rgba(119, 93, 71, 0.2)',
                           borderRadius: '4px',
-                          fontSize: '12px'
+                          fontSize: '12px',
+                          fontFamily: inter.style.fontFamily
                         }}
                       >
                         <option value="video">Video</option>
@@ -613,7 +633,8 @@ export default function CourseCreation() {
                           padding: '4px 8px',
                           border: '1px solid rgba(119, 93, 71, 0.2)',
                           borderRadius: '4px',
-                          fontSize: '12px'
+                          fontSize: '12px',
+                          fontFamily: inter.style.fontFamily
                         }}
                       />
 
@@ -644,7 +665,8 @@ export default function CourseCreation() {
                       justifyContent: 'center',
                       gap: '8px',
                       fontSize: '14px',
-                      color: '#8B7355'
+                      color: '#8B7355',
+                      fontFamily: inter.style.fontFamily
                     }}
                   >
                     <Plus style={{ width: '14px', height: '14px' }} />
@@ -672,7 +694,8 @@ export default function CourseCreation() {
         fontSize: '1.25rem',
         fontWeight: '600',
         color: '#775D47',
-        marginBottom: '24px'
+        marginBottom: '24px',
+        fontFamily: inter.style.fontFamily
       }}>
         Course Settings
       </h3>
@@ -702,7 +725,8 @@ export default function CourseCreation() {
               <span style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: '#775D47'
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily
               }}>
                 Publish course immediately
               </span>
@@ -711,7 +735,8 @@ export default function CourseCreation() {
               fontSize: '12px',
               color: '#8B7355',
               marginLeft: '24px',
-              marginTop: '4px'
+              marginTop: '4px',
+              fontFamily: inter.style.fontFamily
             }}>
               Students will be able to enroll as soon as you save
             </p>
@@ -723,7 +748,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Enrollment Limit
             </label>
@@ -736,7 +762,7 @@ export default function CourseCreation() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '16px',
-                fontFamily: 'inherit'
+                fontFamily: inter.style.fontFamily
               }}
             />
           </div>
@@ -747,7 +773,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Prerequisites
             </label>
@@ -760,7 +787,7 @@ export default function CourseCreation() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '16px',
-                fontFamily: 'inherit',
+                fontFamily: inter.style.fontFamily,
                 resize: 'vertical'
               }}
             />
@@ -774,7 +801,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Certificate Template
             </label>
@@ -785,7 +813,7 @@ export default function CourseCreation() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '16px',
-                fontFamily: 'inherit'
+                fontFamily: inter.style.fontFamily
               }}
             >
               <option value="standard">Standard Certificate</option>
@@ -800,7 +828,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Pass Threshold
             </label>
@@ -816,10 +845,13 @@ export default function CourseCreation() {
                   border: '1px solid rgba(119, 93, 71, 0.2)',
                   borderRadius: '8px',
                   fontSize: '16px',
-                  fontFamily: 'inherit'
+                  fontFamily: inter.style.fontFamily
                 }}
               />
-              <span style={{ color: '#8B7355' }}>% minimum score to pass</span>
+              <span style={{ 
+                color: '#8B7355', 
+                fontFamily: inter.style.fontFamily 
+              }}>% minimum score to pass</span>
             </div>
           </div>
 
@@ -829,7 +861,8 @@ export default function CourseCreation() {
               fontSize: '14px',
               fontWeight: '500',
               color: '#775D47',
-              marginBottom: '8px'
+              marginBottom: '8px',
+              fontFamily: inter.style.fontFamily
             }}>
               Discussion Forum
             </label>
@@ -840,7 +873,7 @@ export default function CourseCreation() {
                 border: '1px solid rgba(119, 93, 71, 0.2)',
                 borderRadius: '8px',
                 fontSize: '16px',
-                fontFamily: 'inherit'
+                fontFamily: inter.style.fontFamily
               }}
             >
               <option value="enabled">Enable discussion forum</option>
@@ -857,7 +890,7 @@ export default function CourseCreation() {
     <div style={{
       minHeight: '100vh',
       background: '#FEFEFE',
-      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      fontFamily: inter.style.fontFamily
     }}>
       {/* Navbar */}
       <nav style={{
@@ -894,7 +927,8 @@ export default function CourseCreation() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                fontFamily: inter.style.fontFamily
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = '#775D47';
@@ -913,9 +947,10 @@ export default function CourseCreation() {
             </button>
             <h1 style={{
               fontSize: '1.5rem',
-              fontWeight: '600',
+              fontWeight: '400',
               color: '#775D47',
-              margin: 0
+              margin: 0,
+              fontFamily: julius.style.fontFamily
             }}>
               Create New Course
             </h1>
@@ -939,7 +974,8 @@ export default function CourseCreation() {
                 alignItems: 'center',
                 gap: '8px',
                 fontSize: '14px',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                fontFamily: inter.style.fontFamily
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'rgba(119, 93, 71, 0.15)';
@@ -965,7 +1001,8 @@ export default function CourseCreation() {
               alignItems: 'center',
               gap: '8px',
               fontSize: '14px',
-              fontWeight: '500'
+              fontWeight: '500',
+              fontFamily: inter.style.fontFamily
             }}>
               <Save style={{ width: '16px', height: '16px' }} />
               Save Course
@@ -1003,7 +1040,8 @@ export default function CourseCreation() {
               <span style={{
                 fontSize: '16px',
                 fontWeight: '500',
-                color: '#775D47'
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily
               }}>
                 DK
               </span>
@@ -1033,7 +1071,8 @@ export default function CourseCreation() {
             background: courseData.title ? '#D1FAE5' : 'rgba(119, 93, 71, 0.1)',
             color: courseData.title ? '#065F46' : '#8B7355',
             borderRadius: '20px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontFamily: inter.style.fontFamily
           }}>
             <span style={{ 
               width: '6px', 
@@ -1056,7 +1095,8 @@ export default function CourseCreation() {
             background: modules.length > 0 && modules[0].lessons.length > 0 ? '#D1FAE5' : 'rgba(119, 93, 71, 0.1)',
             color: modules.length > 0 && modules[0].lessons.length > 0 ? '#065F46' : '#8B7355',
             borderRadius: '20px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontFamily: inter.style.fontFamily
           }}>
             <span style={{ 
               width: '6px', 
@@ -1079,7 +1119,8 @@ export default function CourseCreation() {
             background: 'rgba(119, 93, 71, 0.1)',
             color: '#8B7355',
             borderRadius: '20px',
-            fontSize: '14px'
+            fontSize: '14px',
+            fontFamily: inter.style.fontFamily
           }}>
             <span style={{ 
               width: '6px', 
@@ -1106,7 +1147,8 @@ export default function CourseCreation() {
             fontSize: '1.125rem',
             fontWeight: '600',
             color: '#775D47',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            fontFamily: inter.style.fontFamily
           }}>
             Course Summary
           </h4>
@@ -1116,24 +1158,53 @@ export default function CourseCreation() {
             gap: '16px'
           }}>
             <div>
-              <span style={{ fontSize: '14px', color: '#8B7355' }}>Total Modules: </span>
-              <span style={{ fontWeight: '600', color: '#775D47' }}>{modules.length}</span>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily 
+              }}>Total Modules: </span>
+              <span style={{ 
+                fontWeight: '600', 
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily 
+              }}>{modules.length}</span>
             </div>
             <div>
-              <span style={{ fontSize: '14px', color: '#8B7355' }}>Total Lessons: </span>
-              <span style={{ fontWeight: '600', color: '#775D47' }}>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily 
+              }}>Total Lessons: </span>
+              <span style={{ 
+                fontWeight: '600', 
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily 
+              }}>
                 {modules.reduce((total, module) => total + module.lessons.length, 0)}
               </span>
             </div>
             <div>
-              <span style={{ fontSize: '14px', color: '#8B7355' }}>Estimated Duration: </span>
-              <span style={{ fontWeight: '600', color: '#775D47' }}>{courseData.duration || 'Not set'}</span>
-            </div>
-            <div>
-              <span style={{ fontSize: '14px', color: '#8B7355' }}>Status: </span>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily 
+              }}>Estimated Duration: </span>
               <span style={{ 
                 fontWeight: '600', 
-                color: courseData.isPublished ? '#059669' : '#D97706' 
+                color: '#775D47',
+                fontFamily: inter.style.fontFamily 
+              }}>{courseData.duration || 'Not set'}</span>
+            </div>
+            <div>
+              <span style={{ 
+                fontSize: '14px', 
+                color: '#8B7355',
+                fontFamily: inter.style.fontFamily 
+              }}>Status: </span>
+              <span style={{ 
+                fontWeight: '600', 
+                color: courseData.isPublished ? '#059669' : '#D97706',
+                fontFamily: inter.style.fontFamily 
               }}>
                 {courseData.isPublished ? 'Will be published' : 'Draft'}
               </span>

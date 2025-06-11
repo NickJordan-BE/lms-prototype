@@ -114,98 +114,250 @@ const Courses: React.FC = () => {
   };
 
   const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-200 hover:-translate-y-1">
-      <div className="relative">
-        <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-          <BookOpen className="w-16 h-16 text-gray-400" />
+    <div style={{
+      background: 'rgba(255, 255, 255, 0.95)',
+      borderRadius: '20px',
+      overflow: 'hidden',
+      backdropFilter: 'blur(10px)',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      boxShadow: '0 15px 35px rgba(119, 93, 71, 0.1)',
+      transition: 'all 0.3s ease',
+      cursor: 'pointer'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'translateY(-8px)';
+      e.currentTarget.style.boxShadow = '0 25px 50px rgba(119, 93, 71, 0.2)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.boxShadow = '0 15px 35px rgba(119, 93, 71, 0.1)';
+    }}
+    >
+      <div style={{ position: 'relative' }}>
+        <div style={{
+          width: '100%',
+          height: '200px',
+          background: 'linear-gradient(135deg, #E1DCD5 0%, #D2BDAC 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <BookOpen style={{ width: '64px', height: '64px', color: '#775D47', opacity: 0.7 }} />
         </div>
-        <div className="absolute top-3 left-3">
-          <span className="bg-white px-2 py-1 rounded-full text-xs font-medium text-gray-600">
+        <div style={{
+          position: 'absolute',
+          top: '12px',
+          left: '12px'
+        }}>
+          <span style={{
+            background: 'rgba(255, 255, 255, 0.9)',
+            padding: '6px 12px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            fontWeight: '500',
+            color: '#775D47',
+            backdropFilter: 'blur(5px)'
+          }}>
             {course.category}
           </span>
         </div>
         {course.isComingSoon && (
-          <div className="absolute top-3 right-3">
-            <span className="bg-amber-100 text-amber-800 px-2 py-1 rounded-full text-xs font-medium">
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            right: '12px'
+          }}>
+            <span style={{
+              background: 'rgba(217, 119, 6, 0.1)',
+              color: '#D97706',
+              padding: '6px 12px',
+              borderRadius: '20px',
+              fontSize: '12px',
+              fontWeight: '500',
+              border: '1px solid rgba(217, 119, 6, 0.2)'
+            }}>
               Coming Soon
             </span>
           </div>
         )}
       </div>
       
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+      <div style={{ padding: '24px' }}>
+        <h3 style={{
+          fontSize: '1.25rem',
+          fontWeight: '600',
+          color: '#775D47',
+          marginBottom: '12px',
+          lineHeight: '1.4',
+          fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+        }}>
           {course.title}
         </h3>
         
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+        <p style={{
+          color: '#666',
+          fontSize: '14px',
+          marginBottom: '16px',
+          lineHeight: '1.5',
+          display: '-webkit-box',
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden'
+        }}>
           {course.description}
         </p>
         
-        <div className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-            <span className="text-sm font-medium text-blue-700">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+          <div style={{
+            width: '32px',
+            height: '32px',
+            background: '#E1DCD5',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <span style={{
+              fontSize: '14px',
+              fontWeight: '600',
+              color: '#775D47'
+            }}>
               {course.instructor.split(' ').map(n => n[0]).join('')}
             </span>
           </div>
-          <span className="text-sm text-gray-700 font-medium">{course.instructor}</span>
+          <span style={{
+            fontSize: '14px',
+            color: '#775D47',
+            fontWeight: '500'
+          }}>
+            {course.instructor}
+          </span>
         </div>
         
-        <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
-          <div className="flex items-center gap-1">
-            <Clock className="w-4 h-4" />
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '16px',
+          marginBottom: '16px',
+          fontSize: '14px',
+          color: '#8B7355'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <Clock style={{ width: '16px', height: '16px' }} />
             <span>{course.duration}</span>
           </div>
           
-          <div className="flex items-center gap-1">
-            <BookOpen className="w-4 h-4" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+            <BookOpen style={{ width: '16px', height: '16px' }} />
             <span>{course.lessons} lessons</span>
           </div>
           
           {!course.isComingSoon && (
-            <div className="flex items-center gap-1">
-              <Users className="w-4 h-4" />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <Users style={{ width: '16px', height: '16px' }} />
               <span>{course.students.toLocaleString()}</span>
             </div>
           )}
         </div>
         
         {!course.isComingSoon && course.rating > 0 && (
-          <div className="flex items-center gap-2 mb-4">
-            <div className="flex items-center gap-1">
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '16px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(course.rating)
-                      ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
-                  }`}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    fill: i < Math.floor(course.rating) ? '#F59E0B' : 'transparent',
+                    color: i < Math.floor(course.rating) ? '#F59E0B' : '#D1D5DB'
+                  }}
                 />
               ))}
             </div>
-            <span className="text-sm font-medium text-gray-700">{course.rating}</span>
+            <span style={{
+              fontSize: '14px',
+              fontWeight: '500',
+              color: '#775D47'
+            }}>
+              {course.rating}
+            </span>
           </div>
         )}
         
         {course.isComingSoon && course.launchDate && (
-          <div className="flex items-center gap-2 mb-4 text-sm text-amber-700 bg-amber-50 px-3 py-2 rounded-lg">
-            <Calendar className="w-4 h-4" />
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '16px',
+            fontSize: '14px',
+            color: '#D97706',
+            background: 'rgba(217, 119, 6, 0.1)',
+            padding: '12px',
+            borderRadius: '12px',
+            border: '1px solid rgba(217, 119, 6, 0.2)'
+          }}>
+            <Calendar style={{ width: '16px', height: '16px' }} />
             <span>Launches {course.launchDate}</span>
           </div>
         )}
         
-        <div className="flex items-center justify-between">
-          <span className="text-2xl font-bold text-gray-900">{course.price}</span>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <span style={{
+            fontSize: '1.5rem',
+            fontWeight: '700',
+            color: '#775D47'
+          }}>
+            {course.price}
+          </span>
           
           {course.isComingSoon ? (
-            <button className="bg-gray-100 text-gray-500 px-4 py-2 rounded-lg font-medium cursor-not-allowed">
+            <button style={{
+              background: '#E1DCD5',
+              color: '#8B7355',
+              padding: '10px 16px',
+              borderRadius: '12px',
+              fontWeight: '500',
+              cursor: 'not-allowed',
+              border: 'none',
+              fontSize: '14px'
+            }}>
               Notify Me
             </button>
           ) : (
             <button 
               onClick={() => handleEnrollClick(course.id)}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+              style={{
+                background: '#775D47',
+                color: 'white',
+                padding: '10px 16px',
+                borderRadius: '12px',
+                fontWeight: '500',
+                transition: 'all 0.3s ease',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: '14px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#8B7355';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(119, 93, 71, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#775D47';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
               Enroll Now
             </button>
@@ -216,26 +368,72 @@ const Courses: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f8f6f3 0%, #E1DCD5 50%, #D2BDAC 100%)',
+      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '32px 16px'
+      }}>
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Courses</h1>
-          <p className="text-gray-600">
-            Enhance your skills with our comprehensive course library
+        <div style={{ marginBottom: '48px', textAlign: 'center' }}>
+          <h1 style={{
+            fontSize: '3rem',
+            fontWeight: '300',
+            color: '#775D47',
+            marginBottom: '16px',
+            letterSpacing: '1px'
+          }}>
+            Professional Courses
+          </h1>
+          <p style={{
+            color: '#8B7355',
+            fontSize: '1.2rem',
+            fontWeight: '300',
+            maxWidth: '600px',
+            margin: '0 auto',
+            lineHeight: '1.6'
+          }}>
+            Enhance your expertise with our comprehensive course library designed by industry professionals
           </p>
         </div>
 
         {/* Available Courses */}
-        <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Available Courses</h2>
-            <span className="text-sm text-gray-500">
+        <section style={{ marginBottom: '64px' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '32px'
+          }}>
+            <h2 style={{
+              fontSize: '2rem',
+              fontWeight: '400',
+              color: '#775D47',
+              margin: '0'
+            }}>
+              Available Courses
+            </h2>
+            <span style={{
+              fontSize: '14px',
+              color: '#8B7355',
+              background: 'rgba(255, 255, 255, 0.7)',
+              padding: '8px 16px',
+              borderRadius: '20px',
+              backdropFilter: 'blur(5px)'
+            }}>
               {availableCourses.length} courses available
             </span>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '24px'
+          }}>
             {availableCourses.map(course => (
               <CourseCard key={course.id} course={course} />
             ))}
@@ -245,14 +443,37 @@ const Courses: React.FC = () => {
         {/* Coming Soon */}
         {comingSoonCourses.length > 0 && (
           <section>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-gray-900">Coming Soon</h2>
-              <span className="text-sm text-gray-500">
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '32px'
+            }}>
+              <h2 style={{
+                fontSize: '2rem',
+                fontWeight: '400',
+                color: '#775D47',
+                margin: '0'
+              }}>
+                Coming Soon
+              </h2>
+              <span style={{
+                fontSize: '14px',
+                color: '#8B7355',
+                background: 'rgba(255, 255, 255, 0.7)',
+                padding: '8px 16px',
+                borderRadius: '20px',
+                backdropFilter: 'blur(5px)'
+              }}>
                 {comingSoonCourses.length} courses launching soon
               </span>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+              gap: '24px'
+            }}>
               {comingSoonCourses.map(course => (
                 <CourseCard key={course.id} course={course} />
               ))}

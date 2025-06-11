@@ -1,4 +1,3 @@
-
 'use client'
 
 import React from 'react';
@@ -80,12 +79,10 @@ export default function MyLearning() {
   ];
 
   const handleContinueCourse = (courseId: string) => {
-    // Navigate to LMS for the specific course
     window.location.href = '/lms';
   };
 
   const handleViewCertificate = (courseId: string) => {
-    // Navigate to certificate view
     window.location.href = '/certificates';
   };
 
@@ -100,116 +97,318 @@ export default function MyLearning() {
     const progress = Math.round((course.completedLessons / course.lessons) * 100);
     
     return (
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-200">
-        <div className="relative">
-          <div className="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative">
-            <BookOpen className="w-16 h-16 text-gray-400" />
+      <div style={{
+        background: '#FFFFFF',
+        borderRadius: '12px',
+        boxShadow: '0 4px 12px rgba(119, 93, 71, 0.08)',
+        border: '1px solid rgba(119, 93, 71, 0.1)',
+        overflow: 'hidden',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = '0 8px 24px rgba(119, 93, 71, 0.12)';
+        e.currentTarget.style.transform = 'translateY(-2px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 4px 12px rgba(119, 93, 71, 0.08)';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}>
+        <div style={{ position: 'relative' }}>
+          <div style={{
+            width: '100%',
+            height: '192px',
+            background: 'linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative'
+          }}>
+            <BookOpen style={{ width: '64px', height: '64px', color: '#8B7355' }} />
             {course.isCompleted && (
-              <div className="absolute inset-0 bg-green-600/10 flex items-center justify-center">
-                <CheckCircle className="w-20 h-20 text-green-600" />
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'rgba(16, 185, 129, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <CheckCircle style={{ width: '80px', height: '80px', color: '#10B981' }} />
               </div>
             )}
           </div>
-          <div className="absolute top-3 left-3">
-            <span className="bg-white px-2 py-1 rounded-full text-xs font-medium text-gray-600">
+          <div style={{
+            position: 'absolute',
+            top: '12px',
+            left: '12px'
+          }}>
+            <span style={{
+              background: 'rgba(255, 255, 255, 0.95)',
+              padding: '4px 12px',
+              borderRadius: '20px',
+              fontSize: '12px',
+              fontWeight: '500',
+              color: '#775D47',
+              boxShadow: '0 2px 8px rgba(119, 93, 71, 0.1)'
+            }}>
               {course.category}
             </span>
           </div>
           {course.isCompleted && (
-            <div className="absolute top-3 right-3">
-              <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+            <div style={{
+              position: 'absolute',
+              top: '12px',
+              right: '12px'
+            }}>
+              <span style={{
+                background: '#D1FAE5',
+                color: '#065F46',
+                padding: '4px 12px',
+                borderRadius: '20px',
+                fontSize: '12px',
+                fontWeight: '500'
+              }}>
                 Completed
               </span>
             </div>
           )}
         </div>
         
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-gray-900 mb-2 line-clamp-2">
+        <div style={{ padding: '24px' }}>
+          <h3 style={{
+            fontSize: '1.25rem',
+            fontWeight: '600',
+            color: '#775D47',
+            marginBottom: '8px',
+            lineHeight: '1.4',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden'
+          }}>
             {course.title}
           </h3>
           
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          <p style={{
+            color: '#666',
+            fontSize: '14px',
+            marginBottom: '16px',
+            lineHeight: '1.5',
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden'
+          }}>
             {course.description}
           </p>
           
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <span className="text-sm font-medium text-blue-700">
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '16px'
+          }}>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              background: 'rgba(119, 93, 71, 0.1)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#775D47'
+              }}>
                 {course.instructor.split(' ').map(n => n[0]).join('')}
               </span>
             </div>
-            <span className="text-sm text-gray-700 font-medium">{course.instructor}</span>
+            <span style={{
+              fontSize: '14px',
+              color: '#775D47',
+              fontWeight: '500'
+            }}>
+              {course.instructor}
+            </span>
           </div>
           
           {/* Progress Bar */}
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-gray-700">Progress</span>
-              <span className="text-sm font-medium text-gray-900">{progress}%</span>
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '8px'
+            }}>
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#775D47'
+              }}>
+                Progress
+              </span>
+              <span style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: '#775D47'
+              }}>
+                {progress}%
+              </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div 
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  course.isCompleted ? 'bg-green-600' : 'bg-blue-600'
-                }`}
-                style={{ width: `${progress}%` }}
-              />
+            <div style={{
+              width: '100%',
+              background: 'rgba(119, 93, 71, 0.1)',
+              borderRadius: '4px',
+              height: '8px'
+            }}>
+              <div style={{
+                height: '8px',
+                borderRadius: '4px',
+                transition: 'all 0.3s ease',
+                background: course.isCompleted 
+                  ? 'linear-gradient(90deg, #10B981 0%, #059669 100%)' 
+                  : 'linear-gradient(90deg, #775D47 0%, #8B7355 100%)',
+                width: `${progress}%`
+              }} />
             </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              fontSize: '12px',
+              color: '#8B7355',
+              marginTop: '4px'
+            }}>
               <span>{course.completedLessons} of {course.lessons} lessons</span>
               <span>{course.estimatedTimeLeft}</span>
             </div>
           </div>
           
-          <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
-            <div className="flex items-center gap-1">
-              <Clock className="w-4 h-4" />
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            marginBottom: '16px',
+            fontSize: '14px',
+            color: '#8B7355'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}>
+              <Clock style={{ width: '16px', height: '16px' }} />
               <span>{course.duration}</span>
             </div>
             
-            <div className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" />
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}>
+              <Calendar style={{ width: '16px', height: '16px' }} />
               <span>Started {course.enrolledDate}</span>
             </div>
           </div>
           
-          <div className="flex items-center gap-2 mb-4">
-            <div className="flex items-center gap-1">
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '16px'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px'
+            }}>
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-4 h-4 ${
-                    i < Math.floor(course.rating)
-                      ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
-                  }`}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    fill: i < Math.floor(course.rating) ? '#F59E0B' : 'transparent',
+                    color: i < Math.floor(course.rating) ? '#F59E0B' : '#D1D5DB'
+                  }}
                 />
               ))}
             </div>
-            <span className="text-sm font-medium text-gray-700">{course.rating}</span>
+            <span style={{
+              fontSize: '14px',
+              fontWeight: '500',
+              color: '#775D47'
+            }}>
+              {course.rating}
+            </span>
           </div>
           
-          <div className="text-xs text-gray-500 mb-4">
+          <div style={{
+            fontSize: '12px',
+            color: '#8B7355',
+            marginBottom: '16px'
+          }}>
             Last accessed: {course.lastAccessed}
           </div>
           
-          <div className="flex gap-3">
+          <div style={{ display: 'flex', gap: '12px' }}>
             {course.isCompleted ? (
               <>
                 <button 
                   onClick={() => handleContinueCourse(course.id)}
-                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                  style={{
+                    flex: 1,
+                    background: '#F5F5F5',
+                    color: '#775D47',
+                    padding: '10px 16px',
+                    borderRadius: '8px',
+                    fontWeight: '500',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#E8E8E8';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#F5F5F5';
+                  }}
                 >
-                  <Play className="w-4 h-4" />
+                  <Play style={{ width: '16px', height: '16px' }} />
                   Review
                 </button>
                 {course.certificateEarned && (
                   <button 
                     onClick={() => handleViewCertificate(course.id)}
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                    style={{
+                      flex: 1,
+                      background: '#10B981',
+                      color: 'white',
+                      padding: '10px 16px',
+                      borderRadius: '8px',
+                      fontWeight: '500',
+                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      border: 'none',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#059669';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#10B981';
+                    }}
                   >
-                    <CheckCircle className="w-4 h-4" />
+                    <CheckCircle style={{ width: '16px', height: '16px' }} />
                     Certificate
                   </button>
                 )}
@@ -217,9 +416,31 @@ export default function MyLearning() {
             ) : (
               <button 
                 onClick={() => handleContinueCourse(course.id)}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+                style={{
+                  width: '100%',
+                  background: '#775D47',
+                  color: 'white',
+                  padding: '10px 16px',
+                  borderRadius: '8px',
+                  fontWeight: '500',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#8B7355';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#775D47';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
               >
-                <Play className="w-4 h-4" />
+                <Play style={{ width: '16px', height: '16px' }} />
                 Continue Learning
               </button>
             )}
@@ -230,69 +451,202 @@ export default function MyLearning() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div style={{
+      minHeight: '100vh',
+      background: '#FEFEFE',
+      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+    }}>
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        padding: '32px 24px'
+      }}>
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">My Learning</h1>
-          <p className="text-gray-600">
+        <div style={{ marginBottom: '32px' }}>
+          <h1 style={{
+            fontSize: '2rem',
+            fontWeight: '400',
+            color: '#775D47',
+            marginBottom: '8px'
+          }}>
+            My Learning
+          </h1>
+          <p style={{
+            color: '#8B7355',
+            fontSize: '1.1rem'
+          }}>
             Track your progress and continue your learning journey
           </p>
         </div>
 
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '24px',
+          marginBottom: '32px'
+        }}>
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+            border: '1px solid rgba(119, 93, 71, 0.08)'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
               <div>
-                <p className="text-sm font-medium text-gray-600">Total Courses</p>
-                <p className="text-2xl font-bold text-gray-900">{totalCourses}</p>
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: '#8B7355',
+                  marginBottom: '4px'
+                }}>
+                  Total Courses
+                </p>
+                <p style={{
+                  fontSize: '2rem',
+                  fontWeight: '600',
+                  color: '#775D47'
+                }}>
+                  {totalCourses}
+                </p>
               </div>
-              <BookOpen className="w-8 h-8 text-blue-600" />
+              <BookOpen style={{ width: '32px', height: '32px', color: '#775D47' }} />
             </div>
           </div>
           
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+            border: '1px solid rgba(119, 93, 71, 0.08)'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
               <div>
-                <p className="text-sm font-medium text-gray-600">In Progress</p>
-                <p className="text-2xl font-bold text-gray-900">{inProgressCourses}</p>
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: '#8B7355',
+                  marginBottom: '4px'
+                }}>
+                  In Progress
+                </p>
+                <p style={{
+                  fontSize: '2rem',
+                  fontWeight: '600',
+                  color: '#775D47'
+                }}>
+                  {inProgressCourses}
+                </p>
               </div>
-              <Play className="w-8 h-8 text-orange-600" />
+              <Play style={{ width: '32px', height: '32px', color: '#F59E0B' }} />
             </div>
           </div>
           
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+            border: '1px solid rgba(119, 93, 71, 0.08)'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
               <div>
-                <p className="text-sm font-medium text-gray-600">Completed</p>
-                <p className="text-2xl font-bold text-gray-900">{completedCourses}</p>
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: '#8B7355',
+                  marginBottom: '4px'
+                }}>
+                  Completed
+                </p>
+                <p style={{
+                  fontSize: '2rem',
+                  fontWeight: '600',
+                  color: '#775D47'
+                }}>
+                  {completedCourses}
+                </p>
               </div>
-              <CheckCircle className="w-8 h-8 text-green-600" />
+              <CheckCircle style={{ width: '32px', height: '32px', color: '#10B981' }} />
             </div>
           </div>
           
-          <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
+          <div style={{
+            background: '#FFFFFF',
+            borderRadius: '12px',
+            padding: '24px',
+            boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+            border: '1px solid rgba(119, 93, 71, 0.08)'
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
               <div>
-                <p className="text-sm font-medium text-gray-600">Overall Progress</p>
-                <p className="text-2xl font-bold text-gray-900">{overallProgress}%</p>
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: '#8B7355',
+                  marginBottom: '4px'
+                }}>
+                  Overall Progress
+                </p>
+                <p style={{
+                  fontSize: '2rem',
+                  fontWeight: '600',
+                  color: '#775D47'
+                }}>
+                  {overallProgress}%
+                </p>
               </div>
-              <BarChart3 className="w-8 h-8 text-purple-600" />
+              <BarChart3 style={{ width: '32px', height: '32px', color: '#8B5CF6' }} />
             </div>
           </div>
         </div>
 
         {/* Course Grid */}
         <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-gray-900">Your Courses</h2>
-            <span className="text-sm text-gray-500">
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '24px'
+          }}>
+            <h2 style={{
+              fontSize: '1.5rem',
+              fontWeight: '500',
+              color: '#775D47'
+            }}>
+              Your Courses
+            </h2>
+            <span style={{
+              fontSize: '14px',
+              color: '#8B7355'
+            }}>
               {enrolledCourses.length} enrolled courses
             </span>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '24px'
+          }}>
             {enrolledCourses.map(course => (
               <CourseCard key={course.id} course={course} />
             ))}
@@ -300,34 +654,103 @@ export default function MyLearning() {
         </section>
 
         {/* Quick Actions */}
-        <section className="mt-12 bg-white rounded-lg p-8 shadow-sm border border-gray-200">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section style={{
+          marginTop: '48px',
+          background: '#FFFFFF',
+          borderRadius: '12px',
+          padding: '32px',
+          boxShadow: '0 4px 12px rgba(119, 93, 71, 0.05)',
+          border: '1px solid rgba(119, 93, 71, 0.08)'
+        }}>
+          <h3 style={{
+            fontSize: '1.25rem',
+            fontWeight: '500',
+            color: '#775D47',
+            marginBottom: '16px'
+          }}>
+            Quick Actions
+          </h3>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '16px'
+          }}>
             <button 
               onClick={() => window.location.href = '/courses'}
-              className="bg-blue-50 hover:bg-blue-100 text-blue-700 p-4 rounded-lg transition-colors text-left"
+              style={{
+                background: 'rgba(119, 93, 71, 0.05)',
+                color: '#775D47',
+                padding: '16px',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease',
+                textAlign: 'left',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(119, 93, 71, 0.08)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(119, 93, 71, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
-              <BookOpen className="w-6 h-6 mb-2" />
-              <div className="font-medium">Browse More Courses</div>
-              <div className="text-sm text-blue-600">Discover new skills</div>
+              <BookOpen style={{ width: '24px', height: '24px', marginBottom: '8px' }} />
+              <div style={{ fontWeight: '500', marginBottom: '4px' }}>Browse More Courses</div>
+              <div style={{ fontSize: '14px', color: '#8B7355' }}>Discover new skills</div>
             </button>
             
             <button 
               onClick={() => window.location.href = '/certificates'}
-              className="bg-green-50 hover:bg-green-100 text-green-700 p-4 rounded-lg transition-colors text-left"
+              style={{
+                background: 'rgba(16, 185, 129, 0.05)',
+                color: '#059669',
+                padding: '16px',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease',
+                textAlign: 'left',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.08)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(16, 185, 129, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
-              <CheckCircle className="w-6 h-6 mb-2" />
-              <div className="font-medium">View Certificates</div>
-              <div className="text-sm text-green-600">See your achievements</div>
+              <CheckCircle style={{ width: '24px', height: '24px', marginBottom: '8px' }} />
+              <div style={{ fontWeight: '500', marginBottom: '4px' }}>View Certificates</div>
+              <div style={{ fontSize: '14px', color: '#047857' }}>See your achievements</div>
             </button>
             
             <button 
               onClick={() => window.location.href = '/profile'}
-              className="bg-purple-50 hover:bg-purple-100 text-purple-700 p-4 rounded-lg transition-colors text-left"
+              style={{
+                background: 'rgba(139, 92, 246, 0.05)',
+                color: '#7C3AED',
+                padding: '16px',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease',
+                textAlign: 'left',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.08)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
             >
-              <BarChart3 className="w-6 h-6 mb-2" />
-              <div className="font-medium">Learning Analytics</div>
-              <div className="text-sm text-purple-600">Track your progress</div>
+              <BarChart3 style={{ width: '24px', height: '24px', marginBottom: '8px' }} />
+              <div style={{ fontWeight: '500', marginBottom: '4px' }}>Learning Analytics</div>
+              <div style={{ fontSize: '14px', color: '#6D28D9' }}>Track your progress</div>
             </button>
           </div>
         </section>

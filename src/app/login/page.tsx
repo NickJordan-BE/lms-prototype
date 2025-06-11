@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react'
-import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -30,50 +29,169 @@ const page = () => {
   };
 
   return (
-    <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '80vh' }}>
-      <Grid item xs={12} sm={8} md={5}>
-        <Paper elevation={3} sx={{ p: 4, width: '400px' }}>
-          <Typography variant="h4" textAlign="center">
-            Login
+    <div style={{ 
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #f8f6f3 0%, #E1DCD5 50%, #D2BDAC 100%)',
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      padding: '2rem',
+      fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+    }}>
+      <Paper 
+        elevation={12} 
+        sx={{ 
+          p: 5, 
+          width: '100%', 
+          maxWidth: '450px',
+          borderRadius: '20px',
+          background: 'rgba(255, 255, 255, 0.95)',
+          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 25px 50px rgba(119, 93, 71, 0.15)'
+        }}
+      >
+        <Stack spacing={0} sx={{ mb: 3 }}>
+          <Typography 
+            variant="h3" 
+            sx={{ 
+              textAlign: 'center',
+              color: '#775D47',
+              fontWeight: '300',
+              fontSize: '2.5rem',
+              letterSpacing: '1px',
+              marginBottom: '0.5rem'
+            }}
+          >
+            Welcome Back
           </Typography>
-          <form onSubmit={handleSubmit} style={{ marginTop: '2rem' }}>
-            <Stack spacing={3}>
-              <TextField
-                label="Email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-              <TextField
-                label="Password"
-                name="password"
-                type="password"
-                value={form.password}
-                onChange={handleChange}
-                fullWidth
-                required
-              />
-              {error && (
-                <Typography color="error" varaint="body2">
-                  {error}
-                </Typography>
-              )}
-              <Button type="submit" variant="contained" color="primary">
-                Login
-              </Button>
-              <NextLink href="/signup">
-                <Link variant="body1" color="primary">
-                  Don't have an account? Sign Up
-                </Link>
-              </NextLink>
-            </Stack>
-          </form>
-        </Paper>
-      </Grid>
-    </Grid>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              textAlign: 'center',
+              color: '#8B7355',
+              fontSize: '1rem',
+              fontWeight: '300'
+            }}
+          >
+            Sign in to your account
+          </Typography>
+        </Stack>
+        
+        {error && (
+          <Typography 
+            color="error" 
+            variant="body2" 
+            sx={{ 
+              mt: 0, 
+              mb: 2, 
+              textAlign: 'center',
+              backgroundColor: 'rgba(211, 47, 47, 0.1)',
+              padding: '12px',
+              borderRadius: '8px',
+              border: '1px solid rgba(211, 47, 47, 0.2)'
+            }}
+          >
+            {error}
+          </Typography>
+        )}
+
+        <form onSubmit={handleSubmit} style={{ marginTop: '1rem' }}>
+          <Stack spacing={3}>
+            <TextField
+              label="Email Address"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  '&:hover fieldset': {
+                    borderColor: '#8B7355',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#775D47',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#775D47',
+                },
+              }}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              fullWidth
+              required
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                  '&:hover fieldset': {
+                    borderColor: '#8B7355',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#775D47',
+                  },
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#775D47',
+                },
+              }}
+            />
+            <Button 
+              type="submit" 
+              variant="contained" 
+              size="large"
+              sx={{
+                backgroundColor: '#775D47',
+                color: 'white',
+                borderRadius: '12px',
+                padding: '14px',
+                fontSize: '1.1rem',
+                fontWeight: '500',
+                textTransform: 'none',
+                boxShadow: '0 8px 20px rgba(119, 93, 71, 0.3)',
+                '&:hover': {
+                  backgroundColor: '#8B7355',
+                  boxShadow: '0 12px 25px rgba(119, 93, 71, 0.4)',
+                  transform: 'translateY(-2px)',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Sign In
+            </Button>
+            <Link 
+              component={NextLink} 
+              href="/signup" 
+              variant="body1" 
+              sx={{ 
+                textDecoration: 'none',
+                textAlign: 'center',
+                color: '#775D47',
+                fontSize: '1rem',
+                fontWeight: '400',
+                '&:hover': {
+                  color: '#8B7355',
+                  textDecoration: 'underline',
+                },
+                transition: 'all 0.3s ease',
+              }}
+            >
+              Don't have an account? Create one
+            </Link>
+          </Stack>
+        </form>
+      </Paper>
+    </div>
   );
 };
 

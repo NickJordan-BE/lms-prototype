@@ -30,86 +30,260 @@ export const SignedInNavbar = () => {
 
   return (
     <>
-      <nav className="bg-white sticky top-0 z-50 h-15 flex items-center px-8">
-        <div className="w-full mx-auto flex justify-between items-center">
+      <nav style={{
+        background: 'rgba(255, 255, 255, 0.98)',
+        backdropFilter: 'blur(8px)',
+        borderBottom: '1px solid rgba(119, 93, 71, 0.08)',
+        boxShadow: '0 2px 12px rgba(119, 93, 71, 0.04)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        height: '70px',
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 32px',
+        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif'
+      }}>
+        <div style={{
+          width: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
           <button 
             onClick={() => router.push('/')}
-            className="text-slate-800 text-xl font-semibold m-0 tracking-tight bg-transparent border-none cursor-pointer hover:text-slate-600 transition-colors duration-200"
+            style={{
+              color: '#775D47',
+              fontSize: '1.5rem',
+              fontWeight: '300',
+              letterSpacing: '0.5px',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              padding: '8px 0'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#8B7355';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#775D47';
+            }}
           >
-            Skilled LMS
+            Illuminance Learning
           </button>
-          <div className="flex items-center gap-3">
+          
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px'
+          }}>
             <button 
               onClick={() => router.push('/mylearning')}
-              className="bg-blue-600 hover:bg-blue-700 text-white border-none px-4 py-2 rounded-md text-sm font-medium cursor-pointer transition-all duration-200 whitespace-nowrap hover:-translate-y-px"
+              style={{
+                background: '#775D47',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                whiteSpace: 'nowrap'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#8B7355';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(119, 93, 71, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#775D47';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
               My Learning
             </button>
-            <div className="relative flex items-center">
+            
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
               <button 
-                className="flex items-center gap-2 bg-transparent border border-slate-200 hover:border-slate-300 rounded-lg px-3 py-1.5 cursor-pointer transition-all duration-200 text-slate-600 text-sm hover:bg-slate-50"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'transparent',
+                  border: '1px solid rgba(119, 93, 71, 0.15)',
+                  borderRadius: '10px',
+                  padding: '8px 12px',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  color: '#775D47',
+                  fontSize: '14px'
+                }}
                 onClick={handleProfileClick}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(119, 93, 71, 0.25)';
+                  e.currentTarget.style.background = 'rgba(119, 93, 71, 0.02)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(119, 93, 71, 0.15)';
+                  e.currentTarget.style.background = 'transparent';
+                }}
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center text-white font-semibold text-sm">
-                  <span className="select-none">U</span>
+                <div style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #775D47 0%, #8B7355 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontWeight: '600',
+                  fontSize: '14px'
+                }}>
+                  U
                 </div>
-                <span className="font-medium text-slate-800">User</span>
-                <span className="text-xs text-slate-500 transition-transform duration-200">▼</span>
+                <span style={{ fontWeight: '500', color: '#775D47' }}>User</span>
+                <span style={{
+                  fontSize: '10px',
+                  color: '#8B7355',
+                  transition: 'transform 0.3s ease',
+                  transform: showProfileMenu ? 'rotate(180deg)' : 'rotate(0deg)'
+                }}>
+                  ▼
+                </span>
               </button>
+              
               {showProfileMenu && (
-                <div className="absolute top-full right-0 mt-2 bg-white border border-slate-200 rounded-lg shadow-xl min-w-56 z-50 animate-in fade-in-0 zoom-in-95 duration-150">
-                  <div className="p-4 border-b border-slate-100 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-600 to-green-700 flex items-center justify-center text-white font-semibold">
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  right: 0,
+                  marginTop: '8px',
+                  background: 'rgba(255, 255, 255, 0.98)',
+                  backdropFilter: 'blur(12px)',
+                  border: '1px solid rgba(119, 93, 71, 0.1)',
+                  borderRadius: '12px',
+                  boxShadow: '0 12px 32px rgba(119, 93, 71, 0.15)',
+                  minWidth: '220px',
+                  zIndex: 50,
+                  animation: 'fadeIn 0.2s ease-out'
+                }}>
+                  <div style={{
+                    padding: '16px',
+                    borderBottom: '1px solid rgba(119, 93, 71, 0.08)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px'
+                  }}>
+                    <div style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #775D47 0%, #8B7355 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'white',
+                      fontWeight: '600'
+                    }}>
                       U
                     </div>
-                    <div className="flex-1">
-                      <div className="font-semibold text-slate-800 text-sm mb-0.5">User Name</div>
-                      <div className="text-slate-500 text-xs">user@example.com</div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{
+                        fontWeight: '600',
+                        color: '#775D47',
+                        fontSize: '14px',
+                        marginBottom: '2px'
+                      }}>
+                        User Name
+                      </div>
+                      <div style={{
+                        color: '#8B7355',
+                        fontSize: '12px'
+                      }}>
+                        user@example.com
+                      </div>
                     </div>
                   </div>
-                  <div className="h-px bg-slate-100 my-2"></div>
-                  <ul className="list-none p-2 m-0">
-                    <li className="p-0">
+                  
+                  <div style={{ padding: '8px 0' }}>
+                    {[
+                      { label: 'My Profile', route: '/profile' },
+                      { label: 'Settings', route: '/settings' },
+                      { label: 'My Certificates', route: '/certificates' },
+                      { label: 'Help & Support', route: '/help' }
+                    ].map((item) => (
                       <button 
-                        onClick={() => handleNavigation('/profile')}
-                        className="w-full text-left block px-4 py-3 text-slate-600 text-sm transition-all duration-200 hover:bg-slate-50 hover:text-slate-800 rounded-md border-none bg-transparent cursor-pointer"
+                        key={item.route}
+                        onClick={() => handleNavigation(item.route)}
+                        style={{
+                          width: '100%',
+                          textAlign: 'left',
+                          display: 'block',
+                          padding: '12px 16px',
+                          color: '#775D47',
+                          fontSize: '14px',
+                          fontWeight: '400',
+                          transition: 'all 0.3s ease',
+                          borderRadius: '6px',
+                          margin: '2px 8px',
+                          border: 'none',
+                          background: 'transparent',
+                          cursor: 'pointer'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(119, 93, 71, 0.05)';
+                          e.currentTarget.style.color = '#8B7355';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'transparent';
+                          e.currentTarget.style.color = '#775D47';
+                        }}
                       >
-                        My Profile
+                        {item.label}
                       </button>
-                    </li>
-                    <li className="p-0">
-                      <button 
-                        onClick={() => handleNavigation('/settings')}
-                        className="w-full text-left block px-4 py-3 text-slate-600 text-sm transition-all duration-200 hover:bg-slate-50 hover:text-slate-800 rounded-md border-none bg-transparent cursor-pointer"
-                      >
-                        Settings
-                      </button>
-                    </li>
-                    <li className="p-0">
-                      <button 
-                        onClick={() => handleNavigation('/certificates')}
-                        className="w-full text-left block px-4 py-3 text-slate-600 text-sm transition-all duration-200 hover:bg-slate-50 hover:text-slate-800 rounded-md border-none bg-transparent cursor-pointer"
-                      >
-                        My Certificates
-                      </button>
-                    </li>
-                    <li className="p-0">
-                      <button 
-                        onClick={() => handleNavigation('/help')}
-                        className="w-full text-left block px-4 py-3 text-slate-600 text-sm transition-all duration-200 hover:bg-slate-50 hover:text-slate-800 rounded-md border-none bg-transparent cursor-pointer"
-                      >
-                        Help & Support
-                      </button>
-                    </li>
-                    <li className="p-0">
-                      <button 
-                        onClick={handleSignOut}
-                        className="w-full text-left block px-4 py-3 text-slate-600 text-sm transition-all duration-200 hover:bg-slate-50 hover:text-slate-800 rounded-md border-none bg-transparent cursor-pointer"
-                      >
-                        Sign Out
-                      </button>
-                    </li>
-                  </ul>
+                    ))}
+                    
+                    <div style={{
+                      height: '1px',
+                      background: 'rgba(119, 93, 71, 0.08)',
+                      margin: '8px 16px'
+                    }}></div>
+                    
+                    <button 
+                      onClick={handleSignOut}
+                      style={{
+                        width: '100%',
+                        textAlign: 'left',
+                        display: 'block',
+                        padding: '12px 16px',
+                        color: '#DC2626',
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        transition: 'all 0.3s ease',
+                        borderRadius: '6px',
+                        margin: '2px 8px',
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: 'pointer'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(220, 38, 38, 0.05)';
+                        e.currentTarget.style.color = '#EF4444';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = '#DC2626';
+                      }}
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
@@ -120,10 +294,28 @@ export const SignedInNavbar = () => {
       {/* Overlay to close profile menu when clicking outside */}
       {showProfileMenu && (
         <div 
-          className="fixed inset-0 z-40 bg-transparent"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 40,
+            background: 'transparent'
+          }}
           onClick={handleProfileMenuClose}
         />
       )}
+      
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-8px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `}</style>
     </>
   );
 };

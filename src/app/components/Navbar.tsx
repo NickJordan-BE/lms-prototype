@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
             gap: '32px'
           }}>
             <a 
-              href="/" 
+              href="/dashboard" 
               style={{
                 color: '#775D47',
                 textDecoration: 'none',
@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
                 e.currentTarget.style.borderBottomColor = 'transparent';
               }}
             >
-              Home
+              Professor
             </a>
             <a 
               href="/about" 

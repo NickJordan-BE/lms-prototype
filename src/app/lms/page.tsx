@@ -7,10 +7,6 @@ import { isFeatureEnabled } from '../utils/featureFlags';
 import dynamic from 'next/dynamic';
 import { Play, FileText, Download, BookOpen, CheckCircle, X, ChevronLeft, ChevronRight, Presentation } from 'lucide-react';
 
-const ReactConfetti = dynamic(() => import('react-confetti'), {
-  ssr: false
-});
-
 interface QuizQuestion {
   question: string;
   options: string[];
@@ -1418,6 +1414,7 @@ export default function LMS() {
       }}>
         <div style={{
           width: '100%',
+          maxWidth: '1200px',
           margin: '0 auto',
           display: 'flex',
           justifyContent: 'space-between',
@@ -1828,13 +1825,6 @@ export default function LMS() {
               justifyContent: 'center',
               zIndex: 50
             }}>
-              <ReactConfetti
-                width={windowSize.width}
-                height={windowSize.height}
-                recycle={false}
-                numberOfPieces={200}
-                gravity={0.2}
-              />
               <div style={{
                 background: 'white',
                 borderRadius: '12px',

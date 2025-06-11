@@ -30,7 +30,6 @@ const PUBLIC_NAVBAR_ROUTES = [
 ];
 
 const SIGNED_IN_NAVBAR_ROUTES = [
-  '/dashboard',
   '/profile',
   '/settings',
   '/mylearning',
@@ -38,7 +37,9 @@ const SIGNED_IN_NAVBAR_ROUTES = [
 ];
 
 const NO_NAVBAR_ROUTES = [
-  '/lms'
+  '/lms',
+  '/dashboard',
+  '/coursecreation'
 ];
 
 export default function RootLayout({
